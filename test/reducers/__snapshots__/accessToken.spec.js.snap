@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`accessToken reducer should handle ACCESS_TOKEN_ERROR 1`] = `
+Object {
+  "accessToken": "",
+  "error": true,
+  "isFetching": false,
+}
+`;
+
+exports[`accessToken reducer should handle RECEIVE_ACCESS_TOKEN 1`] = `
+Object {
+  "accessToken": "1/BYafNRmup5QmMT8NmWJemosgtOF4GCu8-sqMIO7nHBk",
+  "error": false,
+  "isFetching": false,
+}
+`;
+
+exports[`accessToken reducer should handle REQUEST_ACCESS_TOKEN 1`] = `
+Object {
+  "accessToken": "",
+  "error": false,
+  "isFetching": true,
+}
+`;
+
+exports[`accessToken reducer should handle unknown action type 1`] = `
+Object {
+  "accessToken": "",
+  "error": false,
+  "isFetching": false,
+}
+`;
+
+exports[`accessToken reducer should return the initial state 1`] = `
+Object {
+  "accessToken": "",
+  "error": false,
+  "isFetching": false,
+}
+`;

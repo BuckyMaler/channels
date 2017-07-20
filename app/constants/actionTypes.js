@@ -1,0 +1,8 @@
+// @flow
+const actionTypes = {
+  REQUEST_ACCESS_TOKEN: 'REQUEST_ACCESS_TOKEN',
+  RECEIVE_ACCESS_TOKEN: 'RECEIVE_ACCESS_TOKEN',
+  ACCESS_TOKEN_ERROR: 'ACCESS_TOKEN_ERROR'
+};
+
+export default actionTypes;
