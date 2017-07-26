@@ -1,0 +1,38 @@
+@import '../../app.global.scss';
+
+.searchBar {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	height: 100%;
+	padding: 0 11px;
+	background-color: $black;
+}
+
+.searchInput {
+	width: 100%;
+	line-height: 24px;
+	padding: 0 .5rem;
+	border: none;
+	color: $white;
+	background-color: transparent;
+
+	&:focus {
+		outline: 0
+	}
+}
+
+.iconSearch {
+	height: 24px;
+	fill: $gray;
+}
+
+.iconCancel {
+	transform: scale(0);
+	width: 14px;
+	fill: $gray;
+}
+
+.iconCancel--isActive {
+	transform: scale(1);
+}

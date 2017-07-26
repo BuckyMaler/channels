@@ -9,3 +9,14 @@ export type AccessTokenState = {
   isFetching?: boolean,
   error?: boolean
 };
+
+export type ToggleState = {
+  thumbnail: string,
+  title: string
+};
+
+export type SearchBarState = {
+  disabled: boolean,
+  placeholder: string,
+  value: string
+};

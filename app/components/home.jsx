@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import LeftColumn from '../components/leftColumn';
 
 export default class Home extends Component {
   props: {
@@ -27,7 +28,9 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div />
+      <div>
+        <LeftColumn />
+      </div>
     );
   }
 }
