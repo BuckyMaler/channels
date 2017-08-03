@@ -6,6 +6,8 @@ export const Methods = {
   DELETE: 'DELETE'
 };
 
+type MethodsType = $Keys<typeof Methods>;
+
 export function authRequest(uri: string): Promise<any> {
   const [url, body] = uri.split('?');
   const init = {
@@ -14,4 +16,13 @@ export function authRequest(uri: string): Promise<any> {
     body
   };
   return fetch(new Request(url, init));
+}
+
+export function apiRequest(uri: string, method: MethodsType): Promise<any> {
+  const init = {
+    method,
+    headers: { 'Content-Type': 'application/json' }
+  };
+  return fetch(uri, init)
+    .then(res => res.json());
 }

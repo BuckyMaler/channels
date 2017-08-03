@@ -19,3 +19,7 @@ export const IconSearch = (props) => (
 export const IconCancel = (props) => (
   <svg className={props.value.length ? `${props.styles.iconCancel} ${props.styles['iconCancel--isActive']}` : props.styles.iconCancel} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17.016 15.609l-3.609-3.609 3.609-3.609-1.406-1.406-3.609 3.609-3.609-3.609-1.406 1.406 3.609 3.609-3.609 3.609 1.406 1.406 3.609-3.609 3.609 3.609zM12 2.016c5.531 0 9.984 4.453 9.984 9.984s-4.453 9.984-9.984 9.984-9.984-4.453-9.984-9.984 4.453-9.984 9.984-9.984z"></path></svg>
 );
+
+export const IconSpinner = (props) => (
+  <svg className={props.styles.iconSpinner} xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M25.25 6.46c-10.32 0-18.68 8.37-18.68 18.68h4.07c0-8.07 6.54-14.61 14.62-14.61V6.46z"/></svg>
+);

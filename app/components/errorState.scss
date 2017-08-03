@@ -1,0 +1,11 @@
+@import '../app.global.scss';
+
+.message {
+  margin: 0;
+  padding: 1rem;
+}
+
+.retry {
+  color: $gray;
+  font-weight: 500;
+}
