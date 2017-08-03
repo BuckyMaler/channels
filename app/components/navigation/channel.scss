@@ -1,0 +1,42 @@
+@import '../../app.global.scss';
+
+.channel {
+	display: flex;
+	align-items: center;
+	padding: 0.8rem 1rem;
+
+	&--isActive {
+		background-color: $gray;
+
+		.subscribers,
+		.videos {
+			color: $white;
+		}
+	}
+}
+
+.thumbnail {
+	align-self: center;
+	width: 50px;
+	margin-right: 0.8rem;
+	border: 2px solid $white;
+	border-radius: 50%;
+	box-shadow: 0 1px 3px 1px rgba(46, 46, 46, 0.3);
+}
+
+.title {
+	margin: 0;
+
+	@include font-size(12);
+}
+
+.subscribers,
+.videos {
+	color: $gray;
+
+	@include font-size(12);
+}
+
+.subscribers {
+	margin-right: 0.8rem;
+}

@@ -1,11 +1,14 @@
 // @flow
 import React, { Component } from 'react';
 import LeftColumn from '../components/leftColumn';
+import type { AccessTokenState } from '../constants/typeAliases';
 
 export default class Home extends Component {
   props: {
-    fetchAccessToken: () => void
-  }
+    accessToken: AccessTokenState,
+    fetchAccessToken: () => void,
+    fetchChannels: () => void
+  };
 
   intervalId: number;
   tenMinutes: number;
@@ -20,6 +23,14 @@ export default class Home extends Component {
   componentWillMount() {
     this.props.fetchAccessToken();
     this.intervalId = this.interval();
+  }
+
+  componentWillReceiveProps(nextProps: any) {
+    const { accessToken } = this.props.accessToken;
+    const { accessToken: nextAccessToken } = nextProps.accessToken;
+    if (!accessToken && nextAccessToken) {
+      this.props.fetchChannels();
+    }
   }
 
   componentWillUnmount() {

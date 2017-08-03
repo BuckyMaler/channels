@@ -1,0 +1,51 @@
+@import '../../app.global.scss';
+
+.channelList {
+
+	&--isOpen {
+
+		.closeTarget {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		.modal {
+			opacity: 1;
+			visibility: visible;
+			transition: visibility 0s, opacity 0.3s ease;
+		}
+	}
+}
+
+.modal {
+	position: fixed;
+	top: 75px;
+	left: 11px;
+	width: 350px;
+	height: 450px;
+	border-radius: 3px;
+	box-shadow: 0 2px 15px rgba(46, 46, 46, 0.6);
+	background-color: $white;
+	overflow-y: auto;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.channels {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.loader,
+.blankState,
+.errorState {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}

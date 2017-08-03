@@ -4,6 +4,9 @@ import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
+import * as accessTokenActions from '../actions/accessToken';
+import * as channelListActions from '../actions/channelList';
+import * as channelActions from '../actions/channel';
 
 const history = createHashHistory();
 
@@ -29,6 +32,9 @@ const configureStore = (initialState?: any) => {
   // Redux DevTools Configuration
   const actionCreators = {
     ...routerActions,
+    ...accessTokenActions,
+    ...channelListActions,
+    ...channelActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

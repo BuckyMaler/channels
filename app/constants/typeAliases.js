@@ -1,4 +1,6 @@
 // @flow
+import Channel from '../dataModels/channel';
+
 export type Action = {
   type: string,
   payload?: any
@@ -19,4 +21,11 @@ export type SearchBarState = {
   disabled: boolean,
   placeholder: string,
   value: string
+};
+
+export type ChannelListState = {
+  channels: Channel[],
+  isFetching: boolean,
+  error: boolean,
+  isOpen: boolean
 };

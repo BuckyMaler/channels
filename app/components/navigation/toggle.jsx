@@ -5,12 +5,14 @@ import styles from './toggle.scss';
 
 const Toggle = ({
   thumbnail,
-  title
+  title,
+  toggleVisibility
 }: {
   thumbnail: string,
-  title: string
+  title: string,
+  toggleVisibility: () => void
 }) => (
-  <div className={styles.toggle}>
+  <div className={styles.toggle} onClick={toggleVisibility}>
     <img className={styles.thumbnail} src={thumbnail} />
     <h1 className={styles.title}>{title}</h1>
     <IconArrowDropDown styles={styles} />
