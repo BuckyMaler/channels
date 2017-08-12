@@ -2,14 +2,14 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 import accessToken from './accessToken';
-import toggle from './toggle';
+import status from './status';
 import searchBar from './searchBar';
 import channelList from './channelList';
 
 const rootReducer = combineReducers({
   router,
   accessToken,
-  toggle,
+  status,
   searchBar,
   channelList
 });

@@ -2,7 +2,7 @@
 import uuid from 'uuid';
 import { stringOrEmpty, commaSeparateNumber } from '../utils/utils';
 
-export default class Channel {
+export default class ChannelType {
   title: string;
   thumbnail: string;
   videoCount: string;
@@ -26,12 +26,12 @@ export default class Channel {
     this.id = id;
   }
 
-  static from(json: any): Channel {
+  static from(json: any): ChannelType {
     const { snippet, statistics } = json;
     const title = stringOrEmpty(snippet.title);
     const thumbnail = stringOrEmpty(snippet.thumbnails.default.url);
     const videoCount = commaSeparateNumber(stringOrEmpty(statistics.videoCount));
     const subscriberCount = commaSeparateNumber(stringOrEmpty(statistics.subscriberCount));
-    return new Channel(title, thumbnail, videoCount, subscriberCount);
+    return new ChannelType(title, thumbnail, videoCount, subscriberCount);
   }
 }

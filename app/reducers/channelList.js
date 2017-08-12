@@ -1,8 +1,8 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, ChannelListState as State } from '../constants/typeAliases';
-import Channel from '../dataModels/channel';
-import channelReducer from './channel';
+import type { Action, ChannelListState } from '../constants/typeAliases';
+import ChannelType from '../dataTypes/channelType';
+import channel from './channel';
 
 const initialState = {
   channels: [],
@@ -11,7 +11,7 @@ const initialState = {
   isOpen: false
 };
 
-export default function channelList(state: State = initialState, { type, payload }: Action): State {
+export default function channelList(state: ChannelListState = initialState, { type, payload }: Action): ChannelListState {
   switch (type) {
     case actionTypes.REQUEST_CHANNELS:
       return {
@@ -22,7 +22,7 @@ export default function channelList(state: State = initialState, { type, payload
     case actionTypes.RECEIVE_CHANNELS:
       return {
         ...state,
-        channels: !payload ? [] : payload.map(json => Channel.from(json)),
+        channels: !payload ? [] : payload.map(json => ChannelType.from(json)),
         isFetching: false,
         error: false
       };
@@ -32,7 +32,7 @@ export default function channelList(state: State = initialState, { type, payload
         isFetching: false,
         error: true
       };
-    case actionTypes.TOGGLE_VISIBILITY:
+    case actionTypes.TOGGLE_CHANNEL_LIST:
       return {
         ...state,
         isOpen: !state.isOpen
@@ -40,7 +40,7 @@ export default function channelList(state: State = initialState, { type, payload
     case actionTypes.SELECT_CHANNEL:
       return {
         ...state,
-        channels: state.channels.map(channel => channelReducer(channel, { type, payload }))
+        channels: state.channels.map(c => channel(c, { type, payload }))
       };
     default:
       return state;

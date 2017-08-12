@@ -1,6 +1,6 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, AccessTokenState as State } from '../constants/typeAliases';
+import type { Action, AccessTokenState } from '../constants/typeAliases';
 
 const initialState = {
   accessToken: '',
@@ -8,7 +8,7 @@ const initialState = {
   error: false
 };
 
-export default function accessToken(state: State = initialState, { type, payload }: Action): State {
+export default function accessToken(state: AccessTokenState = initialState, { type, payload }: Action): AccessTokenState {
   switch (type) {
     case actionTypes.REQUEST_ACCESS_TOKEN:
       return {

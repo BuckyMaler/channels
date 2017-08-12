@@ -1,5 +1,5 @@
 // @flow
-import type { Action, SearchBarState as State } from '../constants/typeAliases';
+import type { Action, SearchBarState } from '../constants/typeAliases';
 
 const initialState = {
   disabled: true,
@@ -7,7 +7,7 @@ const initialState = {
   value: ''
 };
 
-export default function searchBar(state: State = initialState, { type, payload }: Action): State {
+export default function searchBar(state: SearchBarState = initialState, { type, payload }: Action): SearchBarState {
   switch (type) {
     default:
       return state;
