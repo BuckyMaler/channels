@@ -1,10 +1,8 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action } from '../constants/typeAliases';
+import type { Action, Dispatch } from '../constants/typeAliases';
 import { authRequest } from '../services/fetch';
 import { getAccessTokenUri } from '../services/uriGenerator';
-
-type Dispatch = (action: Action) => any;
 
 type ThunkAction = (dispatch: Dispatch) => any;
 
