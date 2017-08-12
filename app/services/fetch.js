@@ -15,7 +15,8 @@ export function authRequest(uri: string): Promise<any> {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body
   };
-  return fetch(new Request(url, init));
+  return fetch(url, init)
+    .then(res => res.json());
 }
 
 export function apiRequest(uri: string, method: MethodsType): Promise<any> {

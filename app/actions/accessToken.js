@@ -13,10 +13,6 @@ export function fetchAccessToken(): ThunkAction {
     dispatch(requestAccessToken());
     const uri = getAccessTokenUri();
     return authRequest(uri)
-      .then(res => {
-        if (res == null) throw new Error();
-        return res.json();
-      })
       .then(json => dispatch(receiveAccessToken(json)))
       .catch(() => dispatch(accessTokenError()));
   };
