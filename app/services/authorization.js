@@ -36,7 +36,6 @@ function exchangeCode(code: ?string): void {
     return;
   }
   requestTokens(code)
-    .then(res => res.json())
     .then(json => {
       storeRefreshToken(json);
       location.hash = '/home';
