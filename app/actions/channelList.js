@@ -1,10 +1,8 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, AccessTokenState } from '../constants/typeAliases';
+import type { Action, Dispatch, AccessTokenState } from '../constants/typeAliases';
 import { apiRequest, Methods } from '../services/fetch';
 import { getChannelsUri, getSubscriptionsUri } from '../services/uriGenerator';
-
-type Dispatch = (action: Action) => any;
 
 type GetState = () => { accessToken: AccessTokenState };
 

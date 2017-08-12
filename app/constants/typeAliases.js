@@ -6,6 +6,8 @@ export type Action = {
   payload?: any
 };
 
+export type Dispatch = (action: Action) => any;
+
 export type AccessTokenState = {
   accessToken: string,
   isFetching?: boolean,
