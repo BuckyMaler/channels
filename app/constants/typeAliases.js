@@ -1,5 +1,5 @@
 // @flow
-import Channel from '../dataModels/channel';
+import ChannelType from '../dataTypes/channelType';
 
 export type Action = {
   type: string,
@@ -12,7 +12,7 @@ export type AccessTokenState = {
   error?: boolean
 };
 
-export type ToggleState = {
+export type StatusState = {
   thumbnail: string,
   title: string
 };
@@ -24,7 +24,7 @@ export type SearchBarState = {
 };
 
 export type ChannelListState = {
-  channels: Channel[],
+  channels: ChannelType[],
   isFetching: boolean,
   error: boolean,
   isOpen: boolean

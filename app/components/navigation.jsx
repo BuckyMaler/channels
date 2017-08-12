@@ -1,31 +1,31 @@
 // @flow
 import React from 'react';
-import Toggle from './toggle';
+import Status from './status';
 import SearchBar from './searchBar';
 import ChannelList from './channelList';
-import type { ToggleState, SearchBarState, ChannelListState } from '../../constants/typeAliases';
+import type { StatusState, SearchBarState, ChannelListState } from '../constants/typeAliases';
 import styles from './navigation.scss';
 
 const Navigation = ({
-  toggle,
+  status,
   searchBar,
   channelList,
   fetchChannels,
   selectChannel,
-  toggleVisibility
+  toggleChannelList
 }: {
-  toggle: ToggleState,
+  status: StatusState,
   searchBar: SearchBarState,
   channelList: ChannelListState,
   fetchChannels: () => void,
   selectChannel: (id: string) => void,
-  toggleVisibility: () => void
+  toggleChannelList: () => void
 }) => (
   <div className={styles.navigation}>
-    <Toggle
-      thumbnail={toggle.thumbnail}
-      title={toggle.title}
-      toggleVisibility={toggleVisibility}
+    <Status
+      thumbnail={status.thumbnail}
+      title={status.title}
+      toggleChannelList={toggleChannelList}
     />
     <SearchBar
       disabled={searchBar.disabled}
@@ -39,7 +39,7 @@ const Navigation = ({
       isOpen={channelList.isOpen}
       fetchChannels={fetchChannels}
       selectChannel={selectChannel}
-      toggleVisibility={toggleVisibility}
+      toggleChannelList={toggleChannelList}
     />
   </div>
 );

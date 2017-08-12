@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 import Channel from './channel';
-import Loader from '../loader';
-import BlankState from '../blankState';
-import ErrorState from '../errorState';
-import ChannelType from '../../dataModels/channel';
+import Loader from './loader';
+import BlankState from './blankState';
+import ErrorState from './errorState';
+import ChannelType from '../dataTypes/channelType';
 import styles from './channelList.scss';
 
 const ChannelList = ({
@@ -14,7 +14,7 @@ const ChannelList = ({
   isOpen,
   fetchChannels,
   selectChannel,
-  toggleVisibility
+  toggleChannelList
 }: {
   channels: ChannelType[],
   isFetching: boolean,
@@ -22,12 +22,12 @@ const ChannelList = ({
   isOpen: boolean,
   fetchChannels: () => void,
   selectChannel: (id: string) => void,
-  toggleVisibility: () => void
+  toggleChannelList: () => void
 }) => {
   if (isFetching || error) {
     return (
       <div className={isOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
-        <div className={styles.closeTarget} onClick={toggleVisibility} />
+        <div className={styles.closeTarget} onClick={toggleChannelList} />
         <div className={styles.modal}>
           {isFetching ? (
             <div className={styles.loader}>
@@ -48,7 +48,7 @@ const ChannelList = ({
 
   return (
     <div className={isOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
-      <div className={styles.closeTarget} onClick={toggleVisibility} />
+      <div className={styles.closeTarget} onClick={toggleChannelList} />
       <div className={styles.modal}>
         {channels.length ? (
           <ul className={styles.channels}>

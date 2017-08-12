@@ -7,6 +7,7 @@ import rootReducer from '../reducers';
 import * as accessTokenActions from '../actions/accessToken';
 import * as channelListActions from '../actions/channelList';
 import * as channelActions from '../actions/channel';
+import * as statusActions from '../actions/status';
 
 const history = createHashHistory();
 
@@ -34,7 +35,8 @@ const configureStore = (initialState?: any) => {
     ...routerActions,
     ...accessTokenActions,
     ...channelListActions,
-    ...channelActions
+    ...channelActions,
+    ...statusActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

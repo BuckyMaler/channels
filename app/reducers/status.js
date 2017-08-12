@@ -1,5 +1,5 @@
 // @flow
-import type { Action, ToggleState as State } from '../constants/typeAliases';
+import type { Action, StatusState } from '../constants/typeAliases';
 import placeholder from '../images/placeholder.jpg';
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
   title: 'Channels'
 };
 
-export default function toggle(state: State = initialState, { type, payload }: Action): State {
+export default function toggle(state: StatusState = initialState, { type, payload }: Action): StatusState {
   switch (type) {
     default:
       return state;

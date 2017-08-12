@@ -1,12 +1,12 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
 import type { Action } from '../constants/typeAliases';
-import Channel from '../dataModels/channel';
+import ChannelType from '../dataTypes/channelType';
 
-export default function channel(state: Channel, { type, payload }: Action): Channel {
+export default function channel(state: ChannelType, { type, payload }: Action): ChannelType {
   switch (type) {
     case actionTypes.SELECT_CHANNEL:
-      return new Channel(
+      return new ChannelType(
         state.title,
         state.thumbnail,
         state.videoCount,

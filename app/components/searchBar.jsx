@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { IconSearch, IconCancel } from '../icons';
+import { IconSearch, IconCancel } from './icons';
 import styles from './searchBar.scss';
 
 const SearchBar = ({
