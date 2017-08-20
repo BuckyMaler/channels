@@ -10,7 +10,7 @@ Object {
 
 exports[`accessToken reducer should handle RECEIVE_ACCESS_TOKEN 1`] = `
 Object {
-  "accessToken": "1/BYafNRmup5QmMT8NmWJemosgtOF4GCu8-sqMIO7nHBk",
+  "accessToken": "ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg",
   "error": false,
   "isFetching": false,
 }

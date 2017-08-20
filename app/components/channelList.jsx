@@ -21,7 +21,7 @@ const ChannelList = ({
   error: boolean,
   isOpen: boolean,
   fetchChannels: () => void,
-  selectChannel: (id: string) => void,
+  selectChannel: (channel: ChannelType) => void,
   toggleChannelList: () => void
 }) => {
   if (isFetching || error) {
@@ -60,7 +60,7 @@ const ChannelList = ({
                 videoCount={channel.videoCount}
                 subscriberCount={channel.subscriberCount}
                 isActive={channel.isActive}
-                selectChannel={() => selectChannel(channel.id)}
+                selectChannel={() => selectChannel(channel)}
               />
             )}
           </ul>

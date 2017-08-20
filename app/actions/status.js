@@ -7,3 +7,13 @@ export function toggleChannelList(): Action {
     type: actionTypes.TOGGLE_CHANNEL_LIST
   };
 }
+
+export function updateStatus(title: string, thumbnail: string): Action {
+  return {
+    type: actionTypes.UPDATE_STATUS,
+    payload: {
+      title,
+      thumbnail
+    }
+  };
+}

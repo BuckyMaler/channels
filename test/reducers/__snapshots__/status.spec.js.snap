@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`status reducer should handle UPDATE_STATUS 1`] = `
+Object {
+  "thumbnail": "https://yt3.ggpht.com/photo.jpg",
+  "title": "DevTips",
+}
+`;
+
+exports[`status reducer should handle unknown action type 1`] = `
+Object {
+  "thumbnail": "test-file-stub",
+  "title": "Channels",
+}
+`;
+
+exports[`status reducer should return the initial state 1`] = `
+Object {
+  "thumbnail": "test-file-stub",
+  "title": "Channels",
+}
+`;
