@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`channelList reducer should handle CHANNELS_ERROR 1`] = `
+Object {
+  "channels": Array [],
+  "error": true,
+  "isFetching": false,
+  "isOpen": false,
+}
+`;
+
+exports[`channelList reducer should handle REQUEST_CHANNELS 1`] = `
+Object {
+  "channels": Array [],
+  "error": false,
+  "isFetching": true,
+  "isOpen": false,
+}
+`;
+
+exports[`channelList reducer should handle TOGGLE_CHANNEL_LIST 1`] = `
+Object {
+  "channels": Array [],
+  "error": false,
+  "isFetching": false,
+  "isOpen": true,
+}
+`;
+
+exports[`channelList reducer should handle UPDATE_ACTIVE_CHANNEL 1`] = `
+Object {
+  "channels": Array [
+    ChannelType {
+      "id": "8ef09d6c-1eda-4e1e-aeec-e3ddff47dd45",
+      "isActive": false,
+      "subscriberCount": "232937",
+      "thumbnail": "https://yt3.ggpht.com/photo.jpg",
+      "title": "DevTips",
+      "videoCount": "292",
+    },
+    ChannelType {
+      "id": "bc91ca60-42dd-4694-bfbf-88edf8ca2805",
+      "isActive": true,
+      "subscriberCount": "98801",
+      "thumbnail": "https://yt3.ggpht.com/photo.jpg",
+      "title": "Fun Fun Function",
+      "videoCount": "114",
+    },
+  ],
+  "error": false,
+  "isFetching": false,
+  "isOpen": false,
+}
+`;
+
+exports[`channelList reducer should handle unknown action type 1`] = `
+Object {
+  "channels": Array [],
+  "error": false,
+  "isFetching": false,
+  "isOpen": false,
+}
+`;
+
+exports[`channelList reducer should return the initial state 1`] = `
+Object {
+  "channels": Array [],
+  "error": false,
+  "isFetching": false,
+  "isOpen": false,
+}
+`;

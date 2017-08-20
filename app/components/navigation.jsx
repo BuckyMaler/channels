@@ -4,6 +4,7 @@ import Status from './status';
 import SearchBar from './searchBar';
 import ChannelList from './channelList';
 import type { StatusState, SearchBarState, ChannelListState } from '../constants/typeAliases';
+import ChannelType from '../dataTypes/channelType';
 import styles from './navigation.scss';
 
 const Navigation = ({
@@ -18,7 +19,7 @@ const Navigation = ({
   searchBar: SearchBarState,
   channelList: ChannelListState,
   fetchChannels: () => void,
-  selectChannel: (id: string) => void,
+  selectChannel: (channel: ChannelType) => void,
   toggleChannelList: () => void
 }) => (
   <div className={styles.navigation}>

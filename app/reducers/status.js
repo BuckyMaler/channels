@@ -1,4 +1,5 @@
 // @flow
+import actionTypes from '../constants/actionTypes';
 import type { Action, StatusState } from '../constants/typeAliases';
 import placeholder from '../images/placeholder.jpg';
 
@@ -7,8 +8,16 @@ const initialState = {
   title: 'Channels'
 };
 
-export default function toggle(state: StatusState = initialState, { type, payload }: Action): StatusState {
+export default function status(state: StatusState = initialState, { type, payload }: Action): StatusState {
   switch (type) {
+    case actionTypes.UPDATE_STATUS:
+      if (!payload) {
+        return state;
+      }
+      return {
+        title: payload.title,
+        thumbnail: payload.thumbnail
+      };
     default:
       return state;
   }

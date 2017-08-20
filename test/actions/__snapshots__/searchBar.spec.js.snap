@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`search bar actions should create an action to enable the search bar 1`] = `
+Object {
+  "payload": "DevTips",
+  "type": "ENABLE_SEARCH_BAR",
+}
+`;

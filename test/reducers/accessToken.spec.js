@@ -7,24 +7,27 @@ describe('accessToken reducer', () => {
   });
 
   it('should handle REQUEST_ACCESS_TOKEN', () => {
-    expect(accessToken(undefined, { type: actionTypes.REQUEST_ACCESS_TOKEN })).toMatchSnapshot();
+    const action = { type: actionTypes.REQUEST_ACCESS_TOKEN };
+    expect(accessToken(undefined, action)).toMatchSnapshot();
   });
 
   it('should handle RECEIVE_ACCESS_TOKEN', () => {
     const state = accessToken(undefined, { type: actionTypes.REQUEST_ACCESS_TOKEN });
     const action = {
       type: actionTypes.RECEIVE_ACCESS_TOKEN,
-      payload: '1/BYafNRmup5QmMT8NmWJemosgtOF4GCu8-sqMIO7nHBk'
+      payload: 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg'
     };
     expect(accessToken(state, action)).toMatchSnapshot();
   });
 
   it('should handle ACCESS_TOKEN_ERROR', () => {
     const state = accessToken(undefined, { type: actionTypes.REQUEST_ACCESS_TOKEN });
-    expect(accessToken(state, { type: actionTypes.ACCESS_TOKEN_ERROR })).toMatchSnapshot();
+    const action = { type: actionTypes.ACCESS_TOKEN_ERROR };
+    expect(accessToken(state, action)).toMatchSnapshot();
   });
 
   it('should handle unknown action type', () => {
-    expect(accessToken(undefined, { type: 'unknown' })).toMatchSnapshot();
+    const action = { type: 'unknown' };
+    expect(accessToken(undefined, action)).toMatchSnapshot();
   });
 });

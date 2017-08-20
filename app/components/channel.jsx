@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import ChannelType from '../dataTypes/channelType';
 import styles from './channel.scss';
 
 const Channel = ({
@@ -15,7 +16,7 @@ const Channel = ({
   videoCount: string,
   subscriberCount: string,
   isActive: boolean,
-  selectChannel: (id: string) => void
+  selectChannel: (channel: ChannelType) => void
 }) => (
   <li className={isActive ? `${styles.channel} ${styles['channel--isActive']}` : styles.channel} onClick={selectChannel}>
     <img className={styles.thumbnail} src={thumbnail} />

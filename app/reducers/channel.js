@@ -5,7 +5,7 @@ import ChannelType from '../dataTypes/channelType';
 
 export default function channel(state: ChannelType, { type, payload }: Action): ChannelType {
   switch (type) {
-    case actionTypes.SELECT_CHANNEL:
+    case actionTypes.UPDATE_ACTIVE_CHANNEL:
       return new ChannelType(
         state.title,
         state.thumbnail,

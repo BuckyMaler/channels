@@ -16,20 +16,20 @@ export function fetchAccessToken(): ThunkAction {
   };
 }
 
-function requestAccessToken(): Action {
+export function requestAccessToken(): Action {
   return {
     type: actionTypes.REQUEST_ACCESS_TOKEN
   };
 }
 
-function receiveAccessToken(json: any): Action {
+export function receiveAccessToken(json: any): Action {
   return {
     type: actionTypes.RECEIVE_ACCESS_TOKEN,
     payload: json.access_token
   };
 }
 
-function accessTokenError(): Action {
+export function accessTokenError(): Action {
   return {
     type: actionTypes.ACCESS_TOKEN_ERROR
   };

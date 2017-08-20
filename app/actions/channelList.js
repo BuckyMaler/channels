@@ -13,7 +13,7 @@ export function fetchChannels(): ThunkAction {
     dispatch(requestChannels());
     const { accessToken } = getState().accessToken;
     const subscriptions = fetchSubscriptions(accessToken);
-    subscriptions.then(json => {
+    return subscriptions.then(json => {
       if (json.items == null) {
         return dispatch(receiveChannels([]));
       }
@@ -24,32 +24,32 @@ export function fetchChannels(): ThunkAction {
           if (json.items == null) {
             return dispatch(receiveChannels([]));
           }
-          dispatch(receiveChannels(json));
+          return dispatch(receiveChannels(json.items));
         });
     })
     .catch(() => dispatch(channelsError()));
   };
 }
 
-function fetchSubscriptions(accessToken: string): Promise<any> {
+export function fetchSubscriptions(accessToken: string): Promise<any> {
   const uri = getSubscriptionsUri(accessToken);
   return apiRequest(uri, Methods.GET);
 }
 
-function requestChannels(): Action {
+export function requestChannels(): Action {
   return {
     type: actionTypes.REQUEST_CHANNELS
   };
 }
 
-function receiveChannels(json: any): Action {
+export function receiveChannels(items: any): Action {
   return {
     type: actionTypes.RECEIVE_CHANNELS,
-    payload: json.items
+    payload: items
   };
 }
 
-function channelsError(): Action {
+export function channelsError(): Action {
   return {
     type: actionTypes.CHANNELS_ERROR
   };

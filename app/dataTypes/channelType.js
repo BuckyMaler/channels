@@ -1,5 +1,5 @@
 // @flow
-import uuid from 'uuid';
+import { v4 } from 'uuid';
 import { stringOrEmpty, commaSeparateNumber } from '../utils/utils';
 
 export default class ChannelType {
@@ -16,7 +16,7 @@ export default class ChannelType {
     videoCount: string,
     subscriberCount: string,
     isActive: boolean = false,
-    id: string = uuid.v4()
+    id: string = v4()
   ) {
     this.title = title;
     this.thumbnail = thumbnail;

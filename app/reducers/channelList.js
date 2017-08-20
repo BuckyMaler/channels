@@ -37,7 +37,7 @@ export default function channelList(state: ChannelListState = initialState, { ty
         ...state,
         isOpen: !state.isOpen
       };
-    case actionTypes.SELECT_CHANNEL:
+    case actionTypes.UPDATE_ACTIVE_CHANNEL:
       return {
         ...state,
         channels: state.channels.map(c => channel(c, { type, payload }))
