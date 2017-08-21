@@ -1,7 +1,14 @@
 // @flow
 import ChannelType from '../dataTypes/channelType';
 
-export type Action = {
+export type Action = ActionWithPayload | ActionWithoutPayload;
+
+type ActionWithPayload = {
+  type: string,
+  payload: any
+};
+
+type ActionWithoutPayload = {
   type: string,
   payload?: any
 };

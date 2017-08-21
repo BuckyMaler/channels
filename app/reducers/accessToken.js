@@ -16,8 +16,6 @@ export default function accessToken(state: AccessTokenState = initialState, { ty
         isFetching: true
       };
     case actionTypes.RECEIVE_ACCESS_TOKEN:
-      if (!payload) return state;
-
       return {
         ...state,
         accessToken: payload,

@@ -22,7 +22,7 @@ export default function channelList(state: ChannelListState = initialState, { ty
     case actionTypes.RECEIVE_CHANNELS:
       return {
         ...state,
-        channels: !payload ? [] : payload.map(json => ChannelType.from(json)),
+        channels: payload.map(item => ChannelType.from(item)),
         isFetching: false,
         error: false
       };
