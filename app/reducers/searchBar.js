@@ -14,7 +14,7 @@ export default function searchBar(state: SearchBarState = initialState, { type, 
       return {
         ...state,
         disabled: false,
-        placeholder: !payload ? 'Search' : `Search ${payload}`
+        placeholder: `Search ${payload}`
       };
     default:
       return state;

@@ -11,9 +11,6 @@ const initialState = {
 export default function status(state: StatusState = initialState, { type, payload }: Action): StatusState {
   switch (type) {
     case actionTypes.UPDATE_STATUS:
-      if (!payload) {
-        return state;
-      }
       return {
         title: payload.title,
         thumbnail: payload.thumbnail
