@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Navigation from '../components/navigation';
+import Navigation from '../components/Navigation';
 import * as statusActions from '../actions/status';
 import * as channelListActions from '../actions/channelList';
 import * as channelActions from '../actions/channel';

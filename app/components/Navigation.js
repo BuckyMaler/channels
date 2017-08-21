@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
-import Status from './status';
-import SearchBar from './searchBar';
-import ChannelList from './channelList';
+import Status from './Status';
+import SearchBar from './SearchBar';
+import ChannelList from './ChannelList';
 import type { StatusState, SearchBarState, ChannelListState } from '../constants/typeAliases';
 import ChannelType from '../dataTypes/channelType';
-import styles from './navigation.scss';
+import styles from './Navigation.scss';
 
 const Navigation = ({
   status,

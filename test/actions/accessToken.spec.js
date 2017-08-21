@@ -1,3 +1,4 @@
+/* eslint promise/always-return: 0 */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as accessTokenActions from '../../app/actions/accessToken';

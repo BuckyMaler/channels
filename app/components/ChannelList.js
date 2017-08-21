@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
-import Channel from './channel';
-import Loader from './loader';
-import BlankState from './blankState';
-import ErrorState from './errorState';
+import Channel from './Channel';
+import Loader from './Loader';
+import BlankState from './BlankState';
+import ErrorState from './ErrorState';
 import ChannelType from '../dataTypes/channelType';
-import styles from './channelList.scss';
+import styles from './ChannelList.scss';
 
 const ChannelList = ({
   channels,
@@ -52,7 +52,7 @@ const ChannelList = ({
       <div className={styles.modal}>
         {channels.length ? (
           <ul className={styles.channels}>
-            {channels.map(channel =>
+            {channels.map(channel => (
               <Channel
                 key={channel.id}
                 title={channel.title}
@@ -62,7 +62,7 @@ const ChannelList = ({
                 isActive={channel.isActive}
                 selectChannel={() => selectChannel(channel)}
               />
-            )}
+            ))}
           </ul>
         ) : (
           <div className={styles.blankState}>
@@ -74,6 +74,6 @@ const ChannelList = ({
       </div>
     </div>
   );
-}
+};
 
 export default ChannelList;

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import Navigation from '../containers/navigation';
+import Navigation from '../containers/Navigation';
 
 const LeftColumn = () => (
   <div>

@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
-import { IconChannels, IconGoogle } from './icons';
+import { IconChannels, IconGoogle } from './Icons';
 import { googleAuth } from '../services/authorization';
-import styles from './login.scss';
+import styles from './Login.scss';
 
 const Login = () => (
   <div className={styles.login}>
