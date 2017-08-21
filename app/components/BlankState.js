@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import styles from './blankState.scss';
+import styles from './BlankState.scss';
 
 const BlankState = ({
   message

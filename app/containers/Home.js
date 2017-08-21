@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Home from '../components/home';
+import Home from '../components/Home';
 import * as accessTokenActions from '../actions/accessToken';
 import * as channelListActions from '../actions/channelList';
 

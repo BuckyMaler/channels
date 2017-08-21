@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import styles from './errorState.scss';
+import styles from './ErrorState.scss';
 
 const ErrorState = ({
   message,

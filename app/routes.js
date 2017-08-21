@@ -1,9 +1,9 @@
 /* eslint flowtype-errors/show-errors: 0 */
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import App from './containers/app';
-import Home from './containers/home';
-import Login from './components/login';
+import App from './containers/App';
+import Home from './containers/Home';
+import Login from './components/Login';
 import { requireAuthorization } from './services/authorization';
 
 export default () => (

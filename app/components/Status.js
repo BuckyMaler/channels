@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import { IconArrowDropDown } from './icons';
-import styles from './status.scss';
+import { IconArrowDropDown } from './Icons';
+import styles from './Status.scss';
 
 const Status = ({
   thumbnail,
@@ -13,7 +13,7 @@ const Status = ({
   toggleChannelList: () => void
 }) => (
   <div className={styles.status} onClick={toggleChannelList}>
-    <img className={styles.thumbnail} src={thumbnail} />
+    <img className={styles.thumbnail} src={thumbnail} alt={title} />
     <h1 className={styles.title}>{title}</h1>
     <IconArrowDropDown styles={styles} />
   </div>

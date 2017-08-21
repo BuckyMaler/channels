@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import ChannelType from '../dataTypes/channelType';
-import styles from './channel.scss';
+import styles from './Channel.scss';
 
 const Channel = ({
   title,
@@ -19,7 +19,7 @@ const Channel = ({
   selectChannel: (channel: ChannelType) => void
 }) => (
   <li className={isActive ? `${styles.channel} ${styles['channel--isActive']}` : styles.channel} onClick={selectChannel}>
-    <img className={styles.thumbnail} src={thumbnail} />
+    <img className={styles.thumbnail} src={thumbnail} alt={title} />
     <div>
       <h3 className={styles.title}>{title}</h3>
       <span className={styles.subscribers}>{subscriberCount} subscribers</span>

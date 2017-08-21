@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import { IconSearch, IconCancel } from './icons';
-import styles from './searchBar.scss';
+import { IconSearch, IconCancel } from './Icons';
+import styles from './SearchBar.scss';
 
 const SearchBar = ({
   disabled,

@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import LeftColumn from '../components/leftColumn';
+import LeftColumn from '../components/LeftColumn';
 import type { AccessTokenState } from '../constants/typeAliases';
 
 export default class Home extends Component {
