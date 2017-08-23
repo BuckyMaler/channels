@@ -6572,6 +6572,16 @@ pretty-format@^20.0.3:
     ansi-regex "^2.1.1"
     ansi-styles "^3.0.0"
 
+primer-support@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/primer-support/-/primer-support-4.3.0.tgz#c470fef8c0bff2ec8a771a0749783c2b388118fe"
+
+primer-truncate@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/primer-truncate/-/primer-truncate-1.3.0.tgz#44ebbfe5e4bf295093f69317bad562f538a51d86"
+  dependencies:
+    primer-support "4.3.0"
+
 private@^0.1.6:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.7.tgz#68ce5e8a1ef0a23bb570cc28537b5332aba63ef1"

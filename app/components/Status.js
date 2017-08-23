@@ -14,7 +14,7 @@ const Status = ({
 }) => (
   <div className={styles.status} onClick={toggleChannelList}>
     <img className={styles.thumbnail} src={thumbnail} alt={title} />
-    <h1 className={styles.title}>{title}</h1>
+    <h1 className={`${styles.title} ${styles['css-truncate']} ${styles['css-truncate-target']}`}>{title}</h1>
     <IconArrowDropDown styles={styles} />
   </div>
 );

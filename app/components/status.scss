@@ -17,10 +17,15 @@
 }
 
 .title {
+  width: 100px;
   color: $white;
   font-weight: 300;
 
   @include font-size(24);
+}
+
+.css-truncate-target {
+  max-width: 100px !important;
 }
 
 .iconArrowDropDown {
