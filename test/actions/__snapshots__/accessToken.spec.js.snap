@@ -1,43 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`access token actions creates ACCESS_TOKEN_ERROR when fetching access token has been rejected 1`] = `
+exports[`access token actions creates FETCH_ACCESS_TOKEN_FAILURE when fetching access token has been rejected 1`] = `
 Array [
   Object {
-    "type": "REQUEST_ACCESS_TOKEN",
+    "type": "FETCH_ACCESS_TOKEN_REQUEST",
   },
   Object {
-    "type": "ACCESS_TOKEN_ERROR",
+    "type": "FETCH_ACCESS_TOKEN_FAILURE",
   },
 ]
 `;
 
-exports[`access token actions creates RECEIVE_ACCESS_TOKEN when fetching access token has been resolved 1`] = `
+exports[`access token actions creates FETCH_ACCESS_TOKEN_SUCCESS when fetching access token has been resolved 1`] = `
 Array [
   Object {
-    "type": "REQUEST_ACCESS_TOKEN",
+    "type": "FETCH_ACCESS_TOKEN_REQUEST",
   },
   Object {
     "payload": "ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg",
-    "type": "RECEIVE_ACCESS_TOKEN",
+    "type": "FETCH_ACCESS_TOKEN_SUCCESS",
   },
 ]
 `;
 
 exports[`access token actions should create an action to handle an error 1`] = `
 Object {
-  "type": "ACCESS_TOKEN_ERROR",
+  "type": "FETCH_ACCESS_TOKEN_FAILURE",
 }
 `;
 
 exports[`access token actions should create an action to receive an access token 1`] = `
 Object {
   "payload": "ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg",
-  "type": "RECEIVE_ACCESS_TOKEN",
+  "type": "FETCH_ACCESS_TOKEN_SUCCESS",
 }
 `;
 
 exports[`access token actions should create an action to request an access token 1`] = `
 Object {
-  "type": "REQUEST_ACCESS_TOKEN",
+  "type": "FETCH_ACCESS_TOKEN_REQUEST",
 }
 `;

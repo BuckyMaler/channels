@@ -9,24 +9,26 @@ import styles from './ChannelList.scss';
 
 const ChannelList = ({
   channels,
+  activeChannelId,
   isFetching,
   error,
-  isOpen,
+  channelListIsOpen,
   fetchChannels,
-  selectChannel,
+  updateActiveChannel,
   toggleChannelList
 }: {
   channels: ChannelType[],
+  activeChannelId: string,
   isFetching: boolean,
   error: boolean,
-  isOpen: boolean,
+  channelListIsOpen: boolean,
   fetchChannels: () => void,
-  selectChannel: (channel: ChannelType) => void,
+  updateActiveChannel: (id: string) => void,
   toggleChannelList: () => void
 }) => {
   if (isFetching || error) {
     return (
-      <div className={isOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
+      <div className={channelListIsOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
         <div className={styles.closeTarget} onClick={toggleChannelList} />
         <div className={styles.modal}>
           {isFetching ? (
@@ -47,11 +49,11 @@ const ChannelList = ({
   }
 
   return (
-    <div className={isOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
+    <div className={channelListIsOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
       <div className={styles.closeTarget} onClick={toggleChannelList} />
       <div className={styles.modal}>
         {channels.length ? (
-          <ul className={styles.channels}>
+          <ul className={styles.channels} onClick={toggleChannelList}>
             {channels.map(channel => (
               <Channel
                 key={channel.id}
@@ -59,8 +61,8 @@ const ChannelList = ({
                 thumbnail={channel.thumbnail}
                 videoCount={channel.videoCount}
                 subscriberCount={channel.subscriberCount}
-                isActive={channel.isActive}
-                selectChannel={() => selectChannel(channel)}
+                isActive={channel.id === activeChannelId}
+                updateActiveChannel={() => updateActiveChannel(channel.id)}
               />
             ))}
           </ul>

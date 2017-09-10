@@ -39,23 +39,23 @@ export function getAccessTokenUri(): string {
   return buildUriWithQueryParams(urls.AUTH_TOKEN, params);
 }
 
-export function getChannelsUri(accessToken: string, subscriptions: string): string {
+export function getChannelsUri(token: string, subscriptions: string): string {
   const params = {
     id: subscriptions,
     part: 'snippet,statistics',
     fields: 'items(id,snippet(thumbnails,title),statistics(subscriberCount,videoCount))',
-    access_token: accessToken
+    access_token: token
   };
   return buildUriWithQueryParams(urls.CHANNELS, params);
 }
 
-export function getSubscriptionsUri(accessToken: string): string {
+export function getSubscriptionsUri(token: string): string {
   const params = {
     part: 'snippet',
     fields: 'items/snippet/resourceId/channelId',
     mine: true,
     maxResults: 50,
-    access_token: accessToken
+    access_token: token
   };
   return buildUriWithQueryParams(urls.SUBSCRIPTIONS, params);
 }

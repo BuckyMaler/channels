@@ -26,9 +26,9 @@ export default class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    const { accessToken } = this.props.accessToken;
-    const { accessToken: nextAccessToken } = nextProps.accessToken;
-    if (!accessToken && nextAccessToken) {
+    const { token } = this.props.accessToken;
+    const { token: nextToken } = nextProps.accessToken;
+    if (!token && nextToken) {
       this.props.fetchChannels();
     }
   }

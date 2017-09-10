@@ -11,14 +11,14 @@ type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 export function fetchChannels(): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestChannels());
-    const { accessToken } = getState().accessToken;
-    const subscriptions = fetchSubscriptions(accessToken);
+    const { token } = getState().accessToken;
+    const subscriptions = fetchSubscriptions(token);
     return subscriptions.then(json => {
       if (json.items == null) {
         return dispatch(receiveChannels([]));
       }
       const subscriptions = json.items.map(item => item.snippet.resourceId.channelId).join();
-      const uri = getChannelsUri(accessToken, subscriptions);
+      const uri = getChannelsUri(token, subscriptions);
       return apiRequest(uri, Methods.GET)
         .then(json => {
           if (json.items == null) {
@@ -31,26 +31,33 @@ export function fetchChannels(): ThunkAction {
   };
 }
 
-export function fetchSubscriptions(accessToken: string): Promise<any> {
-  const uri = getSubscriptionsUri(accessToken);
+export function fetchSubscriptions(token: string): Promise<any> {
+  const uri = getSubscriptionsUri(token);
   return apiRequest(uri, Methods.GET);
 }
 
 export function requestChannels(): Action {
   return {
-    type: actionTypes.REQUEST_CHANNELS
+    type: actionTypes.FETCH_CHANNELS_REQUEST
   };
 }
 
 export function receiveChannels(items: any): Action {
   return {
-    type: actionTypes.RECEIVE_CHANNELS,
+    type: actionTypes.FETCH_CHANNELS_SUCCESS,
     payload: items
   };
 }
 
 export function channelsError(): Action {
   return {
-    type: actionTypes.CHANNELS_ERROR
+    type: actionTypes.FETCH_CHANNELS_FAILURE
+  };
+}
+
+export function updateActiveChannel(id: string): Action {
+  return {
+    type: actionTypes.UPDATE_ACTIVE_CHANNEL,
+    payload: id
   };
 }

@@ -1,26 +1,20 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Navigation from '../components/Navigation';
-import * as statusActions from '../actions/status';
-import * as channelListActions from '../actions/channelList';
-import * as channelActions from '../actions/channel';
+import * as channelsActions from '../actions/channels';
+import { getChannels, getActiveChannel } from '../reducers/index';
 
 function mapStateToProps(state) {
   return {
-    status: state.status,
-    searchBar: state.searchBar,
-    channelList: state.channelList
+    channels: getChannels(state),
+    activeChannel: getActiveChannel(state),
+    isFetching: state.channels.isFetching,
+    error: state.channels.error
   };
 }
 
-const actions = {
-  ...statusActions,
-  ...channelListActions,
-  ...channelActions
-};
-
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(channelsActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

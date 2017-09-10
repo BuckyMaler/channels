@@ -13,22 +13,20 @@ describe('access token actions', () => {
 
   const accessToken = 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg';
 
-  it('creates RECEIVE_ACCESS_TOKEN when fetching access token has been resolved', () => {
-    fetch.authRequest = jest.fn().mockImplementation(() =>
-      Promise.resolve({ access_token: accessToken })
-    );
-
+  it('creates FETCH_ACCESS_TOKEN_SUCCESS when fetching access token has been resolved', () => {
     const store = mockStore({});
+
+    fetch.authRequest = jest.fn(() => Promise.resolve({ access_token: accessToken }));
 
     return store.dispatch(accessTokenActions.fetchAccessToken()).then(() => {
       expect(store.getActions()).toMatchSnapshot();
     });
   });
 
-  it('creates ACCESS_TOKEN_ERROR when fetching access token has been rejected', () => {
-    fetch.authRequest = jest.fn().mockImplementation(() => Promise.reject());
-
+  it('creates FETCH_ACCESS_TOKEN_FAILURE when fetching access token has been rejected', () => {
     const store = mockStore({});
+
+    fetch.authRequest = jest.fn(() => Promise.reject());
 
     return store.dispatch(accessTokenActions.fetchAccessToken()).then(() => {
       expect(store.getActions()).toMatchSnapshot();
@@ -40,8 +38,7 @@ describe('access token actions', () => {
   });
 
   it('should create an action to receive an access token', () => {
-    const json = { access_token: accessToken };
-    expect(accessTokenActions.receiveAccessToken(json)).toMatchSnapshot();
+    expect(accessTokenActions.receiveAccessToken(accessToken)).toMatchSnapshot();
   });
 
   it('should create an action to handle an error', () => {

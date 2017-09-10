@@ -1,41 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`accessToken reducer should handle ACCESS_TOKEN_ERROR 1`] = `
+exports[`accessToken reducer should handle FETCH_ACCESS_TOKEN_FAILURE 1`] = `
 Object {
-  "accessToken": "",
   "error": true,
   "isFetching": false,
+  "token": "",
 }
 `;
 
-exports[`accessToken reducer should handle RECEIVE_ACCESS_TOKEN 1`] = `
+exports[`accessToken reducer should handle FETCH_ACCESS_TOKEN_REQUEST 1`] = `
 Object {
-  "accessToken": "ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg",
-  "error": false,
-  "isFetching": false,
-}
-`;
-
-exports[`accessToken reducer should handle REQUEST_ACCESS_TOKEN 1`] = `
-Object {
-  "accessToken": "",
   "error": false,
   "isFetching": true,
+  "token": "",
+}
+`;
+
+exports[`accessToken reducer should handle FETCH_ACCESS_TOKEN_SUCCESS 1`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "token": "ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg",
 }
 `;
 
 exports[`accessToken reducer should handle unknown action type 1`] = `
 Object {
-  "accessToken": "",
   "error": false,
   "isFetching": false,
+  "token": "",
 }
 `;
 
 exports[`accessToken reducer should return the initial state 1`] = `
 Object {
-  "accessToken": "",
   "error": false,
   "isFetching": false,
+  "token": "",
 }
 `;

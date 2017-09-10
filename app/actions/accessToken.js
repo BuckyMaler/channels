@@ -11,26 +11,26 @@ export function fetchAccessToken(): ThunkAction {
     dispatch(requestAccessToken());
     const uri = getAccessTokenUri();
     return authRequest(uri)
-      .then(json => dispatch(receiveAccessToken(json)))
+      .then(json => dispatch(receiveAccessToken(json.access_token)))
       .catch(() => dispatch(accessTokenError()));
   };
 }
 
 export function requestAccessToken(): Action {
   return {
-    type: actionTypes.REQUEST_ACCESS_TOKEN
+    type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST
   };
 }
 
-export function receiveAccessToken(json: any): Action {
+export function receiveAccessToken(token: string): Action {
   return {
-    type: actionTypes.RECEIVE_ACCESS_TOKEN,
-    payload: json.access_token
+    type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
+    payload: token
   };
 }
 
 export function accessTokenError(): Action {
   return {
-    type: actionTypes.ACCESS_TOKEN_ERROR
+    type: actionTypes.FETCH_ACCESS_TOKEN_FAILURE
   };
 }

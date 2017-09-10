@@ -5,13 +5,11 @@ import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
 import * as accessTokenActions from '../actions/accessToken';
-import * as channelListActions from '../actions/channelList';
-import * as channelActions from '../actions/channel';
-import * as statusActions from '../actions/status';
+import * as channelsActions from '../actions/channels';
 
 const history = createHashHistory();
 
-const configureStore = (initialState?: any) => {
+const configureStore = () => {
   // Redux Configuration
   const middleware = [];
   const enhancers = [];
@@ -34,9 +32,7 @@ const configureStore = (initialState?: any) => {
   const actionCreators = {
     ...routerActions,
     ...accessTokenActions,
-    ...channelListActions,
-    ...channelActions,
-    ...statusActions
+    ...channelsActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
@@ -53,7 +49,7 @@ const configureStore = (initialState?: any) => {
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(rootReducer, enhancer);
 
   if (module.hot) {
     module.hot.accept('../reducers', () =>

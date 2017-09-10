@@ -1,34 +1,46 @@
 // @flow
+import { combineReducers } from 'redux';
 import actionTypes from '../constants/actionTypes';
-import type { Action, AccessTokenState } from '../constants/typeAliases';
+import type { Action } from '../constants/typeAliases';
 
-const initialState = {
-  accessToken: '',
-  isFetching: false,
-  error: false
-};
-
-export default function accessToken(state: AccessTokenState = initialState, { type, payload }: Action): AccessTokenState {
+function token(state: string = '', { type, payload }: Action): string {
   switch (type) {
-    case actionTypes.REQUEST_ACCESS_TOKEN:
-      return {
-        ...state,
-        isFetching: true
-      };
-    case actionTypes.RECEIVE_ACCESS_TOKEN:
-      return {
-        ...state,
-        accessToken: payload,
-        isFetching: false,
-        error: false
-      };
-    case actionTypes.ACCESS_TOKEN_ERROR:
-      return {
-        ...state,
-        isFetching: false,
-        error: true
-      };
+    case actionTypes.FETCH_ACCESS_TOKEN_SUCCESS:
+      return payload;
     default:
       return state;
   }
 }
+
+function isFetching(state: boolean = false, { type }: Action): boolean {
+  switch (type) {
+    case actionTypes.FETCH_ACCESS_TOKEN_REQUEST:
+      return true;
+    case actionTypes.FETCH_ACCESS_TOKEN_SUCCESS:
+    case actionTypes.FETCH_ACCESS_TOKEN_FAILURE:
+      return false;
+    default:
+      return state;
+  }
+}
+
+
+function error(state: boolean = false, { type }: Action): boolean {
+  switch (type) {
+    case actionTypes.FETCH_ACCESS_TOKEN_REQUEST:
+    case actionTypes.FETCH_ACCESS_TOKEN_SUCCESS:
+      return false;
+    case actionTypes.FETCH_ACCESS_TOKEN_FAILURE:
+      return true;
+    default:
+      return state;
+  }
+}
+
+const accessToken = combineReducers({
+  token,
+  isFetching,
+  error
+});
+
+export default accessToken;
