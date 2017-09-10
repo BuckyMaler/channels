@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Home from '../components/Home';
 import * as accessTokenActions from '../actions/accessToken';
-import * as channelListActions from '../actions/channelList';
+import * as channelsActions from '../actions/channels';
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 
 const actions = {
   ...accessTokenActions,
-  ...channelListActions
+  ...channelsActions
 };
 
 function mapDispatchToProps(dispatch) {

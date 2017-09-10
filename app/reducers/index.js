@@ -1,17 +1,22 @@
 // @flow
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
+import type { State } from '../constants/typeAliases';
 import accessToken from './accessToken';
-import status from './status';
-import searchBar from './searchBar';
-import channelList from './channelList';
+import channels, * as fromChannels from './channels';
 
 const rootReducer = combineReducers({
   router,
   accessToken,
-  status,
-  searchBar,
-  channelList
+  channels
 });
+
+export function getChannels(state: State) {
+  return fromChannels.getChannels(state.channels);
+}
+
+export function getActiveChannel(state: State) {
+  return fromChannels.getActiveChannel(state.channels);
+}
 
 export default rootReducer;

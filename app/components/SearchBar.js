@@ -5,25 +5,19 @@ import styles from './SearchBar.scss';
 
 const SearchBar = ({
   disabled,
-  placeholder,
-  value
+  placeholder
 }: {
   disabled: boolean,
-  placeholder: string,
-  value: string
+  placeholder: string
 }) => (
   <form className={styles.searchBar}>
-    <IconSearch styles={styles} />
+    {disabled && <IconSearch styles={styles} />}
     <input
       className={styles.searchInput}
-      disabled={disabled}
+      disabled={!disabled}
       placeholder={placeholder}
-      value={value}
     />
-    <IconCancel
-      styles={styles}
-      value={value}
-    />
+    <IconCancel styles={styles} />
   </form>
 );
 

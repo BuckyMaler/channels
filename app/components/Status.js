@@ -4,12 +4,12 @@ import { IconArrowDropDown } from './Icons';
 import styles from './Status.scss';
 
 const Status = ({
-  thumbnail,
   title,
+  thumbnail,
   toggleChannelList
 }: {
-  thumbnail: string,
   title: string,
+  thumbnail: string,
   toggleChannelList: () => void
 }) => (
   <div className={styles.status} onClick={toggleChannelList}>

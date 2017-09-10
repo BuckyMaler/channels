@@ -1,48 +1,66 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
 import Status from './Status';
 import SearchBar from './SearchBar';
 import ChannelList from './ChannelList';
-import type { StatusState, SearchBarState, ChannelListState } from '../constants/typeAliases';
 import ChannelType from '../dataTypes/channelType';
+import placeholder from '../images/placeholder.jpg';
 import styles from './Navigation.scss';
 
-const Navigation = ({
-  status,
-  searchBar,
-  channelList,
-  fetchChannels,
-  selectChannel,
-  toggleChannelList
-}: {
-  status: StatusState,
-  searchBar: SearchBarState,
-  channelList: ChannelListState,
-  fetchChannels: () => void,
-  selectChannel: (channel: ChannelType) => void,
-  toggleChannelList: () => void
-}) => (
-  <div className={styles.navigation}>
-    <Status
-      thumbnail={status.thumbnail}
-      title={status.title}
-      toggleChannelList={toggleChannelList}
-    />
-    <SearchBar
-      disabled={searchBar.disabled}
-      placeholder={searchBar.placeholder}
-      value={searchBar.value}
-    />
-    <ChannelList
-      channels={channelList.channels}
-      isFetching={channelList.isFetching}
-      error={channelList.error}
-      isOpen={channelList.isOpen}
-      fetchChannels={fetchChannels}
-      selectChannel={selectChannel}
-      toggleChannelList={toggleChannelList}
-    />
-  </div>
-);
+export default class Navigation extends Component {
+  props: {
+    channels: ChannelType[],
+    activeChannel: ?ChannelType,
+    isFetching: boolean,
+    error: boolean,
+    fetchChannels: () => void,
+    updateActiveChannel: (id: string) => void
+  };
 
-export default Navigation;
+  state = {
+    channelListIsOpen: false
+  };
+
+  toggleChannelList() {
+    this.setState(prevState => ({
+      channelListIsOpen: !prevState.channelListIsOpen
+    }));
+  }
+
+  render() {
+    const {
+      channels,
+      activeChannel,
+      isFetching,
+      error,
+      fetchChannels,
+      updateActiveChannel
+    } = this.props;
+    const {
+      channelListIsOpen
+    } = this.state;
+    return (
+      <div className={styles.navigation}>
+        <Status
+          title={activeChannel ? activeChannel.title : 'Channels'}
+          thumbnail={activeChannel ? activeChannel.thumbnail : placeholder}
+          toggleChannelList={() => this.toggleChannelList()}
+        />
+        <SearchBar
+          disabled={!!activeChannel}
+          placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App For YouTube Channels.'}
+        />
+        <ChannelList
+          channels={channels}
+          activeChannelId={activeChannel ? activeChannel.id : ''}
+          isFetching={isFetching}
+          error={error}
+          channelListIsOpen={channelListIsOpen}
+          fetchChannels={fetchChannels}
+          updateActiveChannel={updateActiveChannel}
+          toggleChannelList={() => this.toggleChannelList()}
+        />
+      </div>
+    );
+  }
+}

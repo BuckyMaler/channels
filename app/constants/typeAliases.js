@@ -15,26 +15,22 @@ type ActionWithoutPayload = {
 
 export type Dispatch = (action: Action) => any;
 
+export type State = {
+  router: any,
+  accessToken: AccessTokenState,
+  channels: ChannelsState
+};
+
 export type AccessTokenState = {
-  accessToken: string,
-  isFetching?: boolean,
-  error?: boolean
-};
-
-export type StatusState = {
-  thumbnail: string,
-  title: string
-};
-
-export type SearchBarState = {
-  disabled: boolean,
-  placeholder: string,
-  value: string
-};
-
-export type ChannelListState = {
-  channels: ChannelType[],
+  token: string,
   isFetching: boolean,
-  error: boolean,
-  isOpen: boolean
+  error: boolean
+};
+
+export type ChannelsState = {
+  byId: { [string]: ChannelType },
+  allIds: string[],
+  activeId: string,
+  isFetching: boolean,
+  error: boolean
 };

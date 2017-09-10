@@ -1,37 +1,34 @@
 // @flow
-import { v4 } from 'uuid';
 import { stringOrEmpty, commaSeparateNumber } from '../utils/utils';
 
 export default class ChannelType {
+  id: string;
   title: string;
   thumbnail: string;
   videoCount: string;
   subscriberCount: string;
-  isActive: boolean;
-  id: string;
 
   constructor(
+    id: string,
     title: string,
     thumbnail: string,
     videoCount: string,
-    subscriberCount: string,
-    isActive: boolean = false,
-    id: string = v4()
+    subscriberCount: string
   ) {
+    this.id = id;
     this.title = title;
     this.thumbnail = thumbnail;
     this.videoCount = videoCount;
     this.subscriberCount = subscriberCount;
-    this.isActive = isActive;
-    this.id = id;
   }
 
-  static from(json: any): ChannelType {
-    const { snippet, statistics } = json;
+  static from(item: any): ChannelType {
+    const { id: channelId, snippet, statistics } = item;
+    const id = stringOrEmpty(channelId);
     const title = stringOrEmpty(snippet.title);
     const thumbnail = stringOrEmpty(snippet.thumbnails.default.url);
     const videoCount = commaSeparateNumber(stringOrEmpty(statistics.videoCount));
     const subscriberCount = commaSeparateNumber(stringOrEmpty(statistics.subscriberCount));
-    return new ChannelType(title, thumbnail, videoCount, subscriberCount);
+    return new ChannelType(id, title, thumbnail, videoCount, subscriberCount);
   }
 }
