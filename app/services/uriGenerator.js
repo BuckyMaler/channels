@@ -59,3 +59,27 @@ export function getSubscriptionsUri(token: string): string {
   };
   return buildUriWithQueryParams(urls.SUBSCRIPTIONS, params);
 }
+
+export function getVideosUri(token: string, videoIds: string): string {
+  const params = {
+    id: videoIds,
+    part: 'snippet,statistics',
+    fields: 'items(id,snippet(publishedAt,thumbnails,title,description),statistics(viewCount))',
+    access_token: token
+  };
+  return buildUriWithQueryParams(urls.VIDEOS, params);
+}
+
+export function getVideoIdsUri(token: string, channelId: string, pageToken: string): string {
+  const params = {
+    channelId,
+    type: 'video',
+    part: 'id',
+    fields: 'items(id/videoId),nextPageToken,pageInfo,tokenPagination',
+    order: 'date',
+    maxResults: 20,
+    pageToken,
+    access_token: token
+  };
+  return buildUriWithQueryParams(urls.VIDEO_IDS, params);
+}

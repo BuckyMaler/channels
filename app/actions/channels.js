@@ -1,10 +1,10 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, Dispatch, AccessTokenState } from '../constants/typeAliases';
+import type { Action, Dispatch, AccessTokenState, ChannelsState } from '../constants/typeAliases';
 import { apiRequest, Methods } from '../services/fetch';
 import { getChannelsUri, getSubscriptionsUri } from '../services/uriGenerator';
 
-type GetState = () => { accessToken: AccessTokenState };
+type GetState = () => { accessToken: AccessTokenState, channels: ChannelsState };
 
 type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 
@@ -55,9 +55,14 @@ export function channelsError(): Action {
   };
 }
 
-export function updateActiveChannel(id: string): Action {
-  return {
-    type: actionTypes.UPDATE_ACTIVE_CHANNEL,
-    payload: id
+export function updateActiveChannel(channelId: string): ThunkAction {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const { activeId } = getState().channels;
+    if (activeId !== channelId) {
+      dispatch({
+        type: actionTypes.UPDATE_ACTIVE_CHANNEL,
+        payload: channelId
+      });
+    }
   };
 }

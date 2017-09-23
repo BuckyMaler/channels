@@ -22,8 +22,8 @@ const ChannelList = ({
   isFetching: boolean,
   error: boolean,
   channelListIsOpen: boolean,
-  fetchChannels: () => void,
-  updateActiveChannel: (id: string) => void,
+  fetchChannels: () => Promise<any>,
+  updateActiveChannel: (channelId: string) => void,
   toggleChannelList: () => void
 }) => {
   if (isFetching || error) {

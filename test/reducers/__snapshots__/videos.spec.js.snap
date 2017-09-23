@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`video reducer should handle FETCH_VIDEOS_FAILURE 1`] = `
+Object {
+  "allIds": Array [],
+  "byId": Object {},
+  "error": true,
+  "isFetching": false,
+  "pageToken": "",
+}
+`;
+
+exports[`video reducer should handle FETCH_VIDEOS_REQUEST 1`] = `
+Object {
+  "allIds": Array [],
+  "byId": Object {},
+  "error": false,
+  "isFetching": true,
+  "pageToken": "",
+}
+`;
+
+exports[`video reducer should handle FETCH_VIDEOS_SUCCESS 1`] = `
+Object {
+  "allIds": Array [
+    "UCyIe-61Y8C4_o-zZCtO4ETQ",
+    "UCO1cgjhGzsSYb1rsB4bFe4Q",
+  ],
+  "byId": Object {
+    "UCO1cgjhGzsSYb1rsB4bFe4Q": Object {
+      "id": "UCO1cgjhGzsSYb1rsB4bFe4Q",
+    },
+    "UCyIe-61Y8C4_o-zZCtO4ETQ": Object {
+      "id": "UCyIe-61Y8C4_o-zZCtO4ETQ",
+    },
+  },
+  "error": false,
+  "isFetching": false,
+  "pageToken": "CBQQAA",
+}
+`;
+
+exports[`video reducer should handle UPDATE_ACTIVE_CHANNEL 1`] = `
+Object {
+  "allIds": Array [],
+  "byId": Object {},
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+}
+`;
+
+exports[`video reducer should handle unknown action type 1`] = `
+Object {
+  "allIds": Array [],
+  "byId": Object {},
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+}
+`;
+
+exports[`video reducer should return initial state 1`] = `
+Object {
+  "allIds": Array [],
+  "byId": Object {},
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+}
+`;

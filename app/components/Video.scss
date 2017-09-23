@@ -1,0 +1,50 @@
+@import '../app.global.scss';
+
+.video {
+  display: flex;
+  align-items: center;
+  height: 200px;
+  border-bottom: 1px solid $light-gray;
+}
+
+.thumbnail {
+  line-height: 0;
+
+  & img {
+    width: 250px;
+    height: 140px;
+    object-fit: cover;
+  }
+}
+
+.information {
+  height: 140px;
+  margin: 0 1rem;
+  overflow: hidden;
+}
+
+.title {
+  margin: 0;
+
+  @include font-size(16);
+}
+
+.css-truncate-target {
+  display: block !important;
+  max-width: 100% !important;
+}
+
+.date,
+.views {
+  @include font-size(12);
+}
+
+.date {
+  margin-right: 1rem;
+}
+
+.description {
+  margin: 1rem 0 0;
+  color: $dark-gray;
+  word-wrap: break-word;
+}

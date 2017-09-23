@@ -15,7 +15,7 @@ const Channel = ({
   videoCount: string,
   subscriberCount: string,
   isActive: boolean,
-  updateActiveChannel: (id: string) => void
+  updateActiveChannel: (channelId: string) => void
 }) => (
   <li className={isActive ? `${styles.channel} ${styles['channel--isActive']}` : styles.channel} onClick={updateActiveChannel}>
     <img className={styles.thumbnail} src={thumbnail} alt={title} />
