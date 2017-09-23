@@ -7,7 +7,7 @@ const ErrorState = ({
   retry
 }: {
   message: string,
-  retry: () => void
+  retry: () => Promise<any>
 }) => (
   <p className={styles.message}>
     {message}{' '}

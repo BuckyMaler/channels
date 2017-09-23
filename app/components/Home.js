@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import LeftColumn from '../components/LeftColumn';
+import LeftColumn from '../containers/LeftColumn';
 import type { AccessTokenState } from '../constants/typeAliases';
 
 export default class Home extends Component {
@@ -14,8 +14,8 @@ export default class Home extends Component {
   tenMinutes: number;
   interval: () => number;
 
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
     this.tenMinutes = 600000;
     this.interval = () => setInterval(this.props.fetchAccessToken, this.tenMinutes);
   }

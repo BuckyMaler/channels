@@ -226,6 +226,8 @@ $white: #fff;
 $black: #2e2e2e;
 $gray: #a8a2a0;
 $red: #e53a40;
+$light-gray: lighten($gray, 10%);
+$dark-gray: darken($gray, 10%);
 
 // Typography
 $base-font-size: 14px;
@@ -257,4 +259,8 @@ html {
 
 * {
   box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
