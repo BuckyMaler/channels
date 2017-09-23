@@ -16,7 +16,12 @@ export function authRequest(uri: string): Promise<any> {
     body
   };
   return fetch(url, init)
-    .then(res => res.json());
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject();
+      }
+      return res.json();
+    });
 }
 
 export function apiRequest(uri: string, method: MethodsType): Promise<any> {
@@ -25,5 +30,10 @@ export function apiRequest(uri: string, method: MethodsType): Promise<any> {
     headers: { 'Content-Type': 'application/json' }
   };
   return fetch(uri, init)
-    .then(res => res.json());
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject();
+      }
+      return res.json();
+    });
 }
