@@ -14,7 +14,15 @@ type ActionWithoutPayload = {
   payload?: any
 };
 
+export type ThunkAction = ThunkActionWithState | ThunkActionWithoutState;
+
+type ThunkActionWithState = (dispatch: Dispatch, getState: GetState) => any;
+
+type ThunkActionWithoutState = (dispatch: Dispatch) => any;
+
 export type Dispatch = (action: Action) => any;
+
+export type GetState = () => State;
 
 export type State = {
   router: any,

@@ -1,12 +1,8 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, Dispatch, AccessTokenState, ChannelsState, VideosState } from '../constants/typeAliases';
+import type { Action, ThunkAction, Dispatch, GetState } from '../constants/typeAliases';
 import { apiRequest, Methods } from '../services/fetch';
 import { getVideosUri, getVideoIdsUri } from '../services/uriGenerator';
-
-type GetState = () => { accessToken: AccessTokenState, channels: ChannelsState, videos: VideosState };
-
-type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 
 export function fetchVideos(): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
