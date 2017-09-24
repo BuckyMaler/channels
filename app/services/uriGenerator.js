@@ -39,16 +39,6 @@ export function getAccessTokenUri(): string {
   return buildUriWithQueryParams(urls.AUTH_TOKEN, params);
 }
 
-export function getChannelsUri(token: string, subscriptions: string): string {
-  const params = {
-    id: subscriptions,
-    part: 'snippet,statistics',
-    fields: 'items(id,snippet(thumbnails,title),statistics(subscriberCount,videoCount))',
-    access_token: token
-  };
-  return buildUriWithQueryParams(urls.CHANNELS, params);
-}
-
 export function getSubscriptionsUri(token: string): string {
   const params = {
     part: 'snippet',
@@ -60,14 +50,14 @@ export function getSubscriptionsUri(token: string): string {
   return buildUriWithQueryParams(urls.SUBSCRIPTIONS, params);
 }
 
-export function getVideosUri(token: string, videoIds: string): string {
+export function getChannelsUri(token: string, subscriptions: string): string {
   const params = {
-    id: videoIds,
+    id: subscriptions,
     part: 'snippet,statistics',
-    fields: 'items(id,snippet(publishedAt,thumbnails,title,description),statistics(viewCount))',
+    fields: 'items(id,snippet(thumbnails,title),statistics(subscriberCount,videoCount))',
     access_token: token
   };
-  return buildUriWithQueryParams(urls.VIDEOS, params);
+  return buildUriWithQueryParams(urls.CHANNELS, params);
 }
 
 export function getVideoIdsUri(token: string, channelId: string, pageToken: string): string {
@@ -82,4 +72,14 @@ export function getVideoIdsUri(token: string, channelId: string, pageToken: stri
     access_token: token
   };
   return buildUriWithQueryParams(urls.VIDEO_IDS, params);
+}
+
+export function getVideosUri(token: string, videoIds: string): string {
+  const params = {
+    id: videoIds,
+    part: 'snippet,statistics',
+    fields: 'items(id,snippet(publishedAt,thumbnails,title,description),statistics(viewCount))',
+    access_token: token
+  };
+  return buildUriWithQueryParams(urls.VIDEOS, params);
 }
