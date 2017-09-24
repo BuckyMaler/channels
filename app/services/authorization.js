@@ -48,8 +48,7 @@ function requestTokens(code: string): Promise<any> {
 }
 
 function storeRefreshToken(json: any): void {
-  const { refresh_token } = json;
-  localStorage.setItem('refreshToken', refresh_token);
+  localStorage.setItem('refreshToken', json.refresh_token);
 }
 
 export function requireAuthorization(): void {

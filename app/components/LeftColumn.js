@@ -21,7 +21,9 @@ export default class LeftColumn extends Component {
     fetchVideos: () => Promise<any>
   };
 
-  state: any;
+  state: {
+    channelListIsOpen: boolean
+  };
 
   constructor(props: any) {
     super(props);
@@ -40,7 +42,7 @@ export default class LeftColumn extends Component {
     }
   }
 
-  toggleChannelList() {
+  toggleChannelList(): void {
     this.setState(prevState => ({
       channelListIsOpen: !prevState.channelListIsOpen
     }));

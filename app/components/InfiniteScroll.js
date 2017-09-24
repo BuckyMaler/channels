@@ -11,17 +11,21 @@ export default class InfiniteScroll extends Component {
     loadMore: () => Promise<any>
   };
 
-  state: any;
+  state: {
+    isComplete: boolean
+  };
   container: HTMLDivElement;
+  handleScroll: () => void;
 
   constructor(props: any) {
     super(props);
     this.state = {
       isComplete: false
     };
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
-  handleScroll() {
+  handleScroll(): void {
     const { isFetching, pageToken, loadMore } = this.props;
     if (isFetching || this.state.isComplete) {
       return;
@@ -40,7 +44,7 @@ export default class InfiniteScroll extends Component {
 
   render() {
     return (
-      <div className={styles.infiniteScroll} ref={node => { this.container = node; }} onScroll={this.handleScroll.bind(this)}>
+      <div className={styles.infiniteScroll} ref={node => (this.container = node)} onScroll={this.handleScroll}>
         {this.props.children}
       </div>
     );

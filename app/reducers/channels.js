@@ -68,11 +68,11 @@ const channels = combineReducers({
   error
 });
 
-export function getChannels(state: ChannelsState) {
+export function getChannels(state: ChannelsState): ChannelType[] {
   return state.allIds.map(id => state.byId[id]);
 }
 
-export function getActiveChannel(state: ChannelsState) {
+export function getActiveChannel(state: ChannelsState): ?ChannelType {
   return state.byId[state.activeId];
 }
 

@@ -3,8 +3,8 @@ import React from 'react';
 import Status from './Status';
 import SearchBar from './SearchBar';
 import ChannelList from './ChannelList';
-import ChannelType from '../dataTypes/channelType';
 import placeholder from '../images/placeholder.jpg';
+import ChannelType from '../dataTypes/channelType';
 import styles from './Navigation.scss';
 
 const Navigation = ({

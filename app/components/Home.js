@@ -1,11 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import LeftColumn from '../containers/LeftColumn';
-import type { AccessTokenState } from '../constants/typeAliases';
 
 export default class Home extends Component {
   props: {
-    accessToken: AccessTokenState,
+    token: string,
     fetchAccessToken: () => void,
     fetchChannels: () => void
   };
@@ -26,8 +25,8 @@ export default class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    const { token } = this.props.accessToken;
-    const { token: nextToken } = nextProps.accessToken;
+    const { token } = this.props;
+    const { token: nextToken } = nextProps;
     if (!token && nextToken) {
       this.props.fetchChannels();
     }

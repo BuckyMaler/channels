@@ -6,6 +6,7 @@ import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
 import * as accessTokenActions from '../actions/accessToken';
 import * as channelsActions from '../actions/channels';
+import * as videosActions from '../actions/videos';
 
 const history = createHashHistory();
 
@@ -32,7 +33,8 @@ const configureStore = () => {
   const actionCreators = {
     ...routerActions,
     ...accessTokenActions,
-    ...channelsActions
+    ...channelsActions,
+    ...videosActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

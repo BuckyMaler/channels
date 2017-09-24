@@ -77,7 +77,7 @@ const videos = combineReducers({
   error
 });
 
-export function getVideos(state: VideosState) {
+export function getVideos(state: VideosState): VideoType[] {
   return state.allIds.map(id => state.byId[id]);
 }
 
