@@ -60,7 +60,7 @@ export function getChannelsUri(token: string, subscriptions: string): string {
   return buildUriWithQueryParams(urls.CHANNELS, params);
 }
 
-export function getVideoIdsUri(token: string, channelId: string, pageToken: string): string {
+export function getVideoIdsUri(token: string, channelId: string, pageToken: string, options?: {}): string {
   const params = {
     channelId,
     type: 'video',
@@ -71,7 +71,7 @@ export function getVideoIdsUri(token: string, channelId: string, pageToken: stri
     pageToken,
     access_token: token
   };
-  return buildUriWithQueryParams(urls.VIDEO_IDS, params);
+  return buildUriWithQueryParams(urls.VIDEO_IDS, { ...params, ...options });
 }
 
 export function getVideosUri(token: string, videoIds: string): string {

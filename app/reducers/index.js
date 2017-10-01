@@ -7,12 +7,14 @@ import VideoType from '../dataTypes/videoType';
 import accessToken from './accessToken';
 import channels, * as fromChannels from './channels';
 import videos, * as fromVideos from './videos';
+import search from './search';
 
 const rootReducer = combineReducers({
   router,
   accessToken,
   channels,
-  videos
+  videos,
+  search
 });
 
 export function getChannels(state: State): ChannelType[] {

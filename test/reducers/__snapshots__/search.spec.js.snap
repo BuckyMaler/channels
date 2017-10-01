@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`search reducer should handle CLEAR_SEARCH_RESULTS 1`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+  "query": "",
+  "results": Array [],
+}
+`;
+
+exports[`search reducer should handle FETCH_SEARCH_FAILURE 1`] = `
+Object {
+  "error": true,
+  "isFetching": false,
+  "pageToken": "",
+  "query": "",
+  "results": Array [],
+}
+`;
+
+exports[`search reducer should handle FETCH_SEARCH_REQUEST 1`] = `
+Object {
+  "error": false,
+  "isFetching": true,
+  "pageToken": "",
+  "query": "",
+  "results": Array [],
+}
+`;
+
+exports[`search reducer should handle FETCH_SEARCH_SUCCESS 1`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "pageToken": "CBQQAA",
+  "query": "react",
+  "results": Array [
+    Object {
+      "id": "UCyIe-61Y8C4_o-zZCtO4ETQ",
+    },
+    Object {
+      "id": "UCO1cgjhGzsSYb1rsB4bFe4Q",
+    },
+  ],
+}
+`;
+
+exports[`search reducer should handle UPDATE_SEARCH_QUERY 1`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+  "query": "react",
+  "results": Array [],
+}
+`;
+
+exports[`search reducer should handle unknown action type 1`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+  "query": "",
+  "results": Array [],
+}
+`;
+
+exports[`search reducer should return initial state 1`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+  "query": "",
+  "results": Array [],
+}
+`;
