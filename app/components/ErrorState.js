@@ -7,11 +7,16 @@ const ErrorState = ({
   retry
 }: {
   message: string,
-  retry: () => Promise<any>
+  retry?: () => Promise<any>
 }) => (
   <p className={styles.message}>
-    {message}{' '}
-    <span className={styles.retry} onClick={retry}>Try again.</span>
+    {message}
+    {retry &&
+      <span className={styles.retry} onClick={retry}>
+        {' '}
+        Try again.
+      </span>
+    }
   </p>
 );
 

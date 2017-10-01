@@ -2,15 +2,20 @@
 
 .searchBar {
   display: flex;
-  flex-grow: 1;
   align-items: center;
   height: 100%;
   padding: 0 11px;
   background-color: $black;
 }
 
+.iconSearch {
+  height: 24px;
+  fill: $gray;
+}
+
 .searchInput {
-  width: 100%;
+  display: flex;
+  flex-grow: 1;
   line-height: 24px;
   padding: 0 0.5rem;
   border: none;
@@ -22,17 +27,22 @@
   }
 }
 
-.iconSearch {
+.searchButton {
+  display: flex;
+  justify-content: center;
+  width: 24px;
   height: 24px;
-  fill: $gray;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: default;
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .iconCancel {
-  transform: scale(0);
   width: 14px;
   fill: $gray;
-}
-
-.iconCancel--isActive {
-  transform: scale(1);
 }

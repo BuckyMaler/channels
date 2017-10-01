@@ -5,19 +5,33 @@ import styles from './SearchBar.scss';
 
 const SearchBar = ({
   disabled,
-  placeholder
+  placeholder,
+  value,
+  handleChange,
+  handleSubmit,
+  handleReset
 }: {
   disabled: boolean,
-  placeholder: string
+  placeholder: string,
+  value: string,
+  handleChange: () => void,
+  handleSubmit: () => void,
+  handleReset: () => void
 }) => (
-  <form className={styles.searchBar}>
+  <form className={styles.searchBar} onSubmit={handleSubmit} onBlur={handleReset}>
     {disabled && <IconSearch styles={styles} />}
     <input
       className={styles.searchInput}
       disabled={!disabled}
       placeholder={placeholder}
+      value={value}
+      onChange={handleChange}
     />
-    <IconCancel styles={styles} />
+    {value &&
+      <button className={styles.searchButton} type="reset" onClick={handleReset}>
+        <IconCancel styles={styles} />
+      </button>
+    }
   </form>
 );
 

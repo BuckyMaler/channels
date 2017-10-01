@@ -14,20 +14,19 @@ export default class InfiniteScroll extends Component {
   state: {
     isComplete: boolean
   };
+
   container: HTMLDivElement;
   handleScroll: () => void;
 
   constructor(props: any) {
     super(props);
-    this.state = {
-      isComplete: false
-    };
+    this.state = { isComplete: false };
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   handleScroll(): void {
     const { isFetching, pageToken, loadMore } = this.props;
-    if (isFetching || this.state.isComplete) {
+    if (isFetching || !pageToken || this.state.isComplete) {
       return;
     }
     const { scrollTop, scrollHeight, offsetHeight } = this.container;

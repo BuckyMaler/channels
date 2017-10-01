@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import Status from './Status';
-import SearchBar from './SearchBar';
+import Search from '../containers/Search';
 import ChannelList from './ChannelList';
 import placeholder from '../images/placeholder.jpg';
 import ChannelType from '../dataTypes/channelType';
@@ -32,10 +32,7 @@ const Navigation = ({
       thumbnail={activeChannel ? activeChannel.thumbnail : placeholder}
       toggleChannelList={toggleChannelList}
     />
-    <SearchBar
-      disabled={!!activeChannel}
-      placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App For YouTube Channels.'}
-    />
+    <Search />
     <ChannelList
       channels={channels}
       activeChannelId={activeChannel ? activeChannel.id : ''}

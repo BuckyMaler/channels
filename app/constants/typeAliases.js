@@ -28,7 +28,8 @@ export type State = {
   router: any,
   accessToken: AccessTokenState,
   channels: ChannelsState,
-  videos: VideosState
+  videos: VideosState,
+  search: SearchState
 };
 
 export type AccessTokenState = {
@@ -48,6 +49,14 @@ export type ChannelsState = {
 export type VideosState = {
   byId: { [string]: VideoType },
   allIds: string[],
+  pageToken: string,
+  isFetching: boolean,
+  error: boolean
+};
+
+export type SearchState = {
+  query: string,
+  results: VideoType[],
   pageToken: string,
   isFetching: boolean,
   error: boolean
