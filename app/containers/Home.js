@@ -6,7 +6,9 @@ import * as channelsActions from '../actions/channels';
 
 function mapStateToProps(state) {
   return {
-    token: state.accessToken.token
+    token: state.accessToken.token,
+    isFetching: state.accessToken.isFetching,
+    error: state.accessToken.error
   };
 }
 

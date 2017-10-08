@@ -1,12 +1,17 @@
 // @flow
 import React, { Component } from 'react';
 import LeftColumn from '../containers/LeftColumn';
+import Loader from './core/Loader';
+import ErrorState from './core/ErrorState';
+import styles from './Home.scss';
 
 export default class Home extends Component {
   props: {
     token: string,
-    fetchAccessToken: () => void,
-    fetchChannels: () => void
+    isFetching: boolean,
+    error: boolean,
+    fetchAccessToken: () => Promise<any>,
+    fetchChannels: () => Promise<any>
   };
 
   intervalId: number;
@@ -37,6 +42,26 @@ export default class Home extends Component {
   }
 
   render() {
+    const {
+      isFetching,
+      error,
+      fetchAccessToken
+    } = this.props;
+    if (isFetching || error) {
+      return (
+        <div className={styles.home}>
+          {isFetching ? (
+            <Loader />
+          ) : (
+            <ErrorState
+              message={'Error accessing your account.'}
+              retry={fetchAccessToken}
+            />
+          )}
+        </div>
+      );
+    }
+
     return (
       <div>
         <LeftColumn />
