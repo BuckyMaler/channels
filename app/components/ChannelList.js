@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
-import Channel from './Channel';
-import Loader from './Loader';
-import BlankState from './BlankState';
-import ErrorState from './ErrorState';
+import Channel from './core/Channel';
+import Loader from './core/Loader';
+import BlankState from './core/BlankState';
+import ErrorState from './core/ErrorState';
 import ChannelType from '../dataTypes/channelType';
 import styles from './ChannelList.scss';
 
@@ -28,20 +28,16 @@ const ChannelList = ({
 }) => {
   if (isFetching || error) {
     return (
-      <div className={channelListIsOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
+      <div className={channelListIsOpen ? styles.channelListIsOpen : ''}>
         <div className={styles.closeTarget} onClick={toggleChannelList} />
         <div className={styles.modal}>
           {isFetching ? (
-            <div className={styles.loader}>
-              <Loader />
-            </div>
+            <Loader />
           ) : (
-            <div className={styles.errorState}>
-              <ErrorState
-                message={'Error requesting channels.'}
-                retry={fetchChannels}
-              />
-            </div>
+            <ErrorState
+              message={'Error requesting channels.'}
+              retry={fetchChannels}
+            />
           )}
         </div>
       </div>
@@ -49,7 +45,7 @@ const ChannelList = ({
   }
 
   return (
-    <div className={channelListIsOpen ? `${styles.channelList} ${styles['channelList--isOpen']}` : styles.channelList}>
+    <div className={channelListIsOpen ? styles.channelListIsOpen : ''}>
       <div className={styles.closeTarget} onClick={toggleChannelList} />
       <div className={styles.modal}>
         {channels.length ? (
@@ -67,11 +63,9 @@ const ChannelList = ({
             ))}
           </ul>
         ) : (
-          <div className={styles.blankState}>
-            <BlankState
-              message={'No channels found.'}
-            />
-          </div>
+          <BlankState
+            message={'No channels found.'}
+          />
         )}
       </div>
     </div>

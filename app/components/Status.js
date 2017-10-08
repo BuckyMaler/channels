@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { IconArrowDropDown } from './Icons';
+import { IconArrowDropDown } from './core/Icons';
 import styles from './Status.scss';
 
 const Status = ({
@@ -14,8 +14,8 @@ const Status = ({
 }) => (
   <div className={styles.status} onClick={toggleChannelList}>
     <img className={styles.thumbnail} src={thumbnail} alt={title} />
-    <h1 className={`${styles.title} ${styles['css-truncate']} ${styles['css-truncate-target']}`}>{title}</h1>
-    <IconArrowDropDown styles={styles} />
+    <h1 className={[styles.title, styles['css-truncate'], styles['css-truncate-target']].join(' ')}>{title}</h1>
+    <IconArrowDropDown className={styles.iconArrowDropDown} />
   </div>
 );
 

@@ -11,19 +11,19 @@ const Video = ({
 }: {
   title: string,
   thumbnail: string,
-  description: string,
+  description?: string,
   publishedAt: string,
   viewCount: string
 }) => (
-  <li className={styles.video}>
-    <div className={styles.thumbnail}>
-      <img src={thumbnail} alt={title} />
-    </div>
+  <li className={description !== undefined ? styles.videoWithDescription : styles.video}>
+    <img className={styles.thumbnail} src={thumbnail} alt={title} />
     <div className={styles.information}>
-      <h3 className={`${styles.title} ${styles['css-truncate']} ${styles['css-truncate-target']}`}>{title}</h3>
+      <h3 className={[styles.title, styles['css-truncate'], styles['css-truncate-target']].join(' ')}>{title}</h3>
       <span className={styles.date}>{publishedAt}</span>
       <span className={styles.views}>{viewCount} views</span>
-      <p className={styles.description}>{description}</p>
+      {description !== undefined &&
+        <p className={styles.description}>{description}</p>
+      }
     </div>
   </li>
 );

@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
-import Result from './Result';
-import Loader from './Loader';
-import BlankState from './BlankState';
-import ErrorState from './ErrorState';
-import InfiniteScroll from './InfiniteScroll';
+import Video from './core/Video';
+import Loader from './core/Loader';
+import BlankState from './core/BlankState';
+import ErrorState from './core/ErrorState';
+import InfiniteScroll from './core/InfiniteScroll';
 import VideoType from '../dataTypes/videoType';
 import styles from './SearchResults.scss';
 
@@ -25,29 +25,28 @@ const SearchResults = ({
 }) => {
   if ((isFetching && !pageToken) || error) {
     return (
-      <div className={searchResultsIsOpen ? `${styles.searchResults} ${styles['searchResults--isOpen']}` : styles.searchResults}>
+      <div className={searchResultsIsOpen ? styles.searchResultsIsOpen : styles.searchResults}>
         {isFetching ? (
-          <div className={styles.loader}>
-            <Loader />
-          </div>
+          <Loader
+            className={styles.loader}
+          />
         ) : (
-          <div className={styles.errorState}>
-            <ErrorState
-              message={'Error requesting videos.'}
-            />
-          </div>
+          <ErrorState
+            message={'Error requesting videos.'}
+            className={styles.errorState}
+          />
         )}
       </div>
     );
   }
 
   return (
-    <div className={searchResultsIsOpen ? `${styles.searchResults} ${styles['searchResults--isOpen']}` : styles.searchResults}>
+    <div className={searchResultsIsOpen ? styles.searchResultsIsOpen : styles.searchResults}>
       {results.length ? (
-        <InfiniteScroll isFetching={isFetching} pageToken={pageToken} loadMore={fetchSearch}>
+        <InfiniteScroll isFetching={isFetching} pageToken={pageToken} loadMore={fetchSearch} className={styles.infiniteScroll}>
           <ul className={styles.results}>
             {results.map(result => (
-              <Result
+              <Video
                 key={result.id}
                 title={result.title}
                 thumbnail={result.thumbnail}
@@ -58,11 +57,10 @@ const SearchResults = ({
           </ul>
         </InfiniteScroll>
       ) : (
-        <div className={styles.blankState}>
-          <BlankState
-            message={'No videos found.'}
-          />
-        </div>
+        <BlankState
+          message={'No videos found.'}
+          className={styles.blankState}
+        />
       )}
     </div>
   );

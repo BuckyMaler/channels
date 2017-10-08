@@ -1,0 +1,19 @@
+@import '../../app.global.scss';
+
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.message {
+  margin: 0;
+  padding: 1rem;
+}
+
+.retry {
+  color: $gray;
+  font-weight: 500;
+}

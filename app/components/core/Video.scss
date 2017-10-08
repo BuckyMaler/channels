@@ -1,0 +1,71 @@
+@import '../../app.global.scss';
+
+.video {
+  display: flex;
+	align-items: center;
+	padding: 1rem;
+	border-bottom: 1px solid $light-gray;
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.videoWithDescription {
+	@extend .video;
+	padding: 2rem 0;
+
+	.thumbnail {
+		width: 250px;
+		min-width: 250px;
+		height: 140px;
+	}
+
+	.information {
+		height: 140px;
+	}
+
+	.title {
+		@include font-size(16);
+	}
+}
+
+.thumbnail {
+	width: 125px;
+	min-width: 125px;
+	height: 70px;
+	object-fit: cover;
+}
+
+.information {
+  margin: 0 1rem;
+  overflow: hidden;
+}
+
+.title {
+  margin: 0;
+
+  @include font-size(14);
+}
+
+.css-truncate-target {
+  display: block !important;
+  max-width: 100% !important;
+}
+
+.date,
+.views {
+	display: inline-block;
+
+  @include font-size(12);
+}
+
+.date {
+  margin-right: 1rem;
+}
+
+.description {
+  margin: 1rem 0 0;
+  color: $dark-gray;
+  word-wrap: break-word;
+}

@@ -1,21 +1,19 @@
 @import '../app.global.scss';
 
-.channelList {
-  &--isOpen {
-    .closeTarget {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+.channelListIsOpen {
+	.closeTarget {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 
-    .modal {
-      opacity: 1;
-      visibility: visible;
-      transition: visibility 0s, opacity 0.3s ease;
-    }
-  }
+	.modal {
+		opacity: 1;
+		visibility: visible;
+		transition: visibility 0s, opacity 0.3s ease;
+	}
 }
 
 .modal {
@@ -36,14 +34,4 @@
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.loader,
-.blankState,
-.errorState {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
