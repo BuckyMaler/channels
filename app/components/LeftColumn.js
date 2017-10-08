@@ -27,9 +27,7 @@ export default class LeftColumn extends Component {
 
   constructor(props: any) {
     super(props);
-    this.state = {
-      channelListIsOpen: false
-    };
+    this.state = { channelListIsOpen: false };
   }
 
   componentWillReceiveProps(nextProps: any) {

@@ -8,7 +8,8 @@ export default class InfiniteScroll extends Component {
     children: Children,
     isFetching: boolean,
     pageToken: string,
-    loadMore: () => Promise<any>
+    loadMore: () => Promise<any>,
+    className?: string
   };
 
   state: {
@@ -33,18 +34,20 @@ export default class InfiniteScroll extends Component {
     if (scrollTop > scrollHeight - (offsetHeight * 2)) {
       loadMore().then(action => {
         if (action.payload.nextPageToken === pageToken) {
-          this.setState(prevState => ({
-            isComplete: !prevState.isComplete
-          }));
+          this.setState({ isComplete: true });
         }
       });
     }
   }
 
   render() {
+    const {
+      children,
+      className
+    } = this.props;
     return (
-      <div className={styles.infiniteScroll} ref={node => (this.container = node)} onScroll={this.handleScroll}>
-        {this.props.children}
+      <div className={[styles.infiniteScroll, className].join(' ')} ref={node => (this.container = node)} onScroll={this.handleScroll}>
+        {children}
       </div>
     );
   }

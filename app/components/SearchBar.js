@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { IconSearch, IconCancel } from './Icons';
+import { IconSearch, IconCancel } from './core/Icons';
 import styles from './SearchBar.scss';
 
 const SearchBar = ({
@@ -19,7 +19,7 @@ const SearchBar = ({
   handleReset: () => void
 }) => (
   <form className={styles.searchBar} onSubmit={handleSubmit} onBlur={handleReset}>
-    {disabled && <IconSearch styles={styles} />}
+    {disabled && <IconSearch className={styles.iconSearch} />}
     <input
       className={styles.searchInput}
       disabled={!disabled}
@@ -29,7 +29,7 @@ const SearchBar = ({
     />
     {value &&
       <button className={styles.searchButton} type="reset" onClick={handleReset}>
-        <IconCancel styles={styles} />
+        <IconCancel className={styles.iconCancel} />
       </button>
     }
   </form>

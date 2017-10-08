@@ -11,19 +11,13 @@
   list-style: none;
 }
 
-.loader,
-.blankState,
-.errorState,
 .notification {
-  display: flex;
+	display: flex;
+	flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-}
-
-.notification {
-  flex-direction: column;
 }
 
 .message {

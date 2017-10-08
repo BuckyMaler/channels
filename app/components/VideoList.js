@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
-import Video from './Video';
-import Loader from './Loader';
-import BlankState from './BlankState';
-import ErrorState from './ErrorState';
-import InfiniteScroll from './InfiniteScroll';
+import Video from './core/Video';
+import Loader from './core/Loader';
+import BlankState from './core/BlankState';
+import ErrorState from './core/ErrorState';
+import InfiniteScroll from './core/InfiniteScroll';
 import ChannelType from '../dataTypes/channelType';
 import VideoType from '../dataTypes/videoType';
 import styles from './VideoList.scss';
@@ -44,16 +44,12 @@ const VideoList = ({
     return (
       <div className={styles.videoList}>
         {isFetching ? (
-          <div className={styles.loader}>
-            <Loader />
-          </div>
+          <Loader />
         ) : (
-          <div className={styles.errorState}>
-            <ErrorState
-              message={'Error requesting videos.'}
-              retry={fetchVideos}
-            />
-          </div>
+          <ErrorState
+            message={'Error requesting videos.'}
+            retry={fetchVideos}
+          />
         )}
       </div>
     );
@@ -77,11 +73,9 @@ const VideoList = ({
           </ul>
         </InfiniteScroll>
       ) : (
-        <div className={styles.blankState}>
-          <BlankState
-            message={'No videos found.'}
-          />
-        </div>
+        <BlankState
+          message={'No videos found.'}
+        />
       )}
     </div>
   );

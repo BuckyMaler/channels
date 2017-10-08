@@ -19,7 +19,7 @@ export default class Home extends Component {
     this.interval = () => setInterval(this.props.fetchAccessToken, this.tenMinutes);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchAccessToken();
     this.intervalId = this.interval();
   }

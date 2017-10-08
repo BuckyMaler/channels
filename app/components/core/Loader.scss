@@ -1,4 +1,12 @@
-@import '../app.global.scss';
+@import '../../app.global.scss';
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
 
 .iconSpinner {
   width: 40px;
