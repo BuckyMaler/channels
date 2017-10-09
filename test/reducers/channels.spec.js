@@ -14,11 +14,11 @@ describe('channels reducer', () => {
 
   it('should handle FETCH_CHANNELS_SUCCESS', () => {
     const state = {
-      'byId': {},
-      'allIds': [],
-      'activeId': '',
-      'isFetching': true,
-      'error': false
+      byId: {},
+      allIds: [],
+      activeId: '',
+      isFetching: true,
+      error: false
     };
     const action = {
       type: actionTypes.FETCH_CHANNELS_SUCCESS,
@@ -35,11 +35,11 @@ describe('channels reducer', () => {
 
   it('should handle FETCH_CHANNELS_FAILURE', () => {
     const state = {
-      'byId': {},
-      'allIds': [],
-      'activeId': '',
-      'isFetching': true,
-      'error': false
+      byId: {},
+      allIds: [],
+      activeId: '',
+      isFetching: true,
+      error: false
     };
     const action = { type: actionTypes.FETCH_CHANNELS_FAILURE };
     expect(channels(state, action)).toMatchSnapshot();
@@ -47,7 +47,7 @@ describe('channels reducer', () => {
 
   it('should handle UPDATE_ACTIVE_CHANNEL', () => {
     const state = {
-      'byId': {
+      byId: {
         'UCyIe-61Y8C4_o-zZCtO4ETQ': {
           id: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
         },
@@ -55,13 +55,13 @@ describe('channels reducer', () => {
           id: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
         }
       },
-      'allIds': [
+      allIds: [
         'UCyIe-61Y8C4_o-zZCtO4ETQ',
         'UCO1cgjhGzsSYb1rsB4bFe4Q'
       ],
-      'activeId': 'UCyIe-61Y8C4_o-zZCtO4ETQ',
-      'isFetching': false,
-      'error': false
+      activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ',
+      isFetching: false,
+      error: false
     };
     const action = {
       type: actionTypes.UPDATE_ACTIVE_CHANNEL,
