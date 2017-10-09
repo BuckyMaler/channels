@@ -13,50 +13,97 @@ describe('video reducer', () => {
   });
 
   it('should handle FETCH_VIDEOS_SUCCESS', () => {
-    const state = videos(undefined, { type: actionTypes.FETCH_VIDEOS_REQUEST });
-    const action = {
-      type: actionTypes.FETCH_VIDEOS_SUCCESS,
-      payload: {
-        items: [
-          { id: 'UCyIe-61Y8C4_o-zZCtO4ETQ' },
-          { id: 'UCO1cgjhGzsSYb1rsB4bFe4Q' }
-        ],
-        nextPageToken: 'CBQQAA'
-      }
-    };
-
     VideoType.from = jest.fn(item => item);
 
-    expect(videos(state, action)).toMatchSnapshot();
+    expect(
+      videos(
+        {
+          'byId': {},
+          'allIds': [],
+          'pageToken': '',
+          'isFetching': true,
+          'error': false
+        },
+        {
+          type: actionTypes.FETCH_VIDEOS_SUCCESS,
+          payload: {
+            items: [
+              { id: 'M8l2aGMjKHI' },
+              { id: 'GcSACxUbqtg' }
+            ],
+            nextPageToken: 'CBQQAA'
+          }
+        }
+      )
+    ).toMatchSnapshot();
+
+    expect(
+      videos(
+        {
+          'byId': {
+            'M8l2aGMjKHI': {
+              id: 'M8l2aGMjKHI'
+            },
+            'GcSACxUbqtg': {
+              id: 'GcSACxUbqtg'
+            }
+          },
+          'allIds': [
+            'M8l2aGMjKHI',
+            'GcSACxUbqtg'
+          ],
+          'pageToken': 'CBQQAA',
+          'isFetching': true,
+          'error': false
+        },
+        {
+          type: actionTypes.FETCH_VIDEOS_SUCCESS,
+          payload: {
+            items: [
+              { id: 'Flze-rwT7lM' },
+              { id: 'L4TIM6W7u-M' }
+            ],
+            nextPageToken: 'CCgQAA'
+          }
+        }
+      )
+    ).toMatchSnapshot();
   });
 
   it('should handle FETCH_VIDEOS_FAILURE', () => {
-    const state = videos(undefined, { type: actionTypes.FETCH_VIDEOS_REQUEST });
+    const state = {
+      'byId': {},
+      'allIds': [],
+      'pageToken': '',
+      'isFetching': true,
+      'error': false
+    };
     const action = { type: actionTypes.FETCH_VIDEOS_FAILURE };
     expect(videos(state, action)).toMatchSnapshot();
   });
 
   it('should handle UPDATE_ACTIVE_CHANNEL', () => {
-    const state = videos(
-      undefined,
-      {
-        type: actionTypes.FETCH_VIDEOS_SUCCESS,
-        payload: {
-          items: [
-            { id: 'UCyIe-61Y8C4_o-zZCtO4ETQ' },
-            { id: 'UCO1cgjhGzsSYb1rsB4bFe4Q' }
-          ],
-          nextPageToken: 'CBQQAA'
+    const state = {
+      'byId': {
+        'M8l2aGMjKHI': {
+          id: 'M8l2aGMjKHI'
+        },
+        'GcSACxUbqtg': {
+          id: 'GcSACxUbqtg'
         }
-      }
-    );
+      },
+      'allIds': [
+        'M8l2aGMjKHI',
+        'GcSACxUbqtg'
+      ],
+      'pageToken': 'CBQQAA',
+      'isFetching': false,
+      'error': false
+    };
     const action = {
       type: actionTypes.UPDATE_ACTIVE_CHANNEL,
       payload: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
     };
-
-    VideoType.from = jest.fn(item => item);
-
     expect(videos(state, action)).toMatchSnapshot();
   });
 

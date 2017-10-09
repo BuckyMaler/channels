@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`video list actions creates FETCH_VIDEOS_FAILURE when fetching video ids has been rejected 1`] = `
+exports[`videos actions creates FETCH_VIDEOS_FAILURE when fetching video ids has been rejected 1`] = `
 Array [
   Object {
     "type": "FETCH_VIDEOS_REQUEST",
@@ -11,7 +11,7 @@ Array [
 ]
 `;
 
-exports[`video list actions creates FETCH_VIDEOS_FAILURE when fetching videos has been rejected 1`] = `
+exports[`videos actions creates FETCH_VIDEOS_FAILURE when fetching videos has been rejected 1`] = `
 Array [
   Object {
     "type": "FETCH_VIDEOS_REQUEST",
@@ -22,7 +22,7 @@ Array [
 ]
 `;
 
-exports[`video list actions creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with null 1`] = `
+exports[`videos actions creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with null 1`] = `
 Array [
   Object {
     "type": "FETCH_VIDEOS_REQUEST",
@@ -37,7 +37,7 @@ Array [
 ]
 `;
 
-exports[`video list actions creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with undefined 1`] = `
+exports[`videos actions creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with undefined 1`] = `
 Array [
   Object {
     "type": "FETCH_VIDEOS_REQUEST",
@@ -52,7 +52,7 @@ Array [
 ]
 `;
 
-exports[`video list actions creates FETCH_VIDEOS_SUCCESS when fetching videos has been resolved 1`] = `
+exports[`videos actions creates FETCH_VIDEOS_SUCCESS when fetching videos has been resolved 1`] = `
 Array [
   Object {
     "type": "FETCH_VIDEOS_REQUEST",
@@ -60,8 +60,8 @@ Array [
   Object {
     "payload": Object {
       "items": Array [
-        "GraphQL Basics - Fun Fun Function",
-        "Advanced Dependency Injection without classes - Fun Fun Function",
+        "M8l2aGMjKHI",
+        "GcSACxUbqtg",
       ],
       "nextPageToken": "CBQQAA",
     },
@@ -70,18 +70,18 @@ Array [
 ]
 `;
 
-exports[`video list actions should create an action to handle an error 1`] = `
+exports[`videos actions should create an action to handle an error 1`] = `
 Object {
   "type": "FETCH_VIDEOS_FAILURE",
 }
 `;
 
-exports[`video list actions should create an action to receive videos 1`] = `
+exports[`videos actions should create an action to receive videos 1`] = `
 Object {
   "payload": Object {
     "items": Array [
-      "GraphQL Basics - Fun Fun Function",
-      "Advanced Dependency Injection without classes - Fun Fun Function",
+      "M8l2aGMjKHI",
+      "GcSACxUbqtg",
     ],
     "nextPageToken": "CBQQAA",
   },
@@ -89,7 +89,7 @@ Object {
 }
 `;
 
-exports[`video list actions should create an action to request videos 1`] = `
+exports[`videos actions should create an action to request videos 1`] = `
 Object {
   "type": "FETCH_VIDEOS_REQUEST",
 }

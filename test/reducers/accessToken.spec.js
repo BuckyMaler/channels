@@ -12,7 +12,11 @@ describe('accessToken reducer', () => {
   });
 
   it('should handle FETCH_ACCESS_TOKEN_SUCCESS', () => {
-    const state = accessToken(undefined, { type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST });
+    const state = {
+      'token': '',
+      'isFetching': true,
+      'error': false
+    };
     const action = {
       type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
       payload: 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg'
@@ -21,7 +25,11 @@ describe('accessToken reducer', () => {
   });
 
   it('should handle FETCH_ACCESS_TOKEN_FAILURE', () => {
-    const state = accessToken(undefined, { type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST });
+    const state = {
+      'token': '',
+      'isFetching': true,
+      'error': false
+    };
     const action = { type: actionTypes.FETCH_ACCESS_TOKEN_FAILURE };
     expect(accessToken(state, action)).toMatchSnapshot();
   });
