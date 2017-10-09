@@ -13,9 +13,9 @@ describe('accessToken reducer', () => {
 
   it('should handle FETCH_ACCESS_TOKEN_SUCCESS', () => {
     const state = {
-      'token': '',
-      'isFetching': true,
-      'error': false
+      token: '',
+      isFetching: true,
+      error: false
     };
     const action = {
       type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
@@ -26,9 +26,9 @@ describe('accessToken reducer', () => {
 
   it('should handle FETCH_ACCESS_TOKEN_FAILURE', () => {
     const state = {
-      'token': '',
-      'isFetching': true,
-      'error': false
+      token: '',
+      isFetching: true,
+      error: false
     };
     const action = { type: actionTypes.FETCH_ACCESS_TOKEN_FAILURE };
     expect(accessToken(state, action)).toMatchSnapshot();

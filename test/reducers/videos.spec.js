@@ -18,11 +18,11 @@ describe('video reducer', () => {
     expect(
       videos(
         {
-          'byId': {},
-          'allIds': [],
-          'pageToken': '',
-          'isFetching': true,
-          'error': false
+          byId: {},
+          allIds: [],
+          pageToken: '',
+          isFetching: true,
+          error: false
         },
         {
           type: actionTypes.FETCH_VIDEOS_SUCCESS,
@@ -40,7 +40,7 @@ describe('video reducer', () => {
     expect(
       videos(
         {
-          'byId': {
+          byId: {
             'M8l2aGMjKHI': {
               id: 'M8l2aGMjKHI'
             },
@@ -48,13 +48,13 @@ describe('video reducer', () => {
               id: 'GcSACxUbqtg'
             }
           },
-          'allIds': [
+          allIds: [
             'M8l2aGMjKHI',
             'GcSACxUbqtg'
           ],
-          'pageToken': 'CBQQAA',
-          'isFetching': true,
-          'error': false
+          pageToken: 'CBQQAA',
+          isFetching: true,
+          error: false
         },
         {
           type: actionTypes.FETCH_VIDEOS_SUCCESS,
@@ -72,11 +72,11 @@ describe('video reducer', () => {
 
   it('should handle FETCH_VIDEOS_FAILURE', () => {
     const state = {
-      'byId': {},
-      'allIds': [],
-      'pageToken': '',
-      'isFetching': true,
-      'error': false
+      byId: {},
+      allIds: [],
+      pageToken: '',
+      isFetching: true,
+      error: false
     };
     const action = { type: actionTypes.FETCH_VIDEOS_FAILURE };
     expect(videos(state, action)).toMatchSnapshot();
@@ -84,7 +84,7 @@ describe('video reducer', () => {
 
   it('should handle UPDATE_ACTIVE_CHANNEL', () => {
     const state = {
-      'byId': {
+      byId: {
         'M8l2aGMjKHI': {
           id: 'M8l2aGMjKHI'
         },
@@ -92,13 +92,13 @@ describe('video reducer', () => {
           id: 'GcSACxUbqtg'
         }
       },
-      'allIds': [
+      allIds: [
         'M8l2aGMjKHI',
         'GcSACxUbqtg'
       ],
-      'pageToken': 'CBQQAA',
-      'isFetching': false,
-      'error': false
+      pageToken: 'CBQQAA',
+      isFetching: false,
+      error: false
     };
     const action = {
       type: actionTypes.UPDATE_ACTIVE_CHANNEL,

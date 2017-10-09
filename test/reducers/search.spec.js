@@ -14,11 +14,11 @@ describe('search reducer', () => {
 
   it('should handle FETCH_SEARCH_SUCCESS', () => {
     const state = {
-      'query': 'a',
-      'results': [],
-      'pageToken': '',
-      'isFetching': true,
-      'error': false
+      query: 'a',
+      results: [],
+      pageToken: '',
+      isFetching: true,
+      error: false
     };
     const action = {
       type: actionTypes.FETCH_SEARCH_SUCCESS,
@@ -38,11 +38,11 @@ describe('search reducer', () => {
 
   it('should handle FETCH_SEARCH_FAILURE', () => {
     const state = {
-      'query': 'a',
-      'results': [],
-      'pageToken': '',
-      'isFetching': true,
-      'error': false
+      query: 'a',
+      results: [],
+      pageToken: '',
+      isFetching: true,
+      error: false
     };
     const action = { type: actionTypes.FETCH_SEARCH_FAILURE };
     expect(search(state, action)).toMatchSnapshot();
@@ -60,14 +60,14 @@ describe('search reducer', () => {
 
   it('should handle CLEAR_SEARCH_RESULTS', () => {
     const state = {
-      'query': 'abc',
-      'results': [
+      query: 'abc',
+      results: [
         { id: 'M8l2aGMjKHI' },
         { id: 'GcSACxUbqtg' }
       ],
-      'pageToken': 'CBQQAA',
-      'isFetching': false,
-      'error': false
+      pageToken: 'CBQQAA',
+      isFetching: false,
+      error: false
     };
     const action = { type: actionTypes.CLEAR_SEARCH_RESULTS };
     expect(search(state, action)).toMatchSnapshot();
