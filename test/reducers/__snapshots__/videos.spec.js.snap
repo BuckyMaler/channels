@@ -23,20 +23,48 @@ Object {
 exports[`video reducer should handle FETCH_VIDEOS_SUCCESS 1`] = `
 Object {
   "allIds": Array [
-    "UCyIe-61Y8C4_o-zZCtO4ETQ",
-    "UCO1cgjhGzsSYb1rsB4bFe4Q",
+    "M8l2aGMjKHI",
+    "GcSACxUbqtg",
   ],
   "byId": Object {
-    "UCO1cgjhGzsSYb1rsB4bFe4Q": Object {
-      "id": "UCO1cgjhGzsSYb1rsB4bFe4Q",
+    "GcSACxUbqtg": Object {
+      "id": "GcSACxUbqtg",
     },
-    "UCyIe-61Y8C4_o-zZCtO4ETQ": Object {
-      "id": "UCyIe-61Y8C4_o-zZCtO4ETQ",
+    "M8l2aGMjKHI": Object {
+      "id": "M8l2aGMjKHI",
     },
   },
   "error": false,
   "isFetching": false,
   "pageToken": "CBQQAA",
+}
+`;
+
+exports[`video reducer should handle FETCH_VIDEOS_SUCCESS 2`] = `
+Object {
+  "allIds": Array [
+    "M8l2aGMjKHI",
+    "GcSACxUbqtg",
+    "Flze-rwT7lM",
+    "L4TIM6W7u-M",
+  ],
+  "byId": Object {
+    "Flze-rwT7lM": Object {
+      "id": "Flze-rwT7lM",
+    },
+    "GcSACxUbqtg": Object {
+      "id": "GcSACxUbqtg",
+    },
+    "L4TIM6W7u-M": Object {
+      "id": "L4TIM6W7u-M",
+    },
+    "M8l2aGMjKHI": Object {
+      "id": "M8l2aGMjKHI",
+    },
+  },
+  "error": false,
+  "isFetching": false,
+  "pageToken": "CCgQAA",
 }
 `;
 

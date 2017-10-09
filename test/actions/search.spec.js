@@ -11,17 +11,22 @@ jest.mock('../../app/services/uriGenerator');
 
 describe('search actions', () => {
 
-  const accessToken = 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg';
-  const channels = {
-    activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
-  };
-  const search = {
-    pageToken: ''
-  };
+  let store;
+  beforeEach(() => {
+    store = mockStore({
+      accessToken: {
+        token: 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg'
+      },
+      channels: {
+        activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
+      },
+      search: {
+        pageToken: ''
+      }
+    });
+  });
 
   it('creates FETCH_SEARCH_SUCCESS when fetching video ids has resolved with undefined', () => {
-    const store = mockStore({ accessToken, channels, search });
-
     fetch.apiRequest = jest.fn(() => Promise.resolve({}));
 
     return store.dispatch(searchActions.fetchSearch()).then(() => {
@@ -30,8 +35,6 @@ describe('search actions', () => {
   });
 
   it('creates FETCH_SEARCH_SUCCESS when fetching video ids has resolved with null', () => {
-    const store = mockStore({ accessToken, channels, search });
-
     fetch.apiRequest = jest.fn(() => Promise.resolve({ items: null }));
 
     return store.dispatch(searchActions.fetchSearch()).then(() => {
@@ -40,8 +43,6 @@ describe('search actions', () => {
   });
 
   it('creates FETCH_SEARCH_FAILURE when fetching video ids has been rejected', () => {
-    const store = mockStore({ accessToken, channels, search });
-
     fetch.apiRequest = jest.fn(() => Promise.reject());
 
     return store.dispatch(searchActions.fetchSearch()).then(() => {
@@ -50,25 +51,23 @@ describe('search actions', () => {
   });
 
   it('creates FETCH_SEARCH_SUCCESS when fetching videos has been resolved', () => {
-    const store = mockStore({ accessToken, channels, search });
-
     fetch.apiRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
         items: [
           {
             id: {
-              videoId: 'lAJWHHUz8_8'
+              videoId: 'M8l2aGMjKHI'
             }
           },
           {
             id: {
-              videoId: '6YBV1cKRqzU'
+              videoId: 'GcSACxUbqtg'
             }
           }
         ],
         nextPageToken: 'CBQQAA'
       }))
-      .mockReturnValueOnce(Promise.resolve({ items: ['GraphQL Basics - Fun Fun Function', 'Advanced Dependency Injection without classes - Fun Fun Function'] }));
+      .mockReturnValueOnce(Promise.resolve({ items: ['M8l2aGMjKHI', 'GcSACxUbqtg'] }));
 
     return store.dispatch(searchActions.fetchSearch()).then(() => {
       expect(store.getActions()).toMatchSnapshot();
@@ -76,19 +75,17 @@ describe('search actions', () => {
   });
 
   it('creates FETCH_SEARCH_FAILURE when fetching videos has been rejected', () => {
-    const store = mockStore({ accessToken, channels, search });
-
     fetch.apiRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
         items: [
           {
             id: {
-              videoId: 'lAJWHHUz8_8'
+              videoId: 'M8l2aGMjKHI'
             }
           },
           {
             id: {
-              videoId: '6YBV1cKRqzU'
+              videoId: 'GcSACxUbqtg'
             }
           }
         ],
@@ -106,7 +103,7 @@ describe('search actions', () => {
   });
 
   it('should create an action to receive search', () => {
-    const items = ['GraphQL Basics - Fun Fun Function', 'Advanced Dependency Injection without classes - Fun Fun Function'];
+    const items = ['M8l2aGMjKHI', 'GcSACxUbqtg'];
     const nextPageToken = 'CBQQAA';
     expect(searchActions.receiveSearch(items, nextPageToken)).toMatchSnapshot();
   });
@@ -116,15 +113,11 @@ describe('search actions', () => {
   });
 
   it('should create actions to update search', () => {
-    const store = mockStore({ accessToken, channels, search });
-
-    store.dispatch(searchActions.updateSearch('react'));
+    store.dispatch(searchActions.updateSearch('a'));
     expect(store.getActions()).toMatchSnapshot();
   });
 
   it('should create actions to clear search', () => {
-    const store = mockStore({ accessToken, channels, search });
-
     store.dispatch(searchActions.clearSearch());
     expect(store.getActions()).toMatchSnapshot();
   });

@@ -13,7 +13,13 @@ describe('channels reducer', () => {
   });
 
   it('should handle FETCH_CHANNELS_SUCCESS', () => {
-    const state = channels(undefined, { type: actionTypes.FETCH_CHANNELS_REQUEST });
+    const state = {
+      'byId': {},
+      'allIds': [],
+      'activeId': '',
+      'isFetching': true,
+      'error': false
+    };
     const action = {
       type: actionTypes.FETCH_CHANNELS_SUCCESS,
       payload: [
@@ -28,29 +34,39 @@ describe('channels reducer', () => {
   });
 
   it('should handle FETCH_CHANNELS_FAILURE', () => {
-    const state = channels(undefined, { type: actionTypes.FETCH_CHANNELS_REQUEST });
+    const state = {
+      'byId': {},
+      'allIds': [],
+      'activeId': '',
+      'isFetching': true,
+      'error': false
+    };
     const action = { type: actionTypes.FETCH_CHANNELS_FAILURE };
     expect(channels(state, action)).toMatchSnapshot();
   });
 
   it('should handle UPDATE_ACTIVE_CHANNEL', () => {
-    const state = channels(
-      undefined,
-      {
-        type: actionTypes.FETCH_CHANNELS_SUCCESS,
-        payload: [
-          { id: 'UCyIe-61Y8C4_o-zZCtO4ETQ' },
-          { id: 'UCO1cgjhGzsSYb1rsB4bFe4Q' }
-        ]
-      }
-    );
+    const state = {
+      'byId': {
+        'UCyIe-61Y8C4_o-zZCtO4ETQ': {
+          id: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
+        },
+        'UCO1cgjhGzsSYb1rsB4bFe4Q': {
+          id: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
+        }
+      },
+      'allIds': [
+        'UCyIe-61Y8C4_o-zZCtO4ETQ',
+        'UCO1cgjhGzsSYb1rsB4bFe4Q'
+      ],
+      'activeId': 'UCyIe-61Y8C4_o-zZCtO4ETQ',
+      'isFetching': false,
+      'error': false
+    };
     const action = {
       type: actionTypes.UPDATE_ACTIVE_CHANNEL,
       payload: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
     };
-
-    ChannelType.from = jest.fn(item => item);
-
     expect(channels(state, action)).toMatchSnapshot();
   });
 

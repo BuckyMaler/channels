@@ -9,19 +9,24 @@ const mockStore = configureMockStore(middlewares);
 
 jest.mock('../../app/services/uriGenerator');
 
-describe('video list actions', () => {
+describe('videos actions', () => {
 
-  const accessToken = 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg';
-  const channels = {
-    activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
-  };
-  const videos = {
-    pageToken: ''
-  };
+  let store;
+  beforeEach(() => {
+    store = mockStore({
+      accessToken: {
+        token: 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg'
+      },
+      channels: {
+        activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
+      },
+      videos: {
+        pageToken: ''
+      }
+    });
+  });
 
   it('creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with undefined', () => {
-    const store = mockStore({ accessToken, channels, videos });
-
     fetch.apiRequest = jest.fn(() => Promise.resolve({}));
 
     return store.dispatch(videosActions.fetchVideos()).then(() => {
@@ -30,8 +35,6 @@ describe('video list actions', () => {
   });
 
   it('creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with null', () => {
-    const store = mockStore({ accessToken, channels, videos });
-
     fetch.apiRequest = jest.fn(() => Promise.resolve({ items: null }));
 
     return store.dispatch(videosActions.fetchVideos()).then(() => {
@@ -40,8 +43,6 @@ describe('video list actions', () => {
   });
 
   it('creates FETCH_VIDEOS_FAILURE when fetching video ids has been rejected', () => {
-    const store = mockStore({ accessToken, channels, videos });
-
     fetch.apiRequest = jest.fn(() => Promise.reject());
 
     return store.dispatch(videosActions.fetchVideos()).then(() => {
@@ -50,25 +51,23 @@ describe('video list actions', () => {
   });
 
   it('creates FETCH_VIDEOS_SUCCESS when fetching videos has been resolved', () => {
-    const store = mockStore({ accessToken, channels, videos });
-
     fetch.apiRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
         items: [
           {
             id: {
-              videoId: 'lAJWHHUz8_8'
+              videoId: 'M8l2aGMjKHI'
             }
           },
           {
             id: {
-              videoId: '6YBV1cKRqzU'
+              videoId: 'GcSACxUbqtg'
             }
           }
         ],
         nextPageToken: 'CBQQAA'
       }))
-      .mockReturnValueOnce(Promise.resolve({ items: ['GraphQL Basics - Fun Fun Function', 'Advanced Dependency Injection without classes - Fun Fun Function'] }));
+      .mockReturnValueOnce(Promise.resolve({ items: ['M8l2aGMjKHI', 'GcSACxUbqtg'] }));
 
     return store.dispatch(videosActions.fetchVideos()).then(() => {
       expect(store.getActions()).toMatchSnapshot();
@@ -76,19 +75,17 @@ describe('video list actions', () => {
   });
 
   it('creates FETCH_VIDEOS_FAILURE when fetching videos has been rejected', () => {
-    const store = mockStore({ accessToken, channels, videos });
-
     fetch.apiRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
         items: [
           {
             id: {
-              videoId: 'lAJWHHUz8_8'
+              videoId: 'M8l2aGMjKHI'
             }
           },
           {
             id: {
-              videoId: '6YBV1cKRqzU'
+              videoId: 'GcSACxUbqtg'
             }
           }
         ],
@@ -106,7 +103,7 @@ describe('video list actions', () => {
   });
 
   it('should create an action to receive videos', () => {
-    const items = ['GraphQL Basics - Fun Fun Function', 'Advanced Dependency Injection without classes - Fun Fun Function'];
+    const items = ['M8l2aGMjKHI', 'GcSACxUbqtg'];
     const nextPageToken = 'CBQQAA';
     expect(videosActions.receiveVideos(items, nextPageToken)).toMatchSnapshot();
   });

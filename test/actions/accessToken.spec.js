@@ -9,7 +9,7 @@ const mockStore = configureMockStore(middlewares);
 
 jest.mock('../../app/services/uriGenerator');
 
-describe('access token actions', () => {
+describe('accessToken actions', () => {
 
   const accessToken = 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg';
 

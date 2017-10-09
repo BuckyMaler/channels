@@ -5,7 +5,7 @@ Object {
   "error": false,
   "isFetching": false,
   "pageToken": "",
-  "query": "",
+  "query": "abc",
   "results": Array [],
 }
 `;
@@ -15,7 +15,7 @@ Object {
   "error": true,
   "isFetching": false,
   "pageToken": "",
-  "query": "",
+  "query": "a",
   "results": Array [],
 }
 `;
@@ -35,13 +35,13 @@ Object {
   "error": false,
   "isFetching": false,
   "pageToken": "CBQQAA",
-  "query": "react",
+  "query": "a",
   "results": Array [
     Object {
-      "id": "UCyIe-61Y8C4_o-zZCtO4ETQ",
+      "id": "M8l2aGMjKHI",
     },
     Object {
-      "id": "UCO1cgjhGzsSYb1rsB4bFe4Q",
+      "id": "GcSACxUbqtg",
     },
   ],
 }
@@ -52,7 +52,17 @@ Object {
   "error": false,
   "isFetching": false,
   "pageToken": "",
-  "query": "react",
+  "query": "a",
+  "results": Array [],
+}
+`;
+
+exports[`search reducer should handle UPDATE_SEARCH_QUERY 2`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "pageToken": "",
+  "query": "ab",
   "results": Array [],
 }
 `;
