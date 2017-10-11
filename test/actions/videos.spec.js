@@ -2,6 +2,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as videosActions from '../../app/actions/videos';
+import actionTypes from '../../app/constants/actionTypes';
 import * as fetch from '../../app/services/fetch';
 
 const middlewares = [thunk];
@@ -29,24 +30,51 @@ describe('videos actions', () => {
   it('creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with undefined', () => {
     fetch.apiRequest = jest.fn(() => Promise.resolve({}));
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_VIDEOS_REQUEST },
+      {
+        type: actionTypes.FETCH_VIDEOS_SUCCESS,
+        payload: {
+          items: [],
+          nextPageToken: ''
+        }
+      }
+    ];
+
     return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
   it('creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with null', () => {
     fetch.apiRequest = jest.fn(() => Promise.resolve({ items: null }));
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_VIDEOS_REQUEST },
+      {
+        type: actionTypes.FETCH_VIDEOS_SUCCESS,
+        payload: {
+          items: [],
+          nextPageToken: ''
+        }
+      }
+    ];
+
     return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
   it('creates FETCH_VIDEOS_FAILURE when fetching video ids has been rejected', () => {
     fetch.apiRequest = jest.fn(() => Promise.reject());
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_VIDEOS_REQUEST },
+      { type: actionTypes.FETCH_VIDEOS_FAILURE }
+    ];
+
     return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
@@ -69,8 +97,19 @@ describe('videos actions', () => {
       }))
       .mockReturnValueOnce(Promise.resolve({ items: ['M8l2aGMjKHI', 'GcSACxUbqtg'] }));
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_VIDEOS_REQUEST },
+      {
+        type: actionTypes.FETCH_VIDEOS_SUCCESS,
+        payload: {
+          items: ['M8l2aGMjKHI', 'GcSACxUbqtg'],
+          nextPageToken: 'CBQQAA'
+        }
+      }
+    ];
+
     return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
@@ -93,22 +132,43 @@ describe('videos actions', () => {
       }))
       .mockReturnValueOnce(Promise.reject());
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_VIDEOS_REQUEST },
+      { type: actionTypes.FETCH_VIDEOS_FAILURE }
+    ];
+
     return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
   it('should create an action to request videos', () => {
-    expect(videosActions.requestVideos()).toMatchSnapshot();
+    const expectedAction = {
+      type: actionTypes.FETCH_VIDEOS_REQUEST
+    };
+
+    expect(videosActions.requestVideos()).toEqual(expectedAction);
   });
 
   it('should create an action to receive videos', () => {
     const items = ['M8l2aGMjKHI', 'GcSACxUbqtg'];
     const nextPageToken = 'CBQQAA';
-    expect(videosActions.receiveVideos(items, nextPageToken)).toMatchSnapshot();
+    const expectedAction = {
+      type: actionTypes.FETCH_VIDEOS_SUCCESS,
+      payload: {
+        items,
+        nextPageToken
+      }
+    };
+
+    expect(videosActions.receiveVideos(items, nextPageToken)).toEqual(expectedAction);
   });
 
   it('should create an action to handle an error', () => {
-    expect(videosActions.videosError()).toMatchSnapshot();
+    const expectedAction = {
+      type: actionTypes.FETCH_VIDEOS_FAILURE
+    };
+
+    expect(videosActions.videosError()).toEqual(expectedAction);
   });
 });
