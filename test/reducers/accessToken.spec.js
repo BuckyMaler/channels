@@ -2,13 +2,24 @@ import accessToken from '../../app/reducers/accessToken';
 import actionTypes from '../../app/constants/actionTypes';
 
 describe('accessToken reducer', () => {
+
+  const token = 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg';
+
   it('should return the initial state', () => {
-    expect(accessToken(undefined, {})).toMatchSnapshot();
+    expect(accessToken(undefined, {})).toEqual({
+      token: '',
+      isFetching: false,
+      error: false
+    });
   });
 
   it('should handle FETCH_ACCESS_TOKEN_REQUEST', () => {
     const action = { type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST };
-    expect(accessToken(undefined, action)).toMatchSnapshot();
+    expect(accessToken(undefined, action)).toEqual({
+      token: '',
+      isFetching: true,
+      error: false
+    });
   });
 
   it('should handle FETCH_ACCESS_TOKEN_SUCCESS', () => {
@@ -19,9 +30,13 @@ describe('accessToken reducer', () => {
     };
     const action = {
       type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
-      payload: 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg'
+      payload: token
     };
-    expect(accessToken(state, action)).toMatchSnapshot();
+    expect(accessToken(state, action)).toEqual({
+      token,
+      isFetching: false,
+      error: false
+    });
   });
 
   it('should handle FETCH_ACCESS_TOKEN_FAILURE', () => {
@@ -31,11 +46,19 @@ describe('accessToken reducer', () => {
       error: false
     };
     const action = { type: actionTypes.FETCH_ACCESS_TOKEN_FAILURE };
-    expect(accessToken(state, action)).toMatchSnapshot();
+    expect(accessToken(state, action)).toEqual({
+      token: '',
+      isFetching: false,
+      error: true
+    });
   });
 
   it('should handle unknown action type', () => {
     const action = { type: 'unknown' };
-    expect(accessToken(undefined, action)).toMatchSnapshot();
+    expect(accessToken(undefined, action)).toEqual({
+      token: '',
+      isFetching: false,
+      error: false
+    });
   });
 });

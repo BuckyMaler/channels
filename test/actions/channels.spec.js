@@ -2,6 +2,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as channelsActions from '../../app/actions/channels';
+import actionTypes from '../../app/constants/actionTypes';
 import * as fetch from '../../app/services/fetch';
 
 const middlewares = [thunk];
@@ -26,24 +27,39 @@ describe('channels actions', () => {
   it('creates FETCH_CHANNELS_SUCCESS when fetching subscriptions has resolved with undefined', () => {
     fetch.apiRequest = jest.fn(() => Promise.resolve({}));
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_CHANNELS_REQUEST },
+      { type: actionTypes.FETCH_CHANNELS_SUCCESS, payload: [] }
+    ];
+
     return store.dispatch(channelsActions.fetchChannels()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
   it('creates FETCH_CHANNELS_SUCCESS when fetching subscriptions has resolved with null', () => {
     fetch.apiRequest = jest.fn(() => Promise.resolve({ items: null }));
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_CHANNELS_REQUEST },
+      { type: actionTypes.FETCH_CHANNELS_SUCCESS, payload: [] }
+    ];
+
     return store.dispatch(channelsActions.fetchChannels()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
   it('creates FETCH_CHANNELS_FAILURE when fetching subscriptions has been rejected', () => {
     fetch.apiRequest = jest.fn(() => Promise.reject());
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_CHANNELS_REQUEST },
+      { type: actionTypes.FETCH_CHANNELS_FAILURE }
+    ];
+
     return store.dispatch(channelsActions.fetchChannels()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
@@ -69,8 +85,16 @@ describe('channels actions', () => {
       }))
       .mockReturnValueOnce(Promise.resolve({ items: ['UCyIe-61Y8C4_o-zZCtO4ETQ', 'UCO1cgjhGzsSYb1rsB4bFe4Q'] }));
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_CHANNELS_REQUEST },
+      {
+        type: actionTypes.FETCH_CHANNELS_SUCCESS,
+        payload: ['UCyIe-61Y8C4_o-zZCtO4ETQ', 'UCO1cgjhGzsSYb1rsB4bFe4Q']
+      }
+    ];
+
     return store.dispatch(channelsActions.fetchChannels()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
@@ -96,27 +120,50 @@ describe('channels actions', () => {
       }))
       .mockReturnValueOnce(Promise.reject());
 
+    const expectedActions = [
+      { type: actionTypes.FETCH_CHANNELS_REQUEST },
+      { type: actionTypes.FETCH_CHANNELS_FAILURE }
+    ];
+
     return store.dispatch(channelsActions.fetchChannels()).then(() => {
-      expect(store.getActions()).toMatchSnapshot();
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
   it('should create an action to request channels', () => {
-    expect(channelsActions.requestChannels()).toMatchSnapshot();
+    const expectedAction = {
+      type: actionTypes.FETCH_CHANNELS_REQUEST
+    };
+
+    expect(channelsActions.requestChannels()).toEqual(expectedAction);
   });
 
   it('should create an action to receive channels', () => {
     const items = ['UCyIe-61Y8C4_o-zZCtO4ETQ', 'UCO1cgjhGzsSYb1rsB4bFe4Q'];
-    expect(channelsActions.receiveChannels(items)).toMatchSnapshot();
+    const expectedAction = {
+      type: actionTypes.FETCH_CHANNELS_SUCCESS,
+      payload: items
+    };
+
+    expect(channelsActions.receiveChannels(items)).toEqual(expectedAction);
   });
 
   it('should create an action to handle an error', () => {
-    expect(channelsActions.channelsError()).toMatchSnapshot();
+    const expectedAction = {
+      type: actionTypes.FETCH_CHANNELS_FAILURE
+    };
+
+    expect(channelsActions.channelsError()).toEqual(expectedAction);
   });
 
   it('should create an action to update the active channel', () => {
     const channelId = 'UCO1cgjhGzsSYb1rsB4bFe4Q';
+    const expectedAction = [{
+      type: actionTypes.UPDATE_ACTIVE_CHANNEL,
+      payload: channelId
+    }];
+
     store.dispatch(channelsActions.updateActiveChannel(channelId));
-    expect(store.getActions()).toMatchSnapshot();
+    expect(store.getActions()).toEqual(expectedAction);
   });
 });
