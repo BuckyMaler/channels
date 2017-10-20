@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar when disabled should render self 1`] = `
+<form
+  className="searchBar"
+  onBlur={[Function]}
+  onSubmit={[Function]}
+>
+  <input
+    className="searchInput"
+    disabled={true}
+    onChange={[Function]}
+    placeholder="The Mac App For YouTube Channels."
+    value=""
+  />
+</form>
+`;
+
+exports[`SearchBar when enabled should render self with no value 1`] = `
+<form
+  className="searchBar"
+  onBlur={[Function]}
+  onSubmit={[Function]}
+>
+  <Component
+    className="iconSearch"
+  />
+  <input
+    className="searchInput"
+    disabled={false}
+    onChange={[Function]}
+    placeholder="Search DevTips"
+    value=""
+  />
+</form>
+`;
+
+exports[`SearchBar when enabled should render self with value 1`] = `
+<form
+  className="searchBar"
+  onBlur={[Function]}
+  onSubmit={[Function]}
+>
+  <Component
+    className="iconSearch"
+  />
+  <input
+    className="searchInput"
+    disabled={false}
+    onChange={[Function]}
+    placeholder="Search DevTips"
+    value="Sass"
+  />
+  <button
+    className="resetBtn"
+    onClick={[Function]}
+    type="reset"
+  >
+    <Component
+      className="iconCancel"
+    />
+  </button>
+</form>
+`;

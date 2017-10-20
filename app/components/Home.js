@@ -43,11 +43,12 @@ export default class Home extends Component {
 
   render() {
     const {
+      token,
       isFetching,
       error,
       fetchAccessToken
     } = this.props;
-    if (isFetching || error) {
+    if ((isFetching && !token) || error) {
       return (
         <div className={styles.home}>
           {isFetching ? (

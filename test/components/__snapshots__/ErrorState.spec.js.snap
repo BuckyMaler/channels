@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorState with retry should render self 1`] = `
+<div
+  className="errorState "
+>
+  <p
+    className="message"
+  >
+    Error requesting channels.
+    <span
+      className="retry"
+      onClick={[Function]}
+    >
+       
+      Try again.
+    </span>
+  </p>
+</div>
+`;
+
+exports[`ErrorState without retry should render self 1`] = `
+<div
+  className="errorState "
+>
+  <p
+    className="message"
+  >
+    Error requesting channels.
+  </p>
+</div>
+`;
