@@ -62,7 +62,7 @@ export default class Search extends Component {
     return (
       <div className={styles.search}>
         <SearchBar
-          disabled={!!activeChannel}
+          disabled={activeChannel === undefined}
           placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App For YouTube Channels.'}
           value={query}
           handleChange={this.handleChange}

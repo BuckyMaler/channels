@@ -19,16 +19,16 @@ const SearchBar = ({
   handleReset: () => void
 }) => (
   <form className={styles.searchBar} onSubmit={handleSubmit} onBlur={handleReset}>
-    {disabled && <IconSearch className={styles.iconSearch} />}
+    {!disabled && <IconSearch className={styles.iconSearch} />}
     <input
       className={styles.searchInput}
-      disabled={!disabled}
+      disabled={disabled}
       placeholder={placeholder}
       value={value}
       onChange={handleChange}
     />
     {value &&
-      <button className={styles.searchButton} type="reset" onClick={handleReset}>
+      <button className={styles.resetBtn} type="reset" onClick={handleReset}>
         <IconCancel className={styles.iconCancel} />
       </button>
     }

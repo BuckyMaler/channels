@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChannelList when closed should render self 1`] = `
+<div
+  className=""
+>
+  <div
+    className="closeTarget"
+    onClick={[Function]}
+  />
+  <div
+    className="modal"
+  >
+    <BlankState
+      message="No channels found."
+    />
+  </div>
+</div>
+`;
+
+exports[`ChannelList when opened should render self with channels 1`] = `
+<div
+  className="channelListIsOpen"
+>
+  <div
+    className="closeTarget"
+    onClick={[Function]}
+  />
+  <div
+    className="modal"
+  >
+    <ul
+      className="channels"
+      onClick={[Function]}
+    >
+      <Channel
+        isActive={false}
+        subscriberCount="243,643"
+        thumbnail="https://yt3.ggpht.com/photo.jpg"
+        title="DevTips"
+        updateActiveChannel={[Function]}
+        videoCount="292"
+      />
+      <Channel
+        isActive={false}
+        subscriberCount="18,655"
+        thumbnail="https://yt3.ggpht.com/photo.jpg"
+        title="Ihatetomatoes"
+        updateActiveChannel={[Function]}
+        videoCount="140"
+      />
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`ChannelList when opened should render self with error message 1`] = `
+<div
+  className="channelListIsOpen"
+>
+  <div
+    className="closeTarget"
+    onClick={[Function]}
+  />
+  <div
+    className="modal"
+  >
+    <ErrorState
+      message="Error requesting channels."
+      retry={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`ChannelList when opened should render self with loader 1`] = `
+<div
+  className="channelListIsOpen"
+>
+  <div
+    className="closeTarget"
+    onClick={[Function]}
+  />
+  <div
+    className="modal"
+  >
+    <Loader />
+  </div>
+</div>
+`;
+
+exports[`ChannelList when opened should render self with no channels 1`] = `
+<div
+  className="channelListIsOpen"
+>
+  <div
+    className="closeTarget"
+    onClick={[Function]}
+  />
+  <div
+    className="modal"
+  >
+    <BlankState
+      message="No channels found."
+    />
+  </div>
+</div>
+`;

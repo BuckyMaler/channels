@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoList with active channel should render self with error message 1`] = `
+<div
+  className="videoList"
+>
+  <ErrorState
+    message="Error requesting videos."
+    retry={[Function]}
+  />
+</div>
+`;
+
+exports[`VideoList with active channel should render self with loader 1`] = `
+<div
+  className="videoList"
+>
+  <Loader />
+</div>
+`;
+
+exports[`VideoList with active channel should render self with no videos 1`] = `
+<div
+  className="videoList"
+>
+  <BlankState
+    message="No videos found."
+  />
+</div>
+`;
+
+exports[`VideoList with active channel should render self with videos 1`] = `
+<div
+  className="videoList"
+>
+  <InfiniteScroll
+    isFetching={false}
+    loadMore={[Function]}
+    pageToken=""
+  >
+    <ul
+      className="videos"
+    >
+      <Video
+        description="I visited Adobe Max and asked all my design heroes for advice."
+        publishedAt="a year ago"
+        thumbnail="https://i.ytimg.com/hqdefault.jpg"
+        title="Professional Advice from Adobe MAX Conference"
+        viewCount="5,463"
+      />
+      <Video
+        description="Wired Article"
+        publishedAt="7 months ago"
+        thumbnail="https://i.ytimg.com/vi/Flze-rwT7lM/hqdefault.jpg"
+        title="If You Want to Survive in Design, You Better Learn to Code"
+        viewCount="39,430"
+      />
+    </ul>
+  </InfiniteScroll>
+</div>
+`;
+
+exports[`VideoList with no active channel should render self with notification 1`] = `
+<div
+  className="videoList"
+>
+  <div
+    className="notification"
+  >
+    <p
+      className="message"
+    >
+      No Active Channel
+      <span>
+        Well don't just sit there...
+      </span>
+    </p>
+    <button
+      className="select"
+      onClick={[Function]}
+    >
+      Select a Channel
+    </button>
+  </div>
+</div>
+`;

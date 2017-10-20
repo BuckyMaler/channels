@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should render self with content 1`] = `
+<div>
+  <LeftColumn />
+</div>
+`;
+
+exports[`Home should render self with error message 1`] = `
+<div
+  className="home"
+>
+  <ErrorState
+    message="Error accessing your account."
+    retry={[Function]}
+  />
+</div>
+`;
+
+exports[`Home should render self with loader 1`] = `
+<div
+  className="home"
+>
+  <Loader />
+</div>
+`;
