@@ -1,20 +1,19 @@
-// @flow
-export function getAccessTokenUri(): string {
-  return 'uri';
+export function getAccessTokenUri() {
+  // noop
 }
 
-export function getSubscriptionsUri(): string {
-  return 'uri';
+export function getSubscriptionsUri() {
+  // noop
 }
 
-export function getChannelsUri(): string {
-  return 'uri';
+export function getChannelsUri() {
+  // noop
 }
 
-export function getVideoIdsUri(): string {
-  return 'uri';
+export function getVideoIdsUri() {
+  // noop
 }
 
-export function getVideosUri(): string {
-  return 'uri';
+export function getVideosUri() {
+  // noop
 }

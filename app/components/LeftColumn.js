@@ -1,24 +1,19 @@
 // @flow
 import React, { Component } from 'react';
 import Navigation from './Navigation';
-import VideoList from './VideoList';
+import VideoList from '../containers/VideoList';
+import SelectChannel from './SelectChannel';
 import ChannelType from '../dataTypes/channelType';
-import VideoType from '../dataTypes/videoType';
 import styles from './LeftColumn.scss';
 
 export default class LeftColumn extends Component {
   props: {
     activeChannel: ?ChannelType,
     channels: ChannelType[],
-    isFetchingChannels: boolean,
-    errorChannels: boolean,
-    videos: VideoType[],
-    isFetchingVideos: boolean,
-    errorVideos: boolean,
-    pageToken: string,
+    isFetching: boolean,
+    error: boolean,
     fetchChannels: () => Promise<any>,
-    updateActiveChannel: (channelId: string) => void,
-    fetchVideos: () => Promise<any>
+    updateActiveChannel: (channelId: string) => void
   };
 
   state: {
@@ -30,14 +25,8 @@ export default class LeftColumn extends Component {
     this.state = { channelListIsOpen: false };
   }
 
-  componentWillReceiveProps(nextProps: any) {
-    const { activeChannel } = this.props;
-    const id = activeChannel ? activeChannel.id : '';
-    const { activeChannel: nextActiveChannel } = nextProps;
-    const nextId = nextActiveChannel ? nextActiveChannel.id : '';
-    if (id !== nextId) {
-      this.props.fetchVideos();
-    }
+  componentDidMount() {
+    this.props.fetchChannels();
   }
 
   toggleChannelList(): void {
@@ -50,15 +39,10 @@ export default class LeftColumn extends Component {
     const {
       activeChannel,
       channels,
-      isFetchingChannels,
-      errorChannels,
-      videos,
-      isFetchingVideos,
-      errorVideos,
-      pageToken,
+      isFetching,
+      error,
       fetchChannels,
-      updateActiveChannel,
-      fetchVideos
+      updateActiveChannel
     } = this.props;
     const {
       channelListIsOpen
@@ -68,22 +52,20 @@ export default class LeftColumn extends Component {
         <Navigation
           activeChannel={activeChannel}
           channels={channels}
-          isFetching={isFetchingChannels}
-          error={errorChannels}
+          isFetching={isFetching}
+          error={error}
           channelListIsOpen={channelListIsOpen}
           fetchChannels={fetchChannels}
           updateActiveChannel={updateActiveChannel}
           toggleChannelList={() => this.toggleChannelList()}
         />
-        <VideoList
-          activeChannel={activeChannel}
-          videos={videos}
-          isFetching={isFetchingVideos}
-          error={errorVideos}
-          pageToken={pageToken}
-          fetchVideos={fetchVideos}
-          toggleChannelList={() => this.toggleChannelList()}
-        />
+        {activeChannel ? (
+          <VideoList />
+        ) : (
+          <SelectChannel
+            toggleChannelList={() => this.toggleChannelList()}
+          />
+        )}
       </div>
     );
   }

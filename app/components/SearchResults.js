@@ -27,9 +27,7 @@ const SearchResults = ({
     return (
       <div className={searchResultsIsOpen ? styles.searchResultsIsOpen : styles.searchResults}>
         {isFetching ? (
-          <Loader
-            className={styles.loader}
-          />
+          <Loader className={styles.loader} />
         ) : (
           <ErrorState
             message={'Error requesting videos.'}
@@ -43,7 +41,12 @@ const SearchResults = ({
   return (
     <div className={searchResultsIsOpen ? styles.searchResultsIsOpen : styles.searchResults}>
       {results.length ? (
-        <InfiniteScroll isFetching={isFetching} pageToken={pageToken} loadMore={fetchSearch} className={styles.infiniteScroll}>
+        <InfiniteScroll
+          isFetching={isFetching}
+          pageToken={pageToken}
+          loadMore={fetchSearch}
+          className={styles.infiniteScroll}
+        >
           <ul className={styles.results}>
             {results.map(result => (
               <Video

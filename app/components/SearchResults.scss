@@ -1,16 +1,11 @@
 @import '../app.global.scss';
 
 .searchResults {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
   border-radius: 0 0 3px 3px;
   box-shadow: 0 2px 15px rgba(46, 46, 46, 0.6);
   background-color: $white;
   opacity: 0;
   visibility: hidden;
-  z-index: 1;
 }
 
 .searchResultsIsOpen {

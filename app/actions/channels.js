@@ -1,35 +1,35 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
 import type { Action, ThunkAction, Dispatch, GetState } from '../constants/typeAliases';
-import { apiRequest, Methods } from '../services/fetch';
+import { getRequest } from '../services/fetch';
 import { getChannelsUri, getSubscriptionsUri } from '../services/uriGenerator';
 
 export function fetchChannels(): ThunkAction {
-  return (dispatch: Dispatch, getState: GetState) => {
+  return (dispatch: Dispatch) => {
     dispatch(requestChannels());
-    const { token } = getState().accessToken;
-    const subscriptions = fetchSubscriptions(token);
-    return subscriptions.then(json => {
-      if (json.items == null) {
-        return dispatch(receiveChannels([]));
-      }
-      const subscriptions = json.items.map(item => item.snippet.resourceId.channelId).join();
-      const uri = getChannelsUri(token, subscriptions);
-      return apiRequest(uri, Methods.GET)
-        .then(json => {
-          if (json.items == null) {
-            return dispatch(receiveChannels([]));
-          }
-          return dispatch(receiveChannels(json.items));
-        });
+    return fetchSubscriptions().then(subscriptions => {
+      const uri = getChannelsUri(subscriptions);
+      return getRequest(uri).then(json => {
+        if (json.items == null) {
+          return dispatch(receiveChannels([]));
+        }
+        return dispatch(receiveChannels(json.items));
+      });
     })
     .catch(() => dispatch(channelsError()));
   };
 }
 
-export function fetchSubscriptions(token: string): Promise<any> {
-  const uri = getSubscriptionsUri(token);
-  return apiRequest(uri, Methods.GET);
+export function fetchSubscriptions(): Promise<any> {
+  const uri = getSubscriptionsUri();
+  return getRequest(uri).then(json => {
+    if (json.items == null) {
+      return Promise.resolve('');
+    }
+    return Promise.resolve(
+      json.items.map(item => item.snippet.resourceId.channelId).join()
+    );
+  });
 }
 
 export function requestChannels(): Action {

@@ -113,7 +113,8 @@
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "./test/setup.js"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

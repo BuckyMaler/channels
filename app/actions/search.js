@@ -1,39 +1,44 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
 import type { Action, ThunkAction, Dispatch, GetState } from '../constants/typeAliases';
-import { apiRequest, Methods } from '../services/fetch';
+import { getRequest } from '../services/fetch';
 import { getVideosUri, getVideoIdsUri } from '../services/uriGenerator';
 
 export function fetchSearch(): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestSearch());
-    const { token } = getState().accessToken;
-    const { activeId: channelId } = getState().channels;
-    const { query, pageToken } = getState().search;
-    const options = { q: query, order: 'relevance' };
-    const videoIds = fetchVideoIds(token, channelId, pageToken, options);
-    return videoIds.then(json => {
-      const { items, nextPageToken = pageToken } = json;
-      if (items == null) {
-        return dispatch(receiveSearch([], nextPageToken));
-      }
-      const videoIds = items.map(item => item.id.videoId).join();
-      const uri = getVideosUri(token, videoIds);
-      return apiRequest(uri, Methods.GET)
-        .then(json => {
-          if (json.items == null) {
-            return dispatch(receiveSearch([], nextPageToken));
-          }
-          return dispatch(receiveSearch(json.items, nextPageToken));
-        });
+    const params = {
+      channelId: getState().channels.activeId,
+      q: getState().search.query,
+      pageToken: getState().search.pageToken,
+      order: 'relevance'
+    };
+    return fetchVideoIds(params).then(res => {
+      const { videoIds, nextPageToken } = res;
+      const uri = getVideosUri(videoIds);
+      return getRequest(uri).then(json => {
+        if (json.items == null) {
+          return dispatch(receiveSearch([], nextPageToken));
+        }
+        return dispatch(receiveSearch(json.items, nextPageToken));
+      });
     })
     .catch(() => dispatch(searchError()));
   };
 }
 
-export function fetchVideoIds(token: string, channelId: string, pageToken: string, options: {}): Promise<any> {
-  const uri = getVideoIdsUri(token, channelId, pageToken, options);
-  return apiRequest(uri, Methods.GET);
+export function fetchVideoIds(params: any): Promise<any> {
+  const uri = getVideoIdsUri(params);
+  return getRequest(uri).then(json => {
+    const { items, nextPageToken = params.pageToken } = json;
+    if (items == null) {
+      return Promise.resolve({ videoIds: '', nextPageToken });
+    }
+    return Promise.resolve({
+      videoIds: json.items.map(item => item.id.videoId).join(),
+      nextPageToken
+    });
+  });
 }
 
 export function requestSearch(): Action {

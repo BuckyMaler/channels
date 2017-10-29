@@ -15,9 +15,6 @@ describe('channels actions', () => {
   let store;
   beforeEach(() => {
     store = mockStore({
-      accessToken: {
-        token: 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg'
-      },
       channels: {
         activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
       }
@@ -25,7 +22,7 @@ describe('channels actions', () => {
   });
 
   it('creates FETCH_CHANNELS_SUCCESS when fetching subscriptions has resolved with undefined', () => {
-    fetch.apiRequest = jest.fn(() => Promise.resolve({}));
+    fetch.getRequest = jest.fn(() => Promise.resolve({}));
 
     const expectedActions = [
       { type: actionTypes.FETCH_CHANNELS_REQUEST },
@@ -38,7 +35,7 @@ describe('channels actions', () => {
   });
 
   it('creates FETCH_CHANNELS_SUCCESS when fetching subscriptions has resolved with null', () => {
-    fetch.apiRequest = jest.fn(() => Promise.resolve({ items: null }));
+    fetch.getRequest = jest.fn(() => Promise.resolve({ items: null }));
 
     const expectedActions = [
       { type: actionTypes.FETCH_CHANNELS_REQUEST },
@@ -51,7 +48,7 @@ describe('channels actions', () => {
   });
 
   it('creates FETCH_CHANNELS_FAILURE when fetching subscriptions has been rejected', () => {
-    fetch.apiRequest = jest.fn(() => Promise.reject());
+    fetch.getRequest = jest.fn(() => Promise.reject());
 
     const expectedActions = [
       { type: actionTypes.FETCH_CHANNELS_REQUEST },
@@ -64,7 +61,7 @@ describe('channels actions', () => {
   });
 
   it('creates FETCH_CHANNELS_SUCCESS when fetching channels has been resolved', () => {
-    fetch.apiRequest = jest.fn()
+    fetch.getRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
         items: [
           {
@@ -99,7 +96,7 @@ describe('channels actions', () => {
   });
 
   it('creates FETCH_CHANNELS_FAILURE when fetching channels has been rejected', () => {
-    fetch.apiRequest = jest.fn()
+    fetch.getRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
         items: [
           {

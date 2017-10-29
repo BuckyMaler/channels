@@ -63,9 +63,7 @@ const ChannelList = ({
             ))}
           </ul>
         ) : (
-          <BlankState
-            message={'No channels found.'}
-          />
+          <BlankState message={'No channels found.'} />
         )}
       </div>
     </div>

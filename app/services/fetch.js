@@ -1,12 +1,8 @@
 // @flow
 export const Methods = {
   GET: 'GET',
-  POST: 'POST',
-  PUT: 'PUT',
-  DELETE: 'DELETE'
+  POST: 'POST'
 };
-
-type MethodsType = $Keys<typeof Methods>;
 
 export function authRequest(uri: string): Promise<any> {
   const [url, body] = uri.split('?');
@@ -24,9 +20,9 @@ export function authRequest(uri: string): Promise<any> {
     });
 }
 
-export function apiRequest(uri: string, method: MethodsType): Promise<any> {
+export function getRequest(uri: string): Promise<any> {
   const init = {
-    method,
+    method: Methods.GET,
     headers: { 'Content-Type': 'application/json' }
   };
   return fetch(uri, init)

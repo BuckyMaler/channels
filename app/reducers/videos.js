@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import actionTypes from '../constants/actionTypes';
 import type { Action, VideosState } from '../constants/typeAliases';
 import VideoType from '../dataTypes/videoType';
+import { createIsFetching, createError } from './common';
 import { stringOrEmpty } from '../utils/utils';
 
 function byId(state: { [string]: VideoType } = {}, { type, payload }: Action): { [string]: VideoType } {
@@ -45,36 +46,12 @@ function pageToken(state: string = '', { type, payload }: Action): string {
   }
 }
 
-function isFetching(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_VIDEOS_REQUEST:
-      return true;
-    case actionTypes.FETCH_VIDEOS_SUCCESS:
-    case actionTypes.FETCH_VIDEOS_FAILURE:
-      return false;
-    default:
-      return state;
-  }
-}
-
-function error(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_VIDEOS_REQUEST:
-    case actionTypes.FETCH_VIDEOS_SUCCESS:
-      return false;
-    case actionTypes.FETCH_VIDEOS_FAILURE:
-      return true;
-    default:
-      return state;
-  }
-}
-
 const videos = combineReducers({
   byId,
   allIds,
   pageToken,
-  isFetching,
-  error
+  isFetching: createIsFetching('VIDEOS'),
+  error: createError('VIDEOS')
 });
 
 export function getVideos(state: VideosState): VideoType[] {
