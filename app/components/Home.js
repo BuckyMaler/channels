@@ -10,31 +10,22 @@ export default class Home extends Component {
     token: string,
     isFetching: boolean,
     error: boolean,
-    fetchAccessToken: () => Promise<any>,
-    fetchChannels: () => Promise<any>
+    fetchAccessToken: () => Promise<any>
   };
 
   intervalId: number;
-  tenMinutes: number;
+  fiftyMinutes: number;
   interval: () => number;
 
   constructor(props: any) {
     super(props);
-    this.tenMinutes = 600000;
-    this.interval = () => setInterval(this.props.fetchAccessToken, this.tenMinutes);
+    this.fiftyMinutes = 3000000;
+    this.interval = () => setInterval(this.props.fetchAccessToken, this.fiftyMinutes);
   }
 
   componentDidMount() {
     this.props.fetchAccessToken();
     this.intervalId = this.interval();
-  }
-
-  componentWillReceiveProps(nextProps: any) {
-    const { token } = this.props;
-    const { token: nextToken } = nextProps;
-    if (!token && nextToken) {
-      this.props.fetchChannels();
-    }
   }
 
   componentWillUnmount() {
@@ -48,7 +39,7 @@ export default class Home extends Component {
       error,
       fetchAccessToken
     } = this.props;
-    if ((isFetching && !token) || error) {
+    if (!token || error) {
       return (
         <div className={styles.home}>
           {isFetching ? (

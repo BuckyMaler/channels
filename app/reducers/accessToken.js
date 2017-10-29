@@ -2,36 +2,13 @@
 import { combineReducers } from 'redux';
 import actionTypes from '../constants/actionTypes';
 import type { Action } from '../constants/typeAliases';
+import { createIsFetching, createError } from './common';
 
 function token(state: string = '', { type, payload }: Action): string {
   switch (type) {
     case actionTypes.FETCH_ACCESS_TOKEN_SUCCESS:
+      localStorage.setItem('accessToken', payload);
       return payload;
-    default:
-      return state;
-  }
-}
-
-function isFetching(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_ACCESS_TOKEN_REQUEST:
-      return true;
-    case actionTypes.FETCH_ACCESS_TOKEN_SUCCESS:
-    case actionTypes.FETCH_ACCESS_TOKEN_FAILURE:
-      return false;
-    default:
-      return state;
-  }
-}
-
-
-function error(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_ACCESS_TOKEN_REQUEST:
-    case actionTypes.FETCH_ACCESS_TOKEN_SUCCESS:
-      return false;
-    case actionTypes.FETCH_ACCESS_TOKEN_FAILURE:
-      return true;
     default:
       return state;
   }
@@ -39,8 +16,8 @@ function error(state: boolean = false, { type }: Action): boolean {
 
 const accessToken = combineReducers({
   token,
-  isFetching,
-  error
+  isFetching: createIsFetching('ACCESS_TOKEN'),
+  error: createError('ACCESS_TOKEN')
 });
 
 export default accessToken;

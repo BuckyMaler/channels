@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import actionTypes from '../constants/actionTypes';
 import type { Action, ChannelsState } from '../constants/typeAliases';
 import ChannelType from '../dataTypes/channelType';
+import { createIsFetching, createError } from './common';
 import { stringOrEmpty } from '../utils/utils';
 
 function byId(state: { [string]: ChannelType } = {}, { type, payload }: Action): { [string]: ChannelType } {
@@ -36,36 +37,12 @@ function activeId(state: string = '', { type, payload }: Action): string {
   }
 }
 
-function isFetching(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_CHANNELS_REQUEST:
-      return true;
-    case actionTypes.FETCH_CHANNELS_SUCCESS:
-    case actionTypes.FETCH_CHANNELS_FAILURE:
-      return false;
-    default:
-      return state;
-  }
-}
-
-function error(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_CHANNELS_REQUEST:
-    case actionTypes.FETCH_CHANNELS_SUCCESS:
-      return false;
-    case actionTypes.FETCH_CHANNELS_FAILURE:
-      return true;
-    default:
-      return state;
-  }
-}
-
 const channels = combineReducers({
   byId,
   allIds,
   activeId,
-  isFetching,
-  error
+  isFetching: createIsFetching('CHANNELS'),
+  error: createError('CHANNELS')
 });
 
 export function getChannels(state: ChannelsState): ChannelType[] {

@@ -2,7 +2,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Home from '../components/Home';
 import * as accessTokenActions from '../actions/accessToken';
-import * as channelsActions from '../actions/channels';
 
 function mapStateToProps(state) {
   return {
@@ -12,13 +11,8 @@ function mapStateToProps(state) {
   };
 }
 
-const actions = {
-  ...accessTokenActions,
-  ...channelsActions
-};
-
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(accessTokenActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

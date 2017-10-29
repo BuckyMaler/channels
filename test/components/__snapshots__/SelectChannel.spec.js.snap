@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectChannel should render self 1`] = `
+<div
+  className="selectChannel"
+>
+  <div
+    className="prompt"
+  >
+    <p
+      className="message"
+    >
+      No Active Channel
+      <span>
+        Well don't just sit there...
+      </span>
+    </p>
+    <button
+      className="select"
+      onClick={[Function]}
+    >
+      Select a Channel
+    </button>
+  </div>
+</div>
+`;

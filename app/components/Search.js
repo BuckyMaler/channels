@@ -40,7 +40,7 @@ export default class Search extends Component {
     this.props.fetchSearch();
   }
 
-  handleSubmit(event: any): void {
+  handleSubmit(event: Event): void {
     event.preventDefault();
     this.props.fetchSearch();
   }
@@ -60,7 +60,7 @@ export default class Search extends Component {
       fetchSearch
     } = this.props;
     return (
-      <div className={styles.search}>
+      <form className={styles.search}>
         <SearchBar
           disabled={activeChannel === undefined}
           placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App For YouTube Channels.'}
@@ -77,7 +77,7 @@ export default class Search extends Component {
           fetchSearch={fetchSearch}
           searchResultsIsOpen={!!query}
         />
-      </div>
+      </form>
     );
   }
 }

@@ -18,7 +18,7 @@ const SearchBar = ({
   handleSubmit: () => void,
   handleReset: () => void
 }) => (
-  <form className={styles.searchBar} onSubmit={handleSubmit} onBlur={handleReset}>
+  <div className={styles.searchBar} onSubmit={handleSubmit} onBlur={handleReset}>
     {!disabled && <IconSearch className={styles.iconSearch} />}
     <input
       className={styles.searchInput}
@@ -32,7 +32,7 @@ const SearchBar = ({
         <IconCancel className={styles.iconCancel} />
       </button>
     }
-  </form>
+  </div>
 );
 
 export default SearchBar;

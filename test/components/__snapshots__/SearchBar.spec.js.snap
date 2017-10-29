@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SearchBar when disabled should render self 1`] = `
-<form
+<div
   className="searchBar"
   onBlur={[Function]}
   onSubmit={[Function]}
@@ -13,11 +13,11 @@ exports[`SearchBar when disabled should render self 1`] = `
     placeholder="The Mac App For YouTube Channels."
     value=""
   />
-</form>
+</div>
 `;
 
 exports[`SearchBar when enabled should render self with no value 1`] = `
-<form
+<div
   className="searchBar"
   onBlur={[Function]}
   onSubmit={[Function]}
@@ -32,11 +32,11 @@ exports[`SearchBar when enabled should render self with no value 1`] = `
     placeholder="Search DevTips"
     value=""
   />
-</form>
+</div>
 `;
 
 exports[`SearchBar when enabled should render self with value 1`] = `
-<form
+<div
   className="searchBar"
   onBlur={[Function]}
   onSubmit={[Function]}
@@ -60,5 +60,5 @@ exports[`SearchBar when enabled should render self with value 1`] = `
       className="iconCancel"
     />
   </button>
-</form>
+</div>
 `;

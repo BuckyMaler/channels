@@ -39,47 +39,44 @@ export function getAccessTokenUri(): string {
   return buildUriWithQueryParams(urls.AUTH_TOKEN, params);
 }
 
-export function getSubscriptionsUri(token: string): string {
+export function getSubscriptionsUri(): string {
   const params = {
     part: 'snippet',
     fields: 'items/snippet/resourceId/channelId',
     mine: true,
     maxResults: 50,
-    access_token: token
+    access_token: localStorage.getItem('accessToken')
   };
   return buildUriWithQueryParams(urls.SUBSCRIPTIONS, params);
 }
 
-export function getChannelsUri(token: string, subscriptions: string): string {
+export function getChannelsUri(subscriptions: string): string {
   const params = {
     id: subscriptions,
     part: 'snippet,statistics',
     fields: 'items(id,snippet(thumbnails,title),statistics(subscriberCount,videoCount))',
-    access_token: token
+    access_token: localStorage.getItem('accessToken')
   };
   return buildUriWithQueryParams(urls.CHANNELS, params);
 }
 
-export function getVideoIdsUri(token: string, channelId: string, pageToken: string, options?: {}): string {
-  const params = {
-    channelId,
+export function getVideoIdsUri(params: {}): string {
+  const defaultParams = {
     type: 'video',
     part: 'id',
     fields: 'items(id/videoId),nextPageToken,pageInfo,tokenPagination',
-    order: 'date',
     maxResults: 20,
-    pageToken,
-    access_token: token
+    access_token: localStorage.getItem('accessToken')
   };
-  return buildUriWithQueryParams(urls.VIDEO_IDS, { ...params, ...options });
+  return buildUriWithQueryParams(urls.VIDEO_IDS, { ...defaultParams, ...params });
 }
 
-export function getVideosUri(token: string, videoIds: string): string {
+export function getVideosUri(videoIds: string): string {
   const params = {
     id: videoIds,
     part: 'snippet,statistics',
     fields: 'items(id,snippet(publishedAt,thumbnails,title,description),statistics(viewCount))',
-    access_token: token
+    access_token: localStorage.getItem('accessToken')
   };
   return buildUriWithQueryParams(urls.VIDEOS, params);
 }

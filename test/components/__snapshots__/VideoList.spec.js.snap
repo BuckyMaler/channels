@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VideoList with active channel should render self with error message 1`] = `
+exports[`VideoList should render self with error message 1`] = `
 <div
   className="videoList"
 >
@@ -11,7 +11,7 @@ exports[`VideoList with active channel should render self with error message 1`]
 </div>
 `;
 
-exports[`VideoList with active channel should render self with loader 1`] = `
+exports[`VideoList should render self with loader 1`] = `
 <div
   className="videoList"
 >
@@ -19,7 +19,7 @@ exports[`VideoList with active channel should render self with loader 1`] = `
 </div>
 `;
 
-exports[`VideoList with active channel should render self with no videos 1`] = `
+exports[`VideoList should render self with no videos 1`] = `
 <div
   className="videoList"
 >
@@ -29,7 +29,7 @@ exports[`VideoList with active channel should render self with no videos 1`] = `
 </div>
 `;
 
-exports[`VideoList with active channel should render self with videos 1`] = `
+exports[`VideoList should render self with videos 1`] = `
 <div
   className="videoList"
 >
@@ -57,30 +57,5 @@ exports[`VideoList with active channel should render self with videos 1`] = `
       />
     </ul>
   </InfiniteScroll>
-</div>
-`;
-
-exports[`VideoList with no active channel should render self with notification 1`] = `
-<div
-  className="videoList"
->
-  <div
-    className="notification"
-  >
-    <p
-      className="message"
-    >
-      No Active Channel
-      <span>
-        Well don't just sit there...
-      </span>
-    </p>
-    <button
-      className="select"
-      onClick={[Function]}
-    >
-      Select a Channel
-    </button>
-  </div>
 </div>
 `;

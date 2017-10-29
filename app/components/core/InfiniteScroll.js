@@ -46,7 +46,11 @@ export default class InfiniteScroll extends Component {
       className
     } = this.props;
     return (
-      <div className={[styles.infiniteScroll, className].join(' ')} ref={node => (this.container = node)} onScroll={this.handleScroll}>
+      <div
+        className={[styles.infiniteScroll, className].join(' ')}
+        ref={node => (this.container = node)}
+        onScroll={this.handleScroll}
+      >
         {children}
       </div>
     );

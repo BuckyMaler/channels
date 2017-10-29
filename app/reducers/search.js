@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import actionTypes from '../constants/actionTypes';
 import type { Action } from '../constants/typeAliases';
 import VideoType from '../dataTypes/videoType';
+import { createIsFetching, createError } from './common';
 
 function query(state: string = '', { type, payload }: Action): string {
   switch (type) {
@@ -38,36 +39,12 @@ function pageToken(state: string = '', { type, payload }: Action): string {
   }
 }
 
-function isFetching(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_SEARCH_REQUEST:
-      return true;
-    case actionTypes.FETCH_SEARCH_SUCCESS:
-    case actionTypes.FETCH_SEARCH_FAILURE:
-      return false;
-    default:
-      return state;
-  }
-}
-
-function error(state: boolean = false, { type }: Action): boolean {
-  switch (type) {
-    case actionTypes.FETCH_SEARCH_REQUEST:
-    case actionTypes.FETCH_SEARCH_SUCCESS:
-      return false;
-    case actionTypes.FETCH_SEARCH_FAILURE:
-      return true;
-    default:
-      return state;
-  }
-}
-
 const search = combineReducers({
   query,
   results,
   pageToken,
-  isFetching,
-  error
+  isFetching: createIsFetching('SEARCH'),
+  error: createError('SEARCH')
 });
 
 export default search;
