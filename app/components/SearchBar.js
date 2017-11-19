@@ -8,17 +8,15 @@ const SearchBar = ({
   placeholder,
   value,
   handleChange,
-  handleSubmit,
   handleReset
 }: {
   disabled: boolean,
   placeholder: string,
   value: string,
   handleChange: () => void,
-  handleSubmit: () => void,
   handleReset: () => void
 }) => (
-  <div className={styles.searchBar} onSubmit={handleSubmit} onBlur={handleReset}>
+  <div className={styles.searchBar}>
     {!disabled && <IconSearch className={styles.iconSearch} />}
     <input
       className={styles.searchInput}

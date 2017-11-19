@@ -3,6 +3,7 @@
 exports[`Video with description should render self 1`] = `
 <li
   className="videoWithDescription"
+  onClick={[Function]}
 >
   <img
     alt="Professional Advice from Adobe MAX Conference"
@@ -40,6 +41,7 @@ exports[`Video with description should render self 1`] = `
 exports[`Video without description should render self 1`] = `
 <li
   className="video"
+  onClick={[Function]}
 >
   <img
     alt="Professional Advice from Adobe MAX Conference"

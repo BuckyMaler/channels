@@ -9,7 +9,6 @@ function setup() {
     placeholder: 'Search DevTips',
     value: '',
     handleChange: jest.fn(),
-    handleSubmit: jest.fn(),
     handleReset: jest.fn()
   };
 
@@ -63,29 +62,15 @@ describe('SearchBar', () => {
     expect(props.handleChange).toBeCalled();
   });
 
-  it('should call handleSubmit', () => {
-    const { props, enzymeWrapper } = setup();
-    const searchBar = enzymeWrapper.find('.searchBar');
-
-    searchBar.simulate('submit');
-
-    expect(props.handleSubmit).toBeCalled();
-  });
-
   it('should call handleReset', () => {
     const { props, enzymeWrapper } = setup();
     enzymeWrapper.setProps({
       value: 'Sass'
     });
-    const searchBar = enzymeWrapper.find('.searchBar');
     const resetBtn = enzymeWrapper.find('.resetBtn');
-
-    searchBar.simulate('blur');
-
-    expect(props.handleReset).toHaveBeenCalledTimes(1);
 
     resetBtn.simulate('click');
 
-    expect(props.handleReset).toHaveBeenCalledTimes(2);
+    expect(props.handleReset).toBeCalled();
   });
 });

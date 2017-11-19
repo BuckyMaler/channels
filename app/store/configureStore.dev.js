@@ -8,6 +8,8 @@ import * as accessTokenActions from '../actions/accessToken';
 import * as channelsActions from '../actions/channels';
 import * as videosActions from '../actions/videos';
 import * as searchActions from '../actions/search';
+import * as activeVideoActions from '../actions/activeVideo';
+import * as ratingsActions from '../actions/ratings';
 
 const history = createHashHistory();
 
@@ -36,7 +38,9 @@ const configureStore = () => {
     ...accessTokenActions,
     ...channelsActions,
     ...videosActions,
-    ...searchActions
+    ...searchActions,
+    ...activeVideoActions,
+    ...ratingsActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

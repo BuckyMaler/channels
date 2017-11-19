@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import VideoList from '../../app/components/VideoList';
 
@@ -10,7 +10,8 @@ function setup() {
     isFetching: false,
     error: false,
     pageToken: '',
-    fetchVideos: jest.fn()
+    fetchVideos: jest.fn(),
+    updateActiveVideo: jest.fn()
   };
 
   const enzymeWrapper = shallow(<VideoList {...props} />);

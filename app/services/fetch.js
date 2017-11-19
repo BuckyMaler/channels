@@ -33,3 +33,17 @@ export function getRequest(uri: string): Promise<any> {
       return res.json();
     });
 }
+
+export function postRequest(uri: string): Promise<any> {
+  const init = {
+    method: Methods.POST,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  };
+  return fetch(uri, init)
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject();
+      }
+      return res;
+    });
+}

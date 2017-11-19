@@ -10,7 +10,8 @@ function setup() {
     error: false,
     pageToken: '',
     fetchSearch: () => jest.fn(),
-    searchResultsIsOpen: false
+    searchResultsIsOpen: false,
+    handleSelect: () => jest.fn()
   };
 
   const enzymeWrapper = shallow(<SearchResults {...props} />);

@@ -17,3 +17,11 @@ export function getVideoIdsUri() {
 export function getVideosUri() {
   // noop
 }
+
+export function getRatingsUri() {
+  // noop
+}
+
+export function postRatingUri() {
+  // noop
+}

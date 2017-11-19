@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 import Home from '../../app/components/Home';
 
 jest.mock('../../app/containers/LeftColumn', () => 'LeftColumn');
+jest.mock('../../app/containers/RightColumn', () => 'RightColumn');
 
 function setup() {
   const props = {

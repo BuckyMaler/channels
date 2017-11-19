@@ -12,7 +12,8 @@ function setup() {
     pageToken: '',
     fetchSearch: jest.fn(),
     updateSearch: jest.fn(),
-    clearSearch: jest.fn()
+    clearSearch: jest.fn(),
+    updateActiveVideo: jest.fn()
   };
 
   const enzymeWrapper = shallow(<Search {...props} />);
@@ -56,7 +57,7 @@ describe('Search', () => {
 
     enzymeWrapper.instance().handleSubmit(mockEvent);
 
-    expect(props.fetchSearch).toBeCalled();
+    expect(props.fetchSearch).not.toBeCalled();
   });
 
   it('should handle reset', () => {
@@ -64,6 +65,15 @@ describe('Search', () => {
 
     enzymeWrapper.instance().handleReset();
 
+    expect(props.clearSearch).toBeCalled();
+  });
+
+  it('should handle select', () => {
+    const { props, enzymeWrapper } = setup();
+
+    enzymeWrapper.instance().handleSelect();
+
+    expect(props.updateActiveVideo).toBeCalled();
     expect(props.clearSearch).toBeCalled();
   });
 });

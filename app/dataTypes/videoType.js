@@ -9,6 +9,8 @@ export default class VideoType {
   description: string;
   publishedAt: string;
   viewCount: string;
+  likeCount: string;
+  dislikeCount: string;
 
   constructor(
     id: string,
@@ -17,6 +19,8 @@ export default class VideoType {
     description: string,
     publishedAt: string,
     viewCount: string,
+    likeCount: string,
+    dislikeCount: string
   ) {
     this.id = id;
     this.title = title;
@@ -24,6 +28,8 @@ export default class VideoType {
     this.description = description;
     this.publishedAt = publishedAt;
     this.viewCount = viewCount;
+    this.likeCount = likeCount;
+    this.dislikeCount = dislikeCount;
   }
 
   static from(json: any): VideoType {
@@ -34,6 +40,8 @@ export default class VideoType {
     const description = stringOrEmpty(snippet.description);
     const publishedAt = fromNow(stringOrEmpty(snippet.publishedAt), 'YYYYMMDD');
     const viewCount = commaSeparateNumber(stringOrEmpty(statistics.viewCount));
-    return new VideoType(id, title, thumbnail, description, publishedAt, viewCount);
+    const likeCount = stringOrEmpty(statistics.likeCount);
+    const dislikeCount = stringOrEmpty(statistics.dislikeCount);
+    return new VideoType(id, title, thumbnail, description, publishedAt, viewCount, likeCount, dislikeCount);
   }
 }

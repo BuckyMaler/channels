@@ -8,7 +8,8 @@ function setup() {
     title: 'Professional Advice from Adobe MAX Conference',
     thumbnail: 'https://i.ytimg.com/hqdefault.jpg',
     publishedAt: 'a year ago',
-    viewCount: '5,463'
+    viewCount: '5,463',
+    handleClick: jest.fn()
   };
 
   const enzymeWrapper = shallow(<Video {...props} />);
@@ -39,5 +40,13 @@ describe('Video', () => {
 
       expect(tree).toMatchSnapshot();
     });
+  });
+
+  it('should handle click', () => {
+    const { props, enzymeWrapper } = setup();
+
+    enzymeWrapper.simulate('click');
+
+    expect(props.handleClick).toBeCalled();
   });
 });

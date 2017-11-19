@@ -1,6 +1,7 @@
 // @flow
 import ChannelType from '../dataTypes/channelType';
 import VideoType from '../dataTypes/videoType';
+import RatingType from '../dataTypes/ratingType';
 
 export type Action = ActionWithPayload | ActionWithoutPayload;
 
@@ -29,7 +30,9 @@ export type State = {
   accessToken: AccessTokenState,
   channels: ChannelsState,
   videos: VideosState,
-  search: SearchState
+  search: SearchState,
+  activeVideo: any,
+  ratings: RatingsState
 };
 
 export type AccessTokenState = {
@@ -58,6 +61,13 @@ export type SearchState = {
   query: string,
   results: VideoType[],
   pageToken: string,
+  isFetching: boolean,
+  error: boolean
+};
+
+export type RatingsState = {
+  byId: { [string]: RatingType },
+  allIds: string[],
   isFetching: boolean,
   error: boolean
 };
