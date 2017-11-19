@@ -75,8 +75,23 @@ export function getVideosUri(videoIds: string): string {
   const params = {
     id: videoIds,
     part: 'snippet,statistics',
-    fields: 'items(id,snippet(publishedAt,thumbnails,title,description),statistics(viewCount))',
+    fields: 'items(id,snippet(publishedAt,thumbnails,title,description),statistics(viewCount,likeCount,dislikeCount))',
     access_token: localStorage.getItem('accessToken')
   };
   return buildUriWithQueryParams(urls.VIDEOS, params);
+}
+
+export function getRatingsUri(videoIds: string): string {
+  const params = {
+    id: videoIds,
+    access_token: localStorage.getItem('accessToken')
+  };
+  return buildUriWithQueryParams(urls.GET_RATINGS, params);
+}
+
+export function postRatingUri(params: {}): string {
+  const defaultParams = {
+    access_token: localStorage.getItem('accessToken')
+  };
+  return buildUriWithQueryParams(urls.POST_RATING, { ...defaultParams, ...params });
 }

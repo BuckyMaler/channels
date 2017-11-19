@@ -15,7 +15,8 @@ export default class VideoList extends Component {
     isFetching: boolean,
     error: boolean,
     pageToken: string,
-    fetchVideos: () => Promise<any>
+    fetchVideos: () => Promise<any>,
+    updateActiveVideo: (video: VideoType) => void
   };
 
   componentDidMount() {
@@ -36,7 +37,8 @@ export default class VideoList extends Component {
       isFetching,
       error,
       pageToken,
-      fetchVideos
+      fetchVideos,
+      updateActiveVideo
     } = this.props;
     if ((isFetching && !pageToken) || error) {
       return (
@@ -70,6 +72,7 @@ export default class VideoList extends Component {
                   description={video.description}
                   publishedAt={video.publishedAt}
                   viewCount={video.viewCount}
+                  handleClick={() => updateActiveVideo(video)}
                 />
               ))}
             </ul>

@@ -226,6 +226,7 @@ $white: #fff;
 $black: #2e2e2e;
 $gray: #a8a2a0;
 $red: #e53a40;
+$dark-black: darken($black, 10%);
 $light-gray: lighten($gray, 10%);
 $dark-gray: darken($gray, 10%);
 

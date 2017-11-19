@@ -16,18 +16,21 @@ export default class Search extends Component {
     pageToken: string,
     fetchSearch: () => Promise<any>,
     updateSearch: (query: string) => void,
-    clearSearch: () => void
+    clearSearch: () => void,
+    updateActiveVideo: (video: VideoType) => void
   };
 
   handleChange: () => void
   handleSubmit: () => void
   handleReset: () => void
+  handleSelect: (result: VideoType) => void
 
   constructor(props: any) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleChange(event: any): void {
@@ -42,11 +45,15 @@ export default class Search extends Component {
 
   handleSubmit(event: Event): void {
     event.preventDefault();
-    this.props.fetchSearch();
   }
 
   handleReset(): void {
     this.props.clearSearch();
+  }
+
+  handleSelect(video: VideoType): void {
+    this.props.updateActiveVideo(video);
+    this.handleReset();
   }
 
   render() {
@@ -60,13 +67,13 @@ export default class Search extends Component {
       fetchSearch
     } = this.props;
     return (
-      <form className={styles.search}>
+      <form className={query ? styles.searchIsActive : styles.search} onSubmit={this.handleSubmit}>
+        <div className={styles.closeTarget} onClick={this.handleReset} />
         <SearchBar
           disabled={activeChannel === undefined}
           placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App For YouTube Channels.'}
           value={query}
           handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
           handleReset={this.handleReset}
         />
         <SearchResults
@@ -76,6 +83,7 @@ export default class Search extends Component {
           pageToken={pageToken}
           fetchSearch={fetchSearch}
           searchResultsIsOpen={!!query}
+          handleSelect={this.handleSelect}
         />
       </form>
     );

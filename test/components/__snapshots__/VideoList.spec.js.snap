@@ -43,6 +43,7 @@ exports[`VideoList should render self with videos 1`] = `
     >
       <Video
         description="I visited Adobe Max and asked all my design heroes for advice."
+        handleClick={[Function]}
         publishedAt="a year ago"
         thumbnail="https://i.ytimg.com/hqdefault.jpg"
         title="Professional Advice from Adobe MAX Conference"
@@ -50,6 +51,7 @@ exports[`VideoList should render self with videos 1`] = `
       />
       <Video
         description="Wired Article"
+        handleClick={[Function]}
         publishedAt="7 months ago"
         thumbnail="https://i.ytimg.com/vi/Flze-rwT7lM/hqdefault.jpg"
         title="If You Want to Survive in Design, You Better Learn to Code"

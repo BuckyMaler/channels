@@ -14,14 +14,16 @@ const SearchResults = ({
   error,
   pageToken,
   fetchSearch,
-  searchResultsIsOpen
+  searchResultsIsOpen,
+  handleSelect
 }: {
   results: VideoType[],
   isFetching: boolean,
   error: boolean,
   pageToken: string,
   fetchSearch: () => Promise<any>,
-  searchResultsIsOpen: boolean
+  searchResultsIsOpen: boolean,
+  handleSelect: (video: VideoType) => void
 }) => {
   if ((isFetching && !pageToken) || error) {
     return (
@@ -55,6 +57,7 @@ const SearchResults = ({
                 thumbnail={result.thumbnail}
                 publishedAt={result.publishedAt}
                 viewCount={result.viewCount}
+                handleClick={() => handleSelect(result)}
               />
             ))}
           </ul>

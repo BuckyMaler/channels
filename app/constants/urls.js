@@ -5,7 +5,9 @@ const urls = {
   CHANNELS: 'https://www.googleapis.com/youtube/v3/channels?',
   SUBSCRIPTIONS: 'https://www.googleapis.com/youtube/v3/subscriptions?',
   VIDEOS: 'https://www.googleapis.com/youtube/v3/videos?',
-  VIDEO_IDS: 'https://www.googleapis.com/youtube/v3/search?'
+  VIDEO_IDS: 'https://www.googleapis.com/youtube/v3/search?',
+  GET_RATINGS: 'https://www.googleapis.com/youtube/v3/videos/getRating?',
+  POST_RATING: 'https://www.googleapis.com/youtube/v3/videos/rate?'
 };
 
 export default urls;

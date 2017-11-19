@@ -3,8 +3,6 @@
 exports[`SearchBar when disabled should render self 1`] = `
 <div
   className="searchBar"
-  onBlur={[Function]}
-  onSubmit={[Function]}
 >
   <input
     className="searchInput"
@@ -19,8 +17,6 @@ exports[`SearchBar when disabled should render self 1`] = `
 exports[`SearchBar when enabled should render self with no value 1`] = `
 <div
   className="searchBar"
-  onBlur={[Function]}
-  onSubmit={[Function]}
 >
   <Component
     className="iconSearch"
@@ -38,8 +34,6 @@ exports[`SearchBar when enabled should render self with no value 1`] = `
 exports[`SearchBar when enabled should render self with value 1`] = `
 <div
   className="searchBar"
-  onBlur={[Function]}
-  onSubmit={[Function]}
 >
   <Component
     className="iconSearch"

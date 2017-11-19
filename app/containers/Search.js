@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Search from '../components/Search';
 import * as searchActions from '../actions/search';
+import * as activeVideoActions from '../actions/activeVideo';
 import { getActiveChannel } from '../reducers/index';
 
 function mapStateToProps(state) {
@@ -15,8 +16,13 @@ function mapStateToProps(state) {
   };
 }
 
+const actions = {
+  ...searchActions,
+  ...activeVideoActions
+};
+
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(searchActions, dispatch);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

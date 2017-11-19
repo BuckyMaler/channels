@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import LeftColumn from '../containers/LeftColumn';
+import RightColumn from '../containers/RightColumn';
 import Loader from './core/Loader';
 import ErrorState from './core/ErrorState';
 import styles from './Home.scss';
@@ -55,8 +56,9 @@ export default class Home extends Component {
     }
 
     return (
-      <div>
+      <div className={styles.home}>
         <LeftColumn />
+        <RightColumn />
       </div>
     );
   }

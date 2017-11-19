@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home should render self with content 1`] = `
-<div>
+<div
+  className="home"
+>
   <LeftColumn />
+  <RightColumn />
 </div>
 `;
 

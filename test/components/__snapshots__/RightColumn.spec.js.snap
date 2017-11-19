@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RightColumn when active video should render self 1`] = `
+<div
+  className="rightColumn"
+>
+  <TitleBar
+    title="Unit testing in JavaScript Part 2 - Your first tests"
+  />
+  <Player
+    id="XsFQEUP1MxI"
+  />
+  <RatingBar
+    dislikeCount="3"
+    likeCount="624"
+    postDislike={[Function]}
+    postLike={[Function]}
+  />
+</div>
+`;
+
+exports[`RightColumn when no active video should render self 1`] = `
+<div
+  className="rightColumn"
+>
+  <Component
+    styles={Object {}}
+  />
+</div>
+`;

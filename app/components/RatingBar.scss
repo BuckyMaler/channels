@@ -1,0 +1,48 @@
+@import '../app.global.scss';
+
+.ratingBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 11px;
+  background-color: $dark-black;
+}
+
+.statistics {
+  margin: 0;
+  color: $white;
+
+  @include font-size(16);
+
+  span {
+    color: $gray;
+  }
+}
+
+.rating {
+  height: 21px;
+
+  label:first-child {
+    margin-right: 1rem;
+  }
+
+  > label {
+    display: inline-block;
+    height: 100%;
+
+    input {
+      display: none;
+    }
+  }
+}
+
+.active {
+  height: 100%;
+  fill: $white;
+}
+
+.inactive {
+  height: 100%;
+  fill: $gray;
+}

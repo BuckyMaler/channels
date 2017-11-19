@@ -57,12 +57,14 @@ exports[`SearchResults when opened should render self with results 1`] = `
       className="results"
     >
       <Video
+        handleClick={[Function]}
         publishedAt="a year ago"
         thumbnail="https://i.ytimg.com/hqdefault.jpg"
         title="Professional Advice from Adobe MAX Conference"
         viewCount="5,463"
       />
       <Video
+        handleClick={[Function]}
         publishedAt="7 months ago"
         thumbnail="https://i.ytimg.com/vi/Flze-rwT7lM/hqdefault.jpg"
         title="If You Want to Survive in Design, You Better Learn to Code"

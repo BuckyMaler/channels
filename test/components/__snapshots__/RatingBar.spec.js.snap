@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingBar should render self 1`] = `
+<div
+  className="ratingBar"
+>
+  <p
+    className="statistics"
+  >
+    0
+     
+    <span>
+      likes &
+    </span>
+     
+    0
+     
+    <span>
+      dislikes
+    </span>
+  </p>
+  <div
+    className="rating"
+  >
+    <label>
+      <Component
+        className="inactive"
+      />
+      <input
+        checked={false}
+        name="like"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <label>
+      <Component
+        className="inactive"
+      />
+      <input
+        checked={false}
+        name="dislike"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+  </div>
+</div>
+`;
