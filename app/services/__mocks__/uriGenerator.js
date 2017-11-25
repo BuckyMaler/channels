@@ -25,3 +25,11 @@ export function getRatingsUri() {
 export function postRatingUri() {
   // noop
 }
+
+export function getTopLevelCommentsUri() {
+  // noop
+}
+
+export function postTopLevelCommentUri() {
+  // noop
+}

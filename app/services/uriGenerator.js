@@ -95,3 +95,23 @@ export function postRatingUri(params: {}): string {
   };
   return buildUriWithQueryParams(urls.POST_RATING, { ...defaultParams, ...params });
 }
+
+export function getTopLevelCommentsUri(params: {}): string {
+  const defaultParams = {
+    part: 'id,snippet',
+    fields: 'items(id,snippet(topLevelComment(snippet(authorDisplayName,authorProfileImageUrl,textDisplay,publishedAt)))),nextPageToken,pageInfo,tokenPagination',
+    maxResults: 20,
+    textFormat: 'plainText',
+    access_token: localStorage.getItem('accessToken')
+  };
+  return buildUriWithQueryParams(urls.COMMENT_THREADS, { ...defaultParams, ...params });
+}
+
+export function postTopLevelCommentUri(): string {
+  const params = {
+    part: 'id,snippet',
+    fields: 'id,snippet(topLevelComment(snippet(authorDisplayName,authorProfileImageUrl,textDisplay,publishedAt)))',
+    access_token: localStorage.getItem('accessToken')
+  };
+  return buildUriWithQueryParams(urls.COMMENT_THREADS, params);
+}

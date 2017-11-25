@@ -16,6 +16,7 @@ exports[`RightColumn when active video should render self 1`] = `
     postDislike={[Function]}
     postLike={[Function]}
   />
+  <Comments />
 </div>
 `;
 

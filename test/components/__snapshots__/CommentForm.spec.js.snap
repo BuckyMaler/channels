@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentForm should render self with no value 1`] = `
+<form
+  className="commentForm"
+  onSubmit={[Function]}
+>
+  <textarea
+    className="textarea"
+    onChange={[Function]}
+    placeholder="Add a public comment..."
+    value=""
+  />
+  <div
+    className="btns"
+  >
+    <button
+      className="cancelBtn"
+      onClick={[Function]}
+      type="reset"
+      value="Cancel"
+    >
+      Cancel
+    </button>
+    <button
+      className="submitBtn"
+      type="submit"
+      value="Comment"
+    >
+      Comment
+    </button>
+  </div>
+</form>
+`;
+
+exports[`CommentForm should render self with value 1`] = `
+<form
+  className="commentForm"
+  onSubmit={[Function]}
+>
+  <textarea
+    className="textarea"
+    onChange={[Function]}
+    placeholder="Add a public comment..."
+    value="Great video!"
+  />
+  <div
+    className="btns"
+  >
+    <button
+      className="cancelBtn"
+      onClick={[Function]}
+      type="reset"
+      value="Cancel"
+    >
+      Cancel
+    </button>
+    <button
+      className="submitBtn"
+      type="submit"
+      value="Comment"
+    >
+      Comment
+    </button>
+  </div>
+</form>
+`;

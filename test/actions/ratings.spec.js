@@ -63,14 +63,14 @@ describe('ratings actions', () => {
   it('creates FETCH_RATINGS_SUCCESS when fetching ratings has been resolved', () => {
     fetch.getRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
-        items: [{ videoId: 'XsFQEUP1MxI' }]
+        items: ['XsFQEUP1MxI']
       }));
 
     const expectedActions = [
       { type: actionTypes.FETCH_RATINGS_REQUEST },
       {
         type: actionTypes.FETCH_RATINGS_SUCCESS,
-        payload: [{ videoId: 'XsFQEUP1MxI' }]
+        payload: ['XsFQEUP1MxI']
       }
     ];
 

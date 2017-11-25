@@ -2,6 +2,7 @@
 import ChannelType from '../dataTypes/channelType';
 import VideoType from '../dataTypes/videoType';
 import RatingType from '../dataTypes/ratingType';
+import CommentType from '../dataTypes/commentType';
 
 export type Action = ActionWithPayload | ActionWithoutPayload;
 
@@ -32,7 +33,8 @@ export type State = {
   videos: VideosState,
   search: SearchState,
   activeVideo: any,
-  ratings: RatingsState
+  ratings: RatingsState,
+  comments: CommentsState
 };
 
 export type AccessTokenState = {
@@ -68,6 +70,14 @@ export type SearchState = {
 export type RatingsState = {
   byId: { [string]: RatingType },
   allIds: string[],
+  isFetching: boolean,
+  error: boolean
+};
+
+export type CommentsState = {
+  byId: { [string]: CommentType },
+  allIds: string[],
+  pageToken: string,
   isFetching: boolean,
   error: boolean
 };

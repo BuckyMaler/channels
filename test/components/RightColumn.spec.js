@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import RightColumn from '../../app/components/RightColumn';
 
+jest.mock('../../app/containers/Comments', () => 'Comments');
+
 function setup() {
   const props = {
     activeVideo: {},

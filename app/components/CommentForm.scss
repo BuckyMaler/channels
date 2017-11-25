@@ -1,0 +1,53 @@
+@import '../app.global.scss';
+
+.commentForm {
+  width: 100%;
+  padding: 11px 0;
+}
+
+.textarea {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  color: $white;
+  border-color: $gray;
+  background-color: transparent;
+  resize: none;
+
+  &:focus {
+    outline: 0;
+    border-color: $white;
+  }
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancelBtn,
+.submitBtn {
+  width: 98px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  color: $white;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: center;
+  background-color: $gray;
+  cursor: default;
+
+  @include font-size(12);
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.cancelBtn {
+  margin-right: 1rem;
+}

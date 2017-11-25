@@ -4,6 +4,7 @@ import { IconChannels } from './core/Icons';
 import TitleBar from './TitleBar';
 import Player from './Player';
 import RatingBar from './RatingBar';
+import Comments from '../containers/Comments';
 import RatingType from '../dataTypes/ratingType';
 import styles from './RightColumn.scss';
 
@@ -66,6 +67,7 @@ export default class RightColumn extends Component {
             () => this.postRating('none') :
             () => this.postRating('dislike')}
         />}
+        <Comments />
       </div>
     );
   }

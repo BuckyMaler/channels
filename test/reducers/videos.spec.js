@@ -2,7 +2,7 @@ import videos from '../../app/reducers/videos';
 import actionTypes from '../../app/constants/actionTypes';
 import VideoType from '../../app/dataTypes/videoType';
 
-describe('video reducer', () => {
+describe('videos reducer', () => {
   it('should return initial state', () => {
     expect(videos(undefined, {})).toEqual({
       byId: {},

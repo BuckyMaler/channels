@@ -33,7 +33,7 @@ export function updateActiveVideoCounts(prevState: RatingType, rating: string): 
         dislikeCount = prevState.dislike ? dislikeCount - 1 : dislikeCount;
     }
     dispatch({
-      type: actionTypes.UPDATE_ACTIVE_VIDEO,
+      type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
       payload: {
         likeCount: String(likeCount),
         dislikeCount: String(dislikeCount)
