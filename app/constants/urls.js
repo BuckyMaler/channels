@@ -7,7 +7,8 @@ const urls = {
   VIDEOS: 'https://www.googleapis.com/youtube/v3/videos?',
   VIDEO_IDS: 'https://www.googleapis.com/youtube/v3/search?',
   GET_RATINGS: 'https://www.googleapis.com/youtube/v3/videos/getRating?',
-  POST_RATING: 'https://www.googleapis.com/youtube/v3/videos/rate?'
+  POST_RATING: 'https://www.googleapis.com/youtube/v3/videos/rate?',
+  COMMENT_THREADS: 'https://www.googleapis.com/youtube/v3/commentThreads?'
 };
 
 export default urls;

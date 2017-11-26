@@ -34,8 +34,14 @@ export function getRequest(uri: string): Promise<any> {
     });
 }
 
-export function postRequest(uri: string): Promise<any> {
-  const init = {
+export function postRequest(uri: string, body?: {}): Promise<any> {
+  const init = body ?
+  {
+    method: Methods.POST,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  } :
+  {
     method: Methods.POST,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   };

@@ -6,7 +6,7 @@ describe('activeVideo reducer', () => {
     expect(activeVideo(undefined, {})).toEqual({});
   });
 
-  it('should handle UPDATE_ACTIVE_VIDEO', () => {
+  it('should handle UPDATE_ACTIVE_VIDEO_COUNTS', () => {
     const state = {
       id: 'XsFQEUP1MxI',
       title: 'Unit testing in JavaScript Part 2 - Your first tests',
@@ -18,7 +18,7 @@ describe('activeVideo reducer', () => {
       dislikeCount: '3'
     };
     const action = {
-      type: actionTypes.UPDATE_ACTIVE_VIDEO,
+      type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
       payload: {
         likeCount: '625',
         dislikeCount: '2'

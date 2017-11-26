@@ -35,7 +35,7 @@ describe('activeVideo actions', () => {
       dislikeCount: '0'
     };
     const expectedAction = [{
-      type: actionTypes.UPDATE_ACTIVE_VIDEO,
+      type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
       payload: counts
     }];
     const store = mockStore({
@@ -61,7 +61,7 @@ describe('activeVideo actions', () => {
       dislikeCount: '0'
     };
     const expectedAction = [{
-      type: actionTypes.UPDATE_ACTIVE_VIDEO,
+      type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
       payload: counts
     }];
     const store = mockStore({
@@ -87,7 +87,7 @@ describe('activeVideo actions', () => {
       dislikeCount: '0'
     };
     const expectedAction = [{
-      type: actionTypes.UPDATE_ACTIVE_VIDEO,
+      type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
       payload: counts
     }];
     const store = mockStore({
