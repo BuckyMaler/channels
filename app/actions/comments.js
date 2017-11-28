@@ -39,7 +39,6 @@ export function postComment(description: string): ThunkAction {
     };
     const uri = postTopLevelCommentUri();
     return postRequest(uri, body)
-      .then(res => res.json())
       .then(json => dispatch(postCommentSuccess(json)))
       .catch(() => dispatch(postCommentFailure()));
   };
