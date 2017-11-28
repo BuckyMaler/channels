@@ -4,6 +4,10 @@ export const Methods = {
   POST: 'POST'
 };
 
+export const Status = {
+  NO_CONTENT: 204
+};
+
 export function authRequest(uri: string): Promise<any> {
   const [url, body] = uri.split('?');
   const init = {
@@ -35,21 +39,16 @@ export function getRequest(uri: string): Promise<any> {
 }
 
 export function postRequest(uri: string, body?: {}): Promise<any> {
-  const init = body ?
-  {
+  const init = {
     method: Methods.POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
-  } :
-  {
-    method: Methods.POST,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   };
   return fetch(uri, init)
     .then(res => {
       if (!res.ok) {
         return Promise.reject();
       }
-      return res;
+      return res.status === Status.NO_CONTENT ? res : res.json();
     });
 }

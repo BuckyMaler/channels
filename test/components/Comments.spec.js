@@ -53,7 +53,7 @@ describe('Comments', () => {
   });
 
   it('should handle change', () => {
-    const { props, enzymeWrapper } = setup();
+    const { enzymeWrapper } = setup();
     const mockEvent = {
       target: {
         value: 'Great video!'
@@ -68,7 +68,7 @@ describe('Comments', () => {
   });
 
   it('should handle reset', () => {
-    const { props, enzymeWrapper } = setup();
+    const { enzymeWrapper } = setup();
 
     enzymeWrapper.setState({ description: 'Great video!' });
 
