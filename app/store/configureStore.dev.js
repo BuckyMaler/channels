@@ -10,6 +10,7 @@ import * as videosActions from '../actions/videos';
 import * as searchActions from '../actions/search';
 import * as activeVideoActions from '../actions/activeVideo';
 import * as ratingsActions from '../actions/ratings';
+import * as commentsActions from '../actions/comments';
 
 const history = createHashHistory();
 
@@ -40,7 +41,8 @@ const configureStore = () => {
     ...videosActions,
     ...searchActions,
     ...activeVideoActions,
-    ...ratingsActions
+    ...ratingsActions,
+    ...commentsActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

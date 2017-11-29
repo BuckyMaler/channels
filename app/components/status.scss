@@ -4,13 +4,13 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 11px;
+  padding: 0 1rem;
   background-color: $red;
 }
 
 .thumbnail {
   width: 45px;
-  margin-right: 11px;
+  margin-right: 1rem;
   border: 2px solid $white;
   border-radius: 50%;
   box-shadow: 0 1px 3px 1px rgba(46, 46, 46, 0.3);
