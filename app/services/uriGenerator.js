@@ -15,7 +15,7 @@ export function getAuthRequestUri(): string {
     scope: authParams.SCOPE,
     response_type: authParams.RESPONSE_TYPE
   };
-  return buildUriWithQueryParams(urls.AUTH_REQUEST, params);
+  return buildUriWithQueryParams(urls.AUTH, params);
 }
 
 export function getRefreshTokenUri(code: string): string {
@@ -26,7 +26,7 @@ export function getRefreshTokenUri(code: string): string {
     redirect_uri: authParams.REDIRECT_URI,
     grant_type: authParams.GRANT_TYPE[0]
   };
-  return buildUriWithQueryParams(urls.AUTH_TOKEN, params);
+  return buildUriWithQueryParams(urls.TOKEN, params);
 }
 
 export function getAccessTokenUri(): string {
@@ -36,7 +36,7 @@ export function getAccessTokenUri(): string {
     grant_type: authParams.GRANT_TYPE[1],
     refresh_token: localStorage.getItem('refreshToken')
   };
-  return buildUriWithQueryParams(urls.AUTH_TOKEN, params);
+  return buildUriWithQueryParams(urls.TOKEN, params);
 }
 
 export function getSubscriptionsUri(): string {
@@ -68,7 +68,7 @@ export function getVideoIdsUri(params: {}): string {
     maxResults: 20,
     access_token: localStorage.getItem('accessToken')
   };
-  return buildUriWithQueryParams(urls.VIDEO_IDS, { ...defaultParams, ...params });
+  return buildUriWithQueryParams(urls.SEARCH, { ...defaultParams, ...params });
 }
 
 export function getVideosUri(videoIds: string): string {
@@ -86,14 +86,14 @@ export function getRatingsUri(videoIds: string): string {
     id: videoIds,
     access_token: localStorage.getItem('accessToken')
   };
-  return buildUriWithQueryParams(urls.GET_RATINGS, params);
+  return buildUriWithQueryParams(urls.GET_RATING, params);
 }
 
 export function postRatingUri(params: {}): string {
   const defaultParams = {
     access_token: localStorage.getItem('accessToken')
   };
-  return buildUriWithQueryParams(urls.POST_RATING, { ...defaultParams, ...params });
+  return buildUriWithQueryParams(urls.RATE, { ...defaultParams, ...params });
 }
 
 export function getTopLevelCommentsUri(params: {}): string {
