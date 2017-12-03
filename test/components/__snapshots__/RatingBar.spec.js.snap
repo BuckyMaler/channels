@@ -27,7 +27,7 @@ exports[`RatingBar should render self 1`] = `
         className="inactive"
       />
       <input
-        checked={false}
+        disabled={false}
         name="like"
         onChange={[Function]}
         type="checkbox"
@@ -38,7 +38,7 @@ exports[`RatingBar should render self 1`] = `
         className="inactive"
       />
       <input
-        checked={false}
+        disabled={false}
         name="dislike"
         onChange={[Function]}
         type="checkbox"

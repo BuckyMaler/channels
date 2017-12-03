@@ -20,7 +20,8 @@ export default class Comments extends Component {
   };
 
   state: {
-    description: string
+    description: string,
+    isPosting: boolean
   };
 
   handleChange: (event: any) => void;
@@ -29,7 +30,10 @@ export default class Comments extends Component {
 
   constructor(props: any) {
     super(props);
-    this.state = { description: '' };
+    this.state = {
+      description: '',
+      isPosting: false
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -54,9 +58,13 @@ export default class Comments extends Component {
 
   handleSubmit(event: any) {
     event.preventDefault();
-    this.props.postComment(this.state.description).then(() => {
-      this.handleReset();
-    });
+    this.setState({ isPosting: true });
+    this.props.postComment(this.state.description)
+      .then(
+        () => this.handleReset(),
+        () => undefined
+      )
+      .then(() => this.setState({ isPosting: false }));
   }
 
   handleReset() {
@@ -72,7 +80,8 @@ export default class Comments extends Component {
       fetchComments
     } = this.props;
     const {
-      description
+      description,
+      isPosting
     } = this.state;
     if ((isFetching && !pageToken) || error) {
       return (
@@ -98,6 +107,7 @@ export default class Comments extends Component {
         >
           <CommentForm
             description={description}
+            isPosting={isPosting}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleReset={this.handleReset}

@@ -24,44 +24,6 @@ describe('videos actions', () => {
     });
   });
 
-  it('creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with undefined', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({}));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_VIDEOS_REQUEST },
-      {
-        type: actionTypes.FETCH_VIDEOS_SUCCESS,
-        payload: {
-          items: [],
-          nextPageToken: ''
-        }
-      }
-    ];
-
-    return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  it('creates FETCH_VIDEOS_SUCCESS when fetching video ids has resolved with null', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({ items: null }));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_VIDEOS_REQUEST },
-      {
-        type: actionTypes.FETCH_VIDEOS_SUCCESS,
-        payload: {
-          items: [],
-          nextPageToken: ''
-        }
-      }
-    ];
-
-    return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_VIDEOS_FAILURE when fetching video ids has been rejected', () => {
     fetch.getRequest = jest.fn(() => Promise.reject());
 
@@ -144,7 +106,7 @@ describe('videos actions', () => {
       type: actionTypes.FETCH_VIDEOS_REQUEST
     };
 
-    expect(videosActions.requestVideos()).toEqual(expectedAction);
+    expect(videosActions.fetchVideosRequest()).toEqual(expectedAction);
   });
 
   it('should create an action to receive videos', () => {
@@ -158,7 +120,7 @@ describe('videos actions', () => {
       }
     };
 
-    expect(videosActions.receiveVideos(items, nextPageToken)).toEqual(expectedAction);
+    expect(videosActions.fetchVideosSuccess(items, nextPageToken)).toEqual(expectedAction);
   });
 
   it('should create an action to handle an error', () => {
@@ -166,6 +128,6 @@ describe('videos actions', () => {
       type: actionTypes.FETCH_VIDEOS_FAILURE
     };
 
-    expect(videosActions.videosError()).toEqual(expectedAction);
+    expect(videosActions.fetchVideosFailure()).toEqual(expectedAction);
   });
 });

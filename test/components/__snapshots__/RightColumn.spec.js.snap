@@ -12,9 +12,10 @@ exports[`RightColumn when active video should render self 1`] = `
   />
   <RatingBar
     dislikeCount="3"
+    isPosting={false}
     likeCount="624"
-    postDislike={[Function]}
-    postLike={[Function]}
+    postRating={[Function]}
+    rating={Object {}}
   />
   <Comments />
 </div>

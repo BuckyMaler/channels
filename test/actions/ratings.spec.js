@@ -21,32 +21,6 @@ describe('ratings actions', () => {
     });
   });
 
-  it('creates FETCH_RATINGS_SUCCESS when fetching ratings has resolved with undefined', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({}));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_RATINGS_REQUEST },
-      { type: actionTypes.FETCH_RATINGS_SUCCESS, payload: [] }
-    ];
-
-    return store.dispatch(ratingsActions.fetchRatings()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  it('creates FETCH_RATINGS_SUCCESS when fetching ratings has resolved with null', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({ items: null }));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_RATINGS_REQUEST },
-      { type: actionTypes.FETCH_RATINGS_SUCCESS, payload: [] }
-    ];
-
-    return store.dispatch(ratingsActions.fetchRatings()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_RATINGS_FAILURE when fetching ratings has been rejected', () => {
     fetch.getRequest = jest.fn(() => Promise.reject());
 
@@ -84,7 +58,7 @@ describe('ratings actions', () => {
       type: actionTypes.FETCH_RATINGS_REQUEST
     };
 
-    expect(ratingsActions.requestRatings()).toEqual(expectedAction);
+    expect(ratingsActions.fetchRatingsRequest()).toEqual(expectedAction);
   });
 
   it('should create an action to receive ratings', () => {
@@ -94,7 +68,7 @@ describe('ratings actions', () => {
       payload: items
     };
 
-    expect(ratingsActions.receiveRatings(items)).toEqual(expectedAction);
+    expect(ratingsActions.fetchRatingsSuccess(items)).toEqual(expectedAction);
   });
 
   it('should create an action to handle an error', () => {
@@ -102,6 +76,6 @@ describe('ratings actions', () => {
       type: actionTypes.FETCH_RATINGS_FAILURE
     };
 
-    expect(ratingsActions.ratingsError()).toEqual(expectedAction);
+    expect(ratingsActions.fetchRatingsFailure()).toEqual(expectedAction);
   });
 });

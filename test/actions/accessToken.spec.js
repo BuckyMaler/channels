@@ -47,7 +47,7 @@ describe('accessToken actions', () => {
       type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST
     };
 
-    expect(accessTokenActions.requestAccessToken()).toEqual(expectedAction);
+    expect(accessTokenActions.fetchAccessTokenRequest()).toEqual(expectedAction);
   });
 
   it('should create an action to receive an access token', () => {
@@ -56,7 +56,7 @@ describe('accessToken actions', () => {
       payload: token
     };
 
-    expect(accessTokenActions.receiveAccessToken(token)).toEqual(expectedAction);
+    expect(accessTokenActions.fetchAccessTokenSuccess(token)).toEqual(expectedAction);
   });
 
   it('should create an action to handle an error', () => {
@@ -64,6 +64,6 @@ describe('accessToken actions', () => {
       type: actionTypes.FETCH_ACCESS_TOKEN_FAILURE
     };
 
-    expect(accessTokenActions.accessTokenError()).toEqual(expectedAction);
+    expect(accessTokenActions.fetchAccessTokenFailure()).toEqual(expectedAction);
   });
 });

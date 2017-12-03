@@ -4,11 +4,13 @@ import styles from './CommentForm.scss';
 
 const CommentForm = ({
   description,
+  isPosting,
   handleChange,
   handleSubmit,
   handleReset
 }: {
   description: string,
+  isPosting: boolean,
   handleChange: (event: any) => void,
   handleSubmit: () => void,
   handleReset: () => void
@@ -21,8 +23,23 @@ const CommentForm = ({
       onChange={handleChange}
     />
     <div className={styles.btns}>
-      <button className={styles.cancelBtn} type="reset" value="Cancel" onClick={handleReset}>Cancel</button>
-      <button className={styles.submitBtn} type="submit" value="Comment">Comment</button>
+      <button
+        className={styles.cancelBtn}
+        type="reset"
+        value="Cancel"
+        disabled={isPosting || !description}
+        onClick={handleReset}
+      >
+        Cancel
+      </button>
+      <button
+        className={styles.submitBtn}
+        type="submit"
+        value="Comment"
+        disabled={isPosting || !description}
+      >
+        Comment
+      </button>
     </div>
   </form>
 );

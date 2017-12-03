@@ -6,28 +6,30 @@ import { getAccessTokenUri } from '../services/uriGenerator';
 
 export function fetchAccessToken(): ThunkAction {
   return (dispatch: Dispatch) => {
-    dispatch(requestAccessToken());
+    dispatch(fetchAccessTokenRequest());
     const uri = getAccessTokenUri();
     return authRequest(uri)
-      .then(json => dispatch(receiveAccessToken(json.access_token)))
-      .catch(() => dispatch(accessTokenError()));
+      .then(
+        json => dispatch(fetchAccessTokenSuccess(json.access_token)),
+        () => dispatch(fetchAccessTokenFailure())
+      );
   };
 }
 
-export function requestAccessToken(): Action {
+export function fetchAccessTokenRequest(): Action {
   return {
     type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST
   };
 }
 
-export function receiveAccessToken(token: string): Action {
+export function fetchAccessTokenSuccess(token: string): Action {
   return {
     type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
     payload: token
   };
 }
 
-export function accessTokenError(): Action {
+export function fetchAccessTokenFailure(): Action {
   return {
     type: actionTypes.FETCH_ACCESS_TOKEN_FAILURE
   };

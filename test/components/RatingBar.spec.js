@@ -7,10 +7,9 @@ function setup() {
   const props = {
     likeCount: '',
     dislikeCount: '',
-    like: false,
-    dislike: false,
-    postLike: jest.fn(),
-    postDislike: jest.fn()
+    rating: {},
+    isPosting: false,
+    postRating: jest.fn()
   };
 
   const enzymeWrapper = shallow(<RatingBar {...props} />);
@@ -29,28 +28,13 @@ describe('RatingBar', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should call postLike', () => {
-    const { props, enzymeWrapper } = setup();
-    const input = enzymeWrapper.find('input[name="like"]');
-
-    input.simulate('change');
-
-    expect(props.postLike).toBeCalled();
-  });
-
-  it('should call postDislike', () => {
-    const { props, enzymeWrapper } = setup();
-    const input = enzymeWrapper.find('input[name="dislike"]');
-
-    input.simulate('change');
-
-    expect(props.postDislike).toBeCalled();
-  });
-
   it('like input should be checked', () => {
     const { enzymeWrapper } = setup();
     enzymeWrapper.setProps({
-      like: true
+      rating: {
+        like: true,
+        dislike: false
+      }
     });
     const inputLike = enzymeWrapper.find('input[name="like"]');
     const inputDislike = enzymeWrapper.find('input[name="dislike"]');
@@ -62,7 +46,10 @@ describe('RatingBar', () => {
   it('dislike input should be checked', () => {
     const { enzymeWrapper } = setup();
     enzymeWrapper.setProps({
-      dislike: true
+      rating: {
+        like: false,
+        dislike: true
+      }
     });
     const inputLike = enzymeWrapper.find('input[name="like"]');
     const inputDislike = enzymeWrapper.find('input[name="dislike"]');

@@ -17,10 +17,15 @@ export default class RightColumn extends Component {
     updateActiveVideoCounts: (prevState: RatingType, rating: string) => void
   };
 
+  state: {
+    isPosting: boolean
+  };
+
   postRating: (rating: string) => void
 
   constructor(props: any) {
     super(props);
+    this.state = { isPosting: false };
     this.postRating = this.postRating.bind(this);
   }
 
@@ -33,9 +38,13 @@ export default class RightColumn extends Component {
   }
 
   postRating(rating: string): void {
-    this.props.postRating(rating).then(prevState => {
-      this.props.updateActiveVideoCounts(prevState, rating);
-    });
+    this.setState({ isPosting: true });
+    this.props.postRating(rating)
+      .then(
+        prevRating => this.props.updateActiveVideoCounts(prevRating, rating),
+        () => undefined
+      )
+      .then(() => this.setState({ isPosting: false }));
   }
 
   render() {
@@ -43,6 +52,9 @@ export default class RightColumn extends Component {
       activeVideo,
       rating
     } = this.props;
+    const {
+      isPosting
+    } = this.state;
     if (!Object.keys(activeVideo).length) {
       return (
         <div className={styles.rightColumn}>
@@ -55,18 +67,13 @@ export default class RightColumn extends Component {
       <div className={styles.rightColumn}>
         <TitleBar title={activeVideo.title} />
         <Player id={activeVideo.id} />
-        {rating && <RatingBar
+        <RatingBar
           likeCount={activeVideo.likeCount}
           dislikeCount={activeVideo.dislikeCount}
-          like={rating.like}
-          dislike={rating.dislike}
-          postLike={rating.like ?
-            () => this.postRating('none') :
-            () => this.postRating('like')}
-          postDislike={rating.dislike ?
-            () => this.postRating('none') :
-            () => this.postRating('dislike')}
-        />}
+          rating={rating}
+          isPosting={isPosting}
+          postRating={this.postRating}
+        />
         <Comments />
       </div>
     );
