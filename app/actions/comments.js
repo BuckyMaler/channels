@@ -12,20 +12,19 @@ export function fetchComments(): ThunkAction {
       pageToken: getState().comments.pageToken
     };
     const uri = getTopLevelCommentsUri(params);
-    return getRequest(uri).then(json => {
-      const { items, nextPageToken = params.pageToken } = json;
-      if (items == null) {
-        return dispatch(fetchCommentsSuccess([], nextPageToken));
-      }
-      return dispatch(fetchCommentsSuccess(items, nextPageToken));
-    })
-    .catch(() => dispatch(fetchCommentsFailure()));
+    return getRequest(uri)
+      .then(
+        json => {
+          const { items, nextPageToken = params.pageToken } = json;
+          return dispatch(fetchCommentsSuccess(items, nextPageToken));
+        },
+        () => dispatch(fetchCommentsFailure())
+      );
   };
 }
 
 export function postComment(description: string): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
-    dispatch(postCommentRequest());
     const body = {
       snippet: {
         channelId: getState().channels.activeId,
@@ -39,8 +38,10 @@ export function postComment(description: string): ThunkAction {
     };
     const uri = postTopLevelCommentUri();
     return postRequest(uri, body)
-      .then(json => dispatch(postCommentSuccess(json)))
-      .catch(() => dispatch(postCommentFailure()));
+      .then(
+        json => dispatch(postCommentSuccess(json)),
+        () => Promise.reject()
+      );
   };
 }
 
@@ -66,21 +67,9 @@ export function fetchCommentsFailure(): Action {
   };
 }
 
-export function postCommentRequest(): Action {
-  return {
-    type: actionTypes.POST_COMMENT_REQUEST
-  };
-}
-
 export function postCommentSuccess(json: any): Action {
   return {
     type: actionTypes.POST_COMMENT_SUCCESS,
     payload: json
-  };
-}
-
-export function postCommentFailure(): Action {
-  return {
-    type: actionTypes.POST_COMMENT_FAILURE
   };
 }

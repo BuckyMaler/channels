@@ -6,51 +6,58 @@ import { getRatingsUri, postRatingUri } from '../services/uriGenerator';
 
 export function fetchRatings(): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
-    dispatch(requestRatings());
+    dispatch(fetchRatingsRequest());
     const { id } = getState().activeVideo;
     const uri = getRatingsUri(id);
-    return getRequest(uri).then(json => {
-      if (json.items == null) {
-        return dispatch(receiveRatings([]));
-      }
-      return dispatch(receiveRatings(json.items));
-    })
-    .catch(() => dispatch(ratingsError()));
+    return getRequest(uri)
+      .then(
+        json => dispatch(fetchRatingsSuccess(json.items)),
+        () => dispatch(fetchRatingsFailure())
+      );
   };
 }
 
 export function postRating(rating: string): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
     const { id } = getState().activeVideo;
-    const prevState = getState().ratings.byId[id];
+    const prevRating = getState().ratings.byId[id];
     const uri = postRatingUri({ id, rating });
-    return postRequest(uri).then(() => {
-      dispatch(receiveRatings([
-        {
-          videoId: id,
-          rating
-        }
-      ]));
-      return prevState;
-    });
+    return postRequest(uri)
+      .then(
+        () => {
+          dispatch(postRatingSuccess({
+            videoId: id,
+            rating
+          }));
+          return prevRating;
+        },
+        () => Promise.reject()
+      );
   };
 }
 
-export function requestRatings(): Action {
+export function fetchRatingsRequest(): Action {
   return {
     type: actionTypes.FETCH_RATINGS_REQUEST
   };
 }
 
-export function receiveRatings(items: any): Action {
+export function fetchRatingsSuccess(items: any): Action {
   return {
     type: actionTypes.FETCH_RATINGS_SUCCESS,
     payload: items
   };
 }
 
-export function ratingsError(): Action {
+export function fetchRatingsFailure(): Action {
   return {
     type: actionTypes.FETCH_RATINGS_FAILURE
+  };
+}
+
+export function postRatingSuccess(item: any): Action {
+  return {
+    type: actionTypes.POST_RATING_SUCCESS,
+    payload: item
   };
 }

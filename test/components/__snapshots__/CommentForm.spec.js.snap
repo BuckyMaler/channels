@@ -16,6 +16,7 @@ exports[`CommentForm should render self with no value 1`] = `
   >
     <button
       className="cancelBtn"
+      disabled={true}
       onClick={[Function]}
       type="reset"
       value="Cancel"
@@ -24,6 +25,7 @@ exports[`CommentForm should render self with no value 1`] = `
     </button>
     <button
       className="submitBtn"
+      disabled={true}
       type="submit"
       value="Comment"
     >
@@ -49,6 +51,7 @@ exports[`CommentForm should render self with value 1`] = `
   >
     <button
       className="cancelBtn"
+      disabled={false}
       onClick={[Function]}
       type="reset"
       value="Cancel"
@@ -57,6 +60,7 @@ exports[`CommentForm should render self with value 1`] = `
     </button>
     <button
       className="submitBtn"
+      disabled={false}
       type="submit"
       value="Comment"
     >

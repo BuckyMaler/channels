@@ -6,46 +6,47 @@ import { getChannelsUri, getSubscriptionsUri } from '../services/uriGenerator';
 
 export function fetchChannels(): ThunkAction {
   return (dispatch: Dispatch) => {
-    dispatch(requestChannels());
-    return fetchSubscriptions().then(subscriptions => {
-      const uri = getChannelsUri(subscriptions);
-      return getRequest(uri).then(json => {
-        if (json.items == null) {
-          return dispatch(receiveChannels([]));
-        }
-        return dispatch(receiveChannels(json.items));
-      });
-    })
-    .catch(() => dispatch(channelsError()));
+    dispatch(fetchChannelsRequest());
+    return fetchSubscriptions()
+      .then(
+        subscriptions => {
+          const uri = getChannelsUri(subscriptions);
+          return getRequest(uri)
+            .then(
+              json => dispatch(fetchChannelsSuccess(json.items)),
+              () => dispatch(fetchChannelsFailure())
+            );
+        },
+        () => dispatch(fetchChannelsFailure())
+      );
   };
 }
 
 export function fetchSubscriptions(): Promise<any> {
   const uri = getSubscriptionsUri();
-  return getRequest(uri).then(json => {
-    if (json.items == null) {
-      return Promise.resolve('');
-    }
-    return Promise.resolve(
-      json.items.map(item => item.snippet.resourceId.channelId).join()
+  return getRequest(uri)
+    .then(
+      json => Promise.resolve(
+        json.items.map(item => item.snippet.resourceId.channelId).join()
+      ),
+      () => Promise.reject()
     );
-  });
 }
 
-export function requestChannels(): Action {
+export function fetchChannelsRequest(): Action {
   return {
     type: actionTypes.FETCH_CHANNELS_REQUEST
   };
 }
 
-export function receiveChannels(items: any): Action {
+export function fetchChannelsSuccess(items: any): Action {
   return {
     type: actionTypes.FETCH_CHANNELS_SUCCESS,
     payload: items
   };
 }
 
-export function channelsError(): Action {
+export function fetchChannelsFailure(): Action {
   return {
     type: actionTypes.FETCH_CHANNELS_FAILURE
   };

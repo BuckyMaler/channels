@@ -20,8 +20,11 @@ describe('activeVideo reducer', () => {
     const action = {
       type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
       payload: {
-        likeCount: '625',
-        dislikeCount: '2'
+        prevRating: {
+          like: false,
+          dislike: true
+        },
+        rating: 'like'
       }
     };
     expect(activeVideo(state, action)).toEqual({

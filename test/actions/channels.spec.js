@@ -21,32 +21,6 @@ describe('channels actions', () => {
     });
   });
 
-  it('creates FETCH_CHANNELS_SUCCESS when fetching subscriptions has resolved with undefined', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({}));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_CHANNELS_REQUEST },
-      { type: actionTypes.FETCH_CHANNELS_SUCCESS, payload: [] }
-    ];
-
-    return store.dispatch(channelsActions.fetchChannels()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  it('creates FETCH_CHANNELS_SUCCESS when fetching subscriptions has resolved with null', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({ items: null }));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_CHANNELS_REQUEST },
-      { type: actionTypes.FETCH_CHANNELS_SUCCESS, payload: [] }
-    ];
-
-    return store.dispatch(channelsActions.fetchChannels()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_CHANNELS_FAILURE when fetching subscriptions has been rejected', () => {
     fetch.getRequest = jest.fn(() => Promise.reject());
 
@@ -132,7 +106,7 @@ describe('channels actions', () => {
       type: actionTypes.FETCH_CHANNELS_REQUEST
     };
 
-    expect(channelsActions.requestChannels()).toEqual(expectedAction);
+    expect(channelsActions.fetchChannelsRequest()).toEqual(expectedAction);
   });
 
   it('should create an action to receive channels', () => {
@@ -142,7 +116,7 @@ describe('channels actions', () => {
       payload: items
     };
 
-    expect(channelsActions.receiveChannels(items)).toEqual(expectedAction);
+    expect(channelsActions.fetchChannelsSuccess(items)).toEqual(expectedAction);
   });
 
   it('should create an action to handle an error', () => {
@@ -150,7 +124,7 @@ describe('channels actions', () => {
       type: actionTypes.FETCH_CHANNELS_FAILURE
     };
 
-    expect(channelsActions.channelsError()).toEqual(expectedAction);
+    expect(channelsActions.fetchChannelsFailure()).toEqual(expectedAction);
   });
 
   it('should create an action to update the active channel', () => {

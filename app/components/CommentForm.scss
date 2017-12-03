@@ -43,6 +43,10 @@
 
   @include font-size(12);
 
+  &:disabled {
+    opacity: 0.6;
+  }
+
   &:focus {
     outline: 0;
   }

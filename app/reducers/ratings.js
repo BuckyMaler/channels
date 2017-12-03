@@ -14,6 +14,11 @@ function byId(state: { [string]: RatingType } = {}, { type, payload }: Action): 
         nextState[item.videoId] = RatingType.from(item);
       });
       return nextState;
+    case actionTypes.POST_RATING_SUCCESS:
+      return {
+        ...state,
+        [payload.videoId]: RatingType.from(payload)
+      };
     default:
       return state;
   }

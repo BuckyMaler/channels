@@ -24,44 +24,6 @@ describe('search actions', () => {
     });
   });
 
-  it('creates FETCH_SEARCH_SUCCESS when fetching video ids has resolved with undefined', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({}));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_SEARCH_REQUEST },
-      {
-        type: actionTypes.FETCH_SEARCH_SUCCESS,
-        payload: {
-          items: [],
-          nextPageToken: ''
-        }
-      }
-    ];
-
-    return store.dispatch(searchActions.fetchSearch()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  it('creates FETCH_SEARCH_SUCCESS when fetching video ids has resolved with null', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({ items: null }));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_SEARCH_REQUEST },
-      {
-        type: actionTypes.FETCH_SEARCH_SUCCESS,
-        payload: {
-          items: [],
-          nextPageToken: ''
-        }
-      }
-    ];
-
-    return store.dispatch(searchActions.fetchSearch()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_SEARCH_FAILURE when fetching video ids has been rejected', () => {
     fetch.getRequest = jest.fn(() => Promise.reject());
 
@@ -144,7 +106,7 @@ describe('search actions', () => {
       type: actionTypes.FETCH_SEARCH_REQUEST
     };
 
-    expect(searchActions.requestSearch()).toEqual(expectedAction);
+    expect(searchActions.fetchSearchRequest()).toEqual(expectedAction);
   });
 
   it('should create an action to receive search', () => {
@@ -158,7 +120,7 @@ describe('search actions', () => {
       }
     };
 
-    expect(searchActions.receiveSearch(items, nextPageToken)).toEqual(expectedAction);
+    expect(searchActions.fetchSearchSuccess(items, nextPageToken)).toEqual(expectedAction);
   });
 
   it('should create an action to handle an error', () => {
@@ -166,7 +128,7 @@ describe('search actions', () => {
       type: actionTypes.FETCH_SEARCH_FAILURE
     };
 
-    expect(searchActions.searchError()).toEqual(expectedAction);
+    expect(searchActions.fetchSearchFailure()).toEqual(expectedAction);
   });
 
   it('should create actions to update search', () => {

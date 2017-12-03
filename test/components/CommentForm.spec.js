@@ -6,6 +6,7 @@ import CommentForm from '../../app/components/CommentForm';
 function setup() {
   const props = {
     description: '',
+    isPosting: false,
     handleChange: jest.fn(),
     handleSubmit: jest.fn(),
     handleReset: jest.fn()

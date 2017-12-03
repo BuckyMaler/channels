@@ -24,42 +24,6 @@ describe('comments actions', () => {
     });
   });
 
-  it('creates FETCH_COMMENTS_SUCCESS when fetching comments has resolved with undefined', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({}));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_COMMENTS_REQUEST },
-      { type: actionTypes.FETCH_COMMENTS_SUCCESS,
-        payload: {
-          items: [],
-          nextPageToken: ''
-        }
-      }
-    ];
-
-    return store.dispatch(commentsActions.fetchComments()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  it('creates FETCH_COMMENTS_SUCCESS when fetching comments has resolved with null', () => {
-    fetch.getRequest = jest.fn(() => Promise.resolve({ items: null }));
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_COMMENTS_REQUEST },
-      { type: actionTypes.FETCH_COMMENTS_SUCCESS,
-        payload: {
-          items: [],
-          nextPageToken: ''
-        }
-      }
-    ];
-
-    return store.dispatch(commentsActions.fetchComments()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_COMMENTS_FAILURE when fetching comments has been rejected', () => {
     fetch.getRequest = jest.fn(() => Promise.reject());
 
