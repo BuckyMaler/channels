@@ -1,5 +1,5 @@
 // @flow
-import { stringOrEmpty, commaSeparateNumber } from '../utils/utils';
+import { commaSeparateNumber } from '../utils/utils';
 import { fromNow } from '../services/moment';
 
 export default class VideoType {
@@ -33,15 +33,14 @@ export default class VideoType {
   }
 
   static from(json: any): VideoType {
-    const { id: videoId, snippet, statistics } = json;
-    const id = stringOrEmpty(videoId);
-    const title = stringOrEmpty(snippet.title);
-    const thumbnail = stringOrEmpty(snippet.thumbnails.high.url);
-    const description = stringOrEmpty(snippet.description);
-    const publishedAt = fromNow(stringOrEmpty(snippet.publishedAt), 'YYYYMMDD');
-    const viewCount = commaSeparateNumber(stringOrEmpty(statistics.viewCount));
-    const likeCount = stringOrEmpty(statistics.likeCount);
-    const dislikeCount = stringOrEmpty(statistics.dislikeCount);
+    const { id, snippet, statistics } = json;
+    const title = snippet.title;
+    const thumbnail = snippet.thumbnails.high.url;
+    const description = snippet.description;
+    const publishedAt = fromNow(snippet.publishedAt, 'YYYYMMDD');
+    const viewCount = commaSeparateNumber(statistics.viewCount);
+    const likeCount = statistics.likeCount;
+    const dislikeCount = statistics.dislikeCount;
     return new VideoType(id, title, thumbnail, description, publishedAt, viewCount, likeCount, dislikeCount);
   }
 }

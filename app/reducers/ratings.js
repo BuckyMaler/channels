@@ -4,7 +4,6 @@ import actionTypes from '../constants/actionTypes';
 import type { Action, RatingsState } from '../constants/typeAliases';
 import RatingType from '../dataTypes/ratingType';
 import { createIsFetching, createError } from './common';
-import { stringOrEmpty } from '../utils/utils';
 
 function byId(state: { [string]: RatingType } = {}, { type, payload }: Action): { [string]: RatingType } {
   switch (type) {
@@ -30,7 +29,7 @@ function allIds(state: string[] = [], { type, payload }: Action): string[] {
       return [
         ...state,
         ...payload
-          .filter(item => !state.includes(stringOrEmpty(item.videoId)))
+          .filter(item => !state.includes(item.videoId))
           .map(item => item.videoId)
       ];
     default:

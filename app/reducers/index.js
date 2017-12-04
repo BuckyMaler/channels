@@ -41,7 +41,7 @@ export function getActiveVideoRating(state: State): ?RatingType {
   const { id: videoId } = state.activeVideo;
   return videoId ?
     fromRatings.getActiveVideoRating(state.ratings, videoId) :
-    undefined;
+    null;
 }
 
 export function getComments(state: State): CommentType[] {

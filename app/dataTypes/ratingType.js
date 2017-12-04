@@ -1,6 +1,4 @@
 // @flow
-import { stringOrEmpty } from '../utils/utils';
-
 const likeRatingMap = {
   like: true,
   dislike: false
@@ -28,9 +26,8 @@ export default class RatingType {
 
   static from(item: any): RatingType {
     const { videoId, rating } = item;
-    const id = stringOrEmpty(videoId);
-    const like = likeRatingMap[stringOrEmpty(rating)] || false;
-    const dislike = dislikeRatingMap[stringOrEmpty(rating)] || false;
-    return new RatingType(id, like, dislike);
+    const like = likeRatingMap[rating] || false;
+    const dislike = dislikeRatingMap[rating] || false;
+    return new RatingType(videoId, like, dislike);
   }
 }
