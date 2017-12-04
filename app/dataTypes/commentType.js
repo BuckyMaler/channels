@@ -1,5 +1,4 @@
 // @flow
-import { stringOrEmpty } from '../utils/utils';
 import { fromNow } from '../services/moment';
 
 export default class CommentType {
@@ -24,13 +23,12 @@ export default class CommentType {
   }
 
   static from(json: any): CommentType {
-    const { id: commentId } = json;
-    const { snippet } = json.snippet.topLevelComment;
-    const id = stringOrEmpty(commentId);
-    const author = stringOrEmpty(snippet.authorDisplayName);
-    const avatar = stringOrEmpty(snippet.authorProfileImageUrl);
-    const description = stringOrEmpty(snippet.textDisplay);
-    const publishedAt = fromNow(stringOrEmpty(snippet.publishedAt), 'YYYYMMDD');
+    const { id, snippet: snip } = json;
+    const { snippet } = snip.topLevelComment;
+    const author = snippet.authorDisplayName;
+    const avatar = snippet.authorProfileImageUrl;
+    const description = snippet.textDisplay;
+    const publishedAt = fromNow(snippet.publishedAt, 'YYYYMMDD');
     return new CommentType(id, author, avatar, description, publishedAt);
   }
 }

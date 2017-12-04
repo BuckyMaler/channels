@@ -1,5 +1,5 @@
 // @flow
-import { stringOrEmpty, commaSeparateNumber } from '../utils/utils';
+import { commaSeparateNumber } from '../utils/utils';
 
 export default class ChannelType {
   id: string;
@@ -23,12 +23,11 @@ export default class ChannelType {
   }
 
   static from(item: any): ChannelType {
-    const { id: channelId, snippet, statistics } = item;
-    const id = stringOrEmpty(channelId);
-    const title = stringOrEmpty(snippet.title);
-    const thumbnail = stringOrEmpty(snippet.thumbnails.default.url);
-    const videoCount = commaSeparateNumber(stringOrEmpty(statistics.videoCount));
-    const subscriberCount = commaSeparateNumber(stringOrEmpty(statistics.subscriberCount));
+    const { id, snippet, statistics } = item;
+    const title = snippet.title;
+    const thumbnail = snippet.thumbnails.default.url;
+    const videoCount = commaSeparateNumber(statistics.videoCount);
+    const subscriberCount = commaSeparateNumber(statistics.subscriberCount);
     return new ChannelType(id, title, thumbnail, videoCount, subscriberCount);
   }
 }

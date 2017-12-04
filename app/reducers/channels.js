@@ -4,7 +4,6 @@ import actionTypes from '../constants/actionTypes';
 import type { Action, ChannelsState } from '../constants/typeAliases';
 import ChannelType from '../dataTypes/channelType';
 import { createIsFetching, createError } from './common';
-import { stringOrEmpty } from '../utils/utils';
 
 function byId(state: { [string]: ChannelType } = {}, { type, payload }: Action): { [string]: ChannelType } {
   switch (type) {
@@ -22,7 +21,7 @@ function byId(state: { [string]: ChannelType } = {}, { type, payload }: Action):
 function allIds(state: string[] = [], { type, payload }: Action): string[] {
   switch (type) {
     case actionTypes.FETCH_CHANNELS_SUCCESS:
-      return payload.map(item => stringOrEmpty(item.id));
+      return payload.map(item => item.id);
     default:
       return state;
   }

@@ -70,7 +70,7 @@ export default class Search extends Component {
       <form className={query ? styles.searchIsActive : styles.search} onSubmit={this.handleSubmit}>
         <div className={styles.closeTarget} onClick={this.handleReset} />
         <SearchBar
-          disabled={activeChannel === undefined}
+          disabled={!activeChannel}
           placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App For YouTube Channels.'}
           value={query}
           handleChange={this.handleChange}

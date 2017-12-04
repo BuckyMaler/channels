@@ -4,7 +4,6 @@ import actionTypes from '../constants/actionTypes';
 import type { Action, CommentsState } from '../constants/typeAliases';
 import CommentType from '../dataTypes/commentType';
 import { createIsFetching, createError } from './common';
-import { stringOrEmpty } from '../utils/utils';
 
 function byId(state: { [string]: CommentType } = {}, { type, payload }: Action): { [string]: CommentType } {
   switch (type) {
@@ -31,11 +30,11 @@ function allIds(state: string[] = [], { type, payload }: Action): string[] {
     case actionTypes.FETCH_COMMENTS_SUCCESS:
       return [
         ...state,
-        ...payload.items.map(item => stringOrEmpty(item.id))
+        ...payload.items.map(item => item.id)
       ];
     case actionTypes.POST_COMMENT_SUCCESS:
       return [
-        stringOrEmpty(payload.id),
+        payload.id,
         ...state
       ];
     case actionTypes.UPDATE_ACTIVE_VIDEO:

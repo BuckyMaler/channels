@@ -4,7 +4,6 @@ import actionTypes from '../constants/actionTypes';
 import type { Action, VideosState } from '../constants/typeAliases';
 import VideoType from '../dataTypes/videoType';
 import { createIsFetching, createError } from './common';
-import { stringOrEmpty } from '../utils/utils';
 
 function byId(state: { [string]: VideoType } = {}, { type, payload }: Action): { [string]: VideoType } {
   switch (type) {
@@ -26,7 +25,7 @@ function allIds(state: string[] = [], { type, payload }: Action): string[] {
     case actionTypes.FETCH_VIDEOS_SUCCESS:
       return [
         ...state,
-        ...payload.items.map(item => stringOrEmpty(item.id))
+        ...payload.items.map(item => item.id)
       ];
     case actionTypes.UPDATE_ACTIVE_CHANNEL:
       return [];
