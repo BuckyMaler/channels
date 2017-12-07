@@ -27,13 +27,13 @@ const SearchResults = ({
 }) => {
   if ((isFetching && !pageToken) || error) {
     return (
-      <div className={searchResultsIsOpen ? styles.searchResultsIsOpen : styles.searchResults}>
+      <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
         {isFetching ? (
-          <Loader className={styles.loader} />
+          <Loader />
         ) : (
           <ErrorState
             message={'Error requesting videos.'}
-            className={styles.errorState}
+            color={'black'}
           />
         )}
       </div>
@@ -41,13 +41,13 @@ const SearchResults = ({
   }
 
   return (
-    <div className={searchResultsIsOpen ? styles.searchResultsIsOpen : styles.searchResults}>
+    <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
       {results.length ? (
         <InfiniteScroll
           isFetching={isFetching}
           pageToken={pageToken}
+          maxHeight={'350px'}
           loadMore={fetchSearch}
-          className={styles.infiniteScroll}
         >
           <ul className={styles.results}>
             {results.map(result => (
@@ -65,7 +65,7 @@ const SearchResults = ({
       ) : (
         <BlankState
           message={'No videos found.'}
-          className={styles.blankState}
+          color={'black'}
         />
       )}
     </div>

@@ -1,17 +1,19 @@
 // @flow
 import React from 'react';
+import { IconError } from './Icons';
 import styles from './ErrorState.scss';
 
 const ErrorState = ({
   message,
-  retry,
-  className
+  color,
+  retry
 }: {
   message: string,
-  retry?: () => Promise<any>,
-  className?: string
+  color: string,
+  retry?: () => Promise<any>
 }) => (
-  <div className={[styles.errorState, className].join(' ')}>
+  <div className={[styles.errorState, styles[color]].join(' ')}>
+    <IconError className={styles.iconError} />
     <p className={styles.message}>
       {message}
       {retry &&

@@ -1,8 +1,7 @@
 @import '../app.global.scss';
 
 .selectChannel {
-  height: 100%;
-  padding-top: 60px;
+  height: calc(100% - 60px);
 }
 
 .prompt {

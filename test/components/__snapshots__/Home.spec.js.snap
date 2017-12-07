@@ -14,6 +14,7 @@ exports[`Home should render self with error message 1`] = `
   className="home"
 >
   <ErrorState
+    color="black"
     message="Error accessing your account."
     retry={[Function]}
   />

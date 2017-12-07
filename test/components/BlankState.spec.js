@@ -6,7 +6,10 @@ import BlankState from '../../app/components/core/BlankState';
 describe('BlankState', () => {
   it('should render self', () => {
     const enzymeWrapper = shallow(
-      <BlankState message={'No channels found.'} />
+      <BlankState
+        message={'No channels found.'}
+        color={'black'}
+      />
     );
     const tree = toJson(enzymeWrapper);
 

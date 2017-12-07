@@ -5,6 +5,7 @@ exports[`VideoList should render self with error message 1`] = `
   className="videoList"
 >
   <ErrorState
+    color="black"
     message="Error requesting videos."
     retry={[Function]}
   />
@@ -24,6 +25,7 @@ exports[`VideoList should render self with no videos 1`] = `
   className="videoList"
 >
   <BlankState
+    color="black"
     message="No videos found."
   />
 </div>

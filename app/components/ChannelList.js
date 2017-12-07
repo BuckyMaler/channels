@@ -28,7 +28,7 @@ const ChannelList = ({
 }) => {
   if (isFetching || error) {
     return (
-      <div className={channelListIsOpen ? styles.channelListIsOpen : ''}>
+      <div className={channelListIsOpen ? [styles.channelList, styles.isOpen].join(' ') : styles.channelList}>
         <div className={styles.closeTarget} onClick={toggleChannelList} />
         <div className={styles.modal}>
           {isFetching ? (
@@ -36,6 +36,7 @@ const ChannelList = ({
           ) : (
             <ErrorState
               message={'Error requesting channels.'}
+              color={'black'}
               retry={fetchChannels}
             />
           )}
@@ -45,7 +46,7 @@ const ChannelList = ({
   }
 
   return (
-    <div className={channelListIsOpen ? styles.channelListIsOpen : ''}>
+    <div className={channelListIsOpen ? [styles.channelList, styles.isOpen].join(' ') : styles.channelList}>
       <div className={styles.closeTarget} onClick={toggleChannelList} />
       <div className={styles.modal}>
         {channels.length ? (
@@ -63,7 +64,10 @@ const ChannelList = ({
             ))}
           </ul>
         ) : (
-          <BlankState message={'No channels found.'} />
+          <BlankState
+            message={'No channels found.'}
+            color={'black'}
+          />
         )}
       </div>
     </div>

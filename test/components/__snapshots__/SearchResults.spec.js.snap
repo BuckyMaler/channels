@@ -5,7 +5,7 @@ exports[`SearchResults when closed should render self 1`] = `
   className="searchResults"
 >
   <BlankState
-    className="blankState"
+    color="black"
     message="No videos found."
   />
 </div>
@@ -13,10 +13,10 @@ exports[`SearchResults when closed should render self 1`] = `
 
 exports[`SearchResults when opened should render self with error message 1`] = `
 <div
-  className="searchResultsIsOpen"
+  className="searchResults isOpen"
 >
   <ErrorState
-    className="errorState"
+    color="black"
     message="Error requesting videos."
   />
 </div>
@@ -24,20 +24,18 @@ exports[`SearchResults when opened should render self with error message 1`] = `
 
 exports[`SearchResults when opened should render self with loader 1`] = `
 <div
-  className="searchResultsIsOpen"
+  className="searchResults isOpen"
 >
-  <Loader
-    className="loader"
-  />
+  <Loader />
 </div>
 `;
 
 exports[`SearchResults when opened should render self with no results 1`] = `
 <div
-  className="searchResultsIsOpen"
+  className="searchResults isOpen"
 >
   <BlankState
-    className="blankState"
+    color="black"
     message="No videos found."
   />
 </div>
@@ -45,12 +43,12 @@ exports[`SearchResults when opened should render self with no results 1`] = `
 
 exports[`SearchResults when opened should render self with results 1`] = `
 <div
-  className="searchResultsIsOpen"
+  className="searchResults isOpen"
 >
   <InfiniteScroll
-    className="infiniteScroll"
     isFetching={false}
     loadMore={[Function]}
+    maxHeight="350px"
     pageToken=""
   >
     <ul

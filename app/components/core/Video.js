@@ -18,7 +18,7 @@ const Video = ({
   viewCount: string,
   handleClick: (video: VideoType) => void
 }) => (
-  <li className={description != null ? styles.videoWithDescription : styles.video} onClick={handleClick}>
+  <li className={description != null ? [styles.video, styles.withDescription].join(' ') : styles.video} onClick={handleClick}>
     <img className={styles.thumbnail} src={thumbnail} alt={title} />
     <div className={styles.information}>
       <h3 className={[styles.title, styles['css-truncate'], styles['css-truncate-target']].join(' ')}>{title}</h3>

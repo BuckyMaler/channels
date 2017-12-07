@@ -48,6 +48,7 @@ export default class Home extends Component {
           ) : (
             <ErrorState
               message={'Error accessing your account.'}
+              color={'black'}
               retry={fetchAccessToken}
             />
           )}

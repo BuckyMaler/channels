@@ -1,8 +1,8 @@
 @import '../app.global.scss';
 
 .videoList {
-  height: 100%;
-  padding-top: 60px;
+  position: relative;
+  height: calc(100% - 60px);
 }
 
 .videos {

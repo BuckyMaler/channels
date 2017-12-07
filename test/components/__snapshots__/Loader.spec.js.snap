@@ -2,7 +2,7 @@
 
 exports[`Loader should render self 1`] = `
 <div
-  className="loader "
+  className="loader"
 >
   <Component
     className="iconSpinner"

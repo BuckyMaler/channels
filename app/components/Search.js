@@ -67,7 +67,7 @@ export default class Search extends Component {
       fetchSearch
     } = this.props;
     return (
-      <form className={query ? styles.searchIsActive : styles.search} onSubmit={this.handleSubmit}>
+      <form className={query ? [styles.search, styles.isActive].join(' ') : styles.search} onSubmit={this.handleSubmit}>
         <div className={styles.closeTarget} onClick={this.handleReset} />
         <SearchBar
           disabled={!activeChannel}

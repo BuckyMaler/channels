@@ -2,8 +2,11 @@
 
 exports[`BlankState should render self 1`] = `
 <div
-  className="blankState "
+  className="blankState black"
 >
+  <Component
+    className="iconInfo"
+  />
   <p
     className="message"
   >
