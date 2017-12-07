@@ -2,7 +2,7 @@
 
 exports[`Video with description should render self 1`] = `
 <li
-  className="videoWithDescription"
+  className="video withDescription"
   onClick={[Function]}
 >
   <img

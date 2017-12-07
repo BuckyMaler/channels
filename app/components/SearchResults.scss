@@ -1,33 +1,23 @@
 @import '../app.global.scss';
 
 .searchResults {
+  position: relative;
+  min-height: 98px;
   border-radius: 0 0 3px 3px;
   box-shadow: 0 2px 15px rgba(46, 46, 46, 0.6);
   background-color: $white;
   opacity: 0;
   visibility: hidden;
-}
 
-.searchResultsIsOpen {
-  @extend .searchResults;
-
-  opacity: 1;
-  visibility: visible;
-  transition: visibility 0s, opacity 0.3s ease;
+  &.isOpen {
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 0s, opacity 0.3s ease;
+  }
 }
 
 .results {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.loader,
-.blankState,
-.errorState {
-  height: 98px;
-}
-
-.infiniteScroll {
-  max-height: 350px;
 }

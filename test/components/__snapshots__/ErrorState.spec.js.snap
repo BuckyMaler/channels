@@ -2,8 +2,11 @@
 
 exports[`ErrorState with retry should render self 1`] = `
 <div
-  className="errorState "
+  className="errorState black"
 >
+  <Component
+    className="iconError"
+  />
   <p
     className="message"
   >
@@ -21,8 +24,11 @@ exports[`ErrorState with retry should render self 1`] = `
 
 exports[`ErrorState without retry should render self 1`] = `
 <div
-  className="errorState "
+  className="errorState black"
 >
+  <Component
+    className="iconError"
+  />
   <p
     className="message"
   >

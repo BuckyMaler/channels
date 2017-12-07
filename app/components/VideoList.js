@@ -48,6 +48,7 @@ export default class VideoList extends Component {
           ) : (
             <ErrorState
               message={'Error requesting videos.'}
+              color={'black'}
               retry={fetchVideos}
             />
           )}
@@ -78,7 +79,10 @@ export default class VideoList extends Component {
             </ul>
           </InfiniteScroll>
         ) : (
-          <BlankState message={'No videos found.'} />
+          <BlankState
+            message={'No videos found.'}
+            color={'black'}
+          />
         )}
       </div>
     );

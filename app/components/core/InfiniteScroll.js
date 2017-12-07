@@ -8,8 +8,8 @@ export default class InfiniteScroll extends Component {
     children: Children,
     isFetching: boolean,
     pageToken: string,
-    loadMore: () => Promise<any>,
-    className?: string
+    maxHeight?: string,
+    loadMore: () => Promise<any>
   };
 
   state: {
@@ -43,11 +43,12 @@ export default class InfiniteScroll extends Component {
   render() {
     const {
       children,
-      className
+      maxHeight
     } = this.props;
     return (
       <div
-        className={[styles.infiniteScroll, className].join(' ')}
+        className={styles.infiniteScroll}
+        style={{ maxHeight }}
         ref={node => (this.container = node)}
         onScroll={this.handleScroll}
       >

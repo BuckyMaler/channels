@@ -17,7 +17,7 @@ const Channel = ({
   isActive: boolean,
   updateActiveChannel: (channelId: string) => void
 }) => (
-  <li className={isActive ? styles.channelIsActive : styles.channel} onClick={updateActiveChannel}>
+  <li className={isActive ? [styles.channel, styles.isActive].join(' ') : styles.channel} onClick={updateActiveChannel}>
     <img className={styles.thumbnail} src={thumbnail} alt={title} />
     <div>
       <h3 className={styles.title}>{title}</h3>

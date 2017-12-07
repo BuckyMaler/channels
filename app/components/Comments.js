@@ -87,11 +87,11 @@ export default class Comments extends Component {
       return (
         <div className={styles.comments}>
           {isFetching ? (
-            <Loader className={styles.loader} />
+            <Loader />
           ) : (
             <ErrorState
               message={'Error requesting comments.'}
-              className={styles.errorState}
+              color={'white'}
             />
           )}
         </div>

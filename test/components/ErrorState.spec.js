@@ -6,6 +6,7 @@ import ErrorState from '../../app/components/core/ErrorState';
 function setup(optionalProps = {}) {
   const props = {
     message: 'Error requesting channels.',
+    color: 'black',
     ...optionalProps
   };
 

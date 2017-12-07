@@ -9,24 +9,23 @@
 	&:last-child {
 		border-bottom: none;
 	}
-}
 
-.videoWithDescription {
-	@extend .video;
-	padding: 2rem 0;
+	&.withDescription {
+		padding: 2rem 0;
 
-	.thumbnail {
-		width: 250px;
-		min-width: 250px;
-		height: 140px;
-	}
+		.thumbnail {
+			width: 250px;
+			min-width: 250px;
+			height: 140px;
+		}
 
-	.information {
-		height: 140px;
-	}
+		.information {
+			height: 140px;
+		}
 
-	.title {
-		@include font-size(16);
+		.title {
+			@include font-size(16);
+		}
 	}
 }
 
@@ -67,5 +66,5 @@
 .description {
   margin: 1rem 0 0;
   color: $dark-gray;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }

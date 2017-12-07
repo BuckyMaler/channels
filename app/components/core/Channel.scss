@@ -3,17 +3,15 @@
 .channel {
   display: flex;
   align-items: center;
-  padding: 0.8rem 1rem;
-}
+	padding: 0.8rem 1rem;
 
-.channelIsActive {
-	@extend .channel;
+	&.isActive {
+		background-color: $gray;
 
-	background-color: $gray;
-
-	.subscribers,
-	.videos {
-		color: $white;
+		.subscribers,
+		.videos {
+			color: $white;
+		}
 	}
 }
 
