@@ -7,6 +7,9 @@ import path from 'path';
 import merge from 'webpack-merge';
 import baseConfig from './webpack.config.base';
 import { dependencies } from './package.json';
+import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
+
+CheckNodeEnv('development');
 
 const dist = path.resolve(process.cwd(), 'dll');
 
@@ -20,11 +23,28 @@ export default merge.smart(baseConfig, {
   externals: ['fsevents', 'crypto-browserify'],
 
   /**
-   * @HACK: Copy and pasted from renderer dev config. Consider merging these
-   *        rules into the base config. May cause breaking changes.
+   * Use `module` from `webpack.config.renderer.dev.js`
    */
   module: {
     rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            plugins: [
+              // Here, we include babel plugins that are only required for the
+              // renderer process. The 'transform-*' plugins must be included
+              // before react-hot-loader/babel
+              'transform-class-properties',
+              'transform-es2015-classes',
+              'react-hot-loader/babel'
+            ],
+          }
+        }
+      },
       {
         test: /\.global\.css$/,
         use: [
@@ -56,7 +76,7 @@ export default merge.smart(baseConfig, {
           },
         ]
       },
-      // Add SASS support  - compile all .global.scss files and pipe it to style.css
+      // SASS support - compile all .global.scss files and pipe it to style.css
       {
         test: /\.global\.scss$/,
         use: [
@@ -74,7 +94,7 @@ export default merge.smart(baseConfig, {
           }
         ]
       },
-      // Add SASS support  - compile all other .scss files and pipe it to style.css
+      // SASS support - compile all other .scss files and pipe it to style.css
       {
         test: /^((?!\.global).)*\.scss$/,
         use: [
@@ -152,23 +172,18 @@ export default merge.smart(baseConfig, {
     ]
   },
 
-  resolve: {
-    modules: [
-      'app',
-    ],
-  },
-
   entry: {
-    vendor: [
-      'babel-polyfill',
-      ...Object.keys(dependencies || {})
-    ]
+    renderer: (
+      Object
+        .keys(dependencies || {})
+        .filter(dependency => dependency !== 'font-awesome')
+    )
   },
 
   output: {
-    library: 'vendor',
+    library: 'renderer',
     path: dist,
-    filename: '[name].dll.js',
+    filename: '[name].dev.dll.js',
     libraryTarget: 'var'
   },
 
@@ -187,8 +202,8 @@ export default merge.smart(baseConfig, {
      * NODE_ENV should be production so that modules do not perform certain
      * development checks
      */
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development'
     }),
 
     new webpack.LoaderOptionsPlugin({

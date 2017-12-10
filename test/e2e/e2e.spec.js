@@ -12,6 +12,7 @@ describe('main window', function spec() {
       path: electronPath,
       args: [path.join(__dirname, '..', '..', 'app')],
     });
+
     return this.app.start();
   });
 
@@ -60,7 +61,7 @@ describe('main window', function spec() {
     const { client } = this.app;
 
     const buttons = await findButtons();
-    await client.elementIdClick(buttons[0]);  // +
+    await client.elementIdClick(buttons[0]); // +
     expect(await findCounter().getText()).toBe('1');
   });
 
@@ -68,7 +69,7 @@ describe('main window', function spec() {
     const { client } = this.app;
 
     const buttons = await findButtons();
-    await client.elementIdClick(buttons[1]);  // -
+    await client.elementIdClick(buttons[1]); // -
     expect(await findCounter().getText()).toBe('0');
   });
 
@@ -76,7 +77,7 @@ describe('main window', function spec() {
     const { client } = this.app;
 
     const buttons = await findButtons();
-    await client.elementIdClick(buttons[2]);  // odd
+    await client.elementIdClick(buttons[2]); // odd
     expect(await findCounter().getText()).toBe('0');
   });
 
@@ -84,8 +85,8 @@ describe('main window', function spec() {
     const { client } = this.app;
 
     const buttons = await findButtons();
-    await client.elementIdClick(buttons[0]);  // +
-    await client.elementIdClick(buttons[2]);  // odd
+    await client.elementIdClick(buttons[0]); // +
+    await client.elementIdClick(buttons[2]); // odd
     expect(await findCounter().getText()).toBe('2');
   });
 
@@ -93,20 +94,16 @@ describe('main window', function spec() {
     const { client } = this.app;
 
     const buttons = await findButtons();
-    await client.elementIdClick(buttons[3]);  // async
+    await client.elementIdClick(buttons[3]); // async
     expect(await findCounter().getText()).toBe('2');
-    await delay(1000);
+    await delay(1500);
     expect(await findCounter().getText()).toBe('3');
   });
 
   it('should back to home if back button clicked', async () => {
     const { client } = this.app;
-    await client.element(
-      '[data-tid="backButton"] > a'
-    ).click();
+    await client.element('[data-tid="backButton"] > a').click();
 
-    expect(
-      await client.isExisting('[data-tid="container"]')
-    ).toBe(true);
+    expect(await client.isExisting('[data-tid="container"]')).toBe(true);
   });
 });
