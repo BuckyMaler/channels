@@ -1,7 +1,7 @@
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Home from '../components/Home';
+import { bindActionCreators } from 'redux';
 import * as accessTokenActions from '../actions/accessToken';
+import Home from '../components/Home';
 
 function mapStateToProps(state) {
   return {

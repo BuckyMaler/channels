@@ -8,16 +8,16 @@ const Channel = ({
   videoCount,
   subscriberCount,
   isActive,
-  updateActiveChannel
+  handleClick
 }: {
   title: string,
   thumbnail: string,
   videoCount: string,
   subscriberCount: string,
   isActive: boolean,
-  updateActiveChannel: (channelId: string) => void
+  handleClick: (channelId: string) => void
 }) => (
-  <li className={isActive ? [styles.channel, styles.isActive].join(' ') : styles.channel} onClick={updateActiveChannel}>
+  <li className={isActive ? [styles.channel, styles.isActive].join(' ') : styles.channel} onClick={handleClick}>
     <img className={styles.thumbnail} src={thumbnail} alt={title} />
     <div>
       <h3 className={styles.title}>{title}</h3>

@@ -1,16 +1,17 @@
 // @flow
 import React from 'react';
 import { IconError } from './Icons';
+import type { PromiseAction } from '../../constants/types';
 import styles from './ErrorState.scss';
 
 const ErrorState = ({
-  message,
   color,
+  message,
   retry
 }: {
-  message: string,
   color: string,
-  retry?: () => Promise<any>
+  message: string,
+  retry?: () => PromiseAction
 }) => (
   <div className={[styles.errorState, styles[color]].join(' ')}>
     <IconError className={styles.iconError} />
@@ -25,5 +26,9 @@ const ErrorState = ({
     </p>
   </div>
 );
+
+ErrorState.defaultProps = {
+  retry: undefined
+};
 
 export default ErrorState;

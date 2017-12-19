@@ -2,7 +2,7 @@
 import urls from '../constants/urls';
 import authParams from '../constants/authParams';
 
-function buildUriWithQueryParams(url: string, params: {}): string {
+function buildUriWithQueryParams(url: string, params: any): string {
   const paramKeys = Object.keys(params);
   const queryParams = paramKeys.map(key => `${key}=${params[key]}&`).join('');
   return url + queryParams.slice(0, -1);
@@ -60,7 +60,7 @@ export function getChannelsUri(subscriptions: string): string {
   return buildUriWithQueryParams(urls.CHANNELS, params);
 }
 
-export function getVideoIdsUri(params: {}): string {
+export function getVideoIdsUri(params: any): string {
   const defaultParams = {
     type: 'video',
     part: 'id',
@@ -89,14 +89,14 @@ export function getRatingsUri(videoIds: string): string {
   return buildUriWithQueryParams(urls.GET_RATING, params);
 }
 
-export function postRatingUri(params: {}): string {
+export function postRatingUri(params: any): string {
   const defaultParams = {
     access_token: localStorage.getItem('accessToken')
   };
   return buildUriWithQueryParams(urls.RATE, { ...defaultParams, ...params });
 }
 
-export function getTopLevelCommentsUri(params: {}): string {
+export function getTopLevelCommentsUri(params: any): string {
   const defaultParams = {
     part: 'id,snippet',
     fields: 'items(id,snippet(topLevelComment(snippet(authorDisplayName,authorProfileImageUrl,textDisplay,publishedAt)))),nextPageToken,pageInfo,tokenPagination',

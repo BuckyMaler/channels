@@ -1,35 +1,35 @@
 export function getAccessTokenUri() {
-  // noop
+  // no op
 }
 
 export function getSubscriptionsUri() {
-  // noop
+  // no op
 }
 
 export function getChannelsUri() {
-  // noop
+  // no op
 }
 
 export function getVideoIdsUri() {
-  // noop
+  // no op
 }
 
 export function getVideosUri() {
-  // noop
+  // no op
 }
 
 export function getRatingsUri() {
-  // noop
+  // no op
 }
 
 export function postRatingUri() {
-  // noop
+  // no op
 }
 
 export function getTopLevelCommentsUri() {
-  // noop
+  // no op
 }
 
 export function postTopLevelCommentUri() {
-  // noop
+  // no op
 }

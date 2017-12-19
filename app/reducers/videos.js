@@ -1,15 +1,23 @@
 // @flow
 import { combineReducers } from 'redux';
-import actionTypes from '../constants/actionTypes';
-import type { Action, VideosState } from '../constants/typeAliases';
-import VideoType from '../dataTypes/videoType';
 import { createIsFetching, createError } from './common';
+import actionTypes from '../constants/actionTypes';
+import type { Action } from '../constants/types';
+import VideoType from '../dataTypes/videoType';
 
-function byId(state: { [string]: VideoType } = {}, { type, payload }: Action): { [string]: VideoType } {
-  switch (type) {
+export type State = {
+  +byId: { [string]: VideoType },
+  +allIds: string[],
+  +pageToken: string,
+  +isFetching: boolean,
+  +error: boolean
+};
+
+function byId(state: { [string]: VideoType } = {}, action: Action): { [string]: VideoType } {
+  switch (action.type) {
     case actionTypes.FETCH_VIDEOS_SUCCESS:
       const nextState = { ...state };
-      payload.items.forEach(item => {
+      action.payload.items.forEach(item => {
         nextState[item.id] = VideoType.from(item);
       });
       return nextState;
@@ -20,12 +28,12 @@ function byId(state: { [string]: VideoType } = {}, { type, payload }: Action): {
   }
 }
 
-function allIds(state: string[] = [], { type, payload }: Action): string[] {
-  switch (type) {
+function allIds(state: string[] = [], action: Action): string[] {
+  switch (action.type) {
     case actionTypes.FETCH_VIDEOS_SUCCESS:
       return [
         ...state,
-        ...payload.items.map(item => item.id)
+        ...action.payload.items.map(item => item.id)
       ];
     case actionTypes.UPDATE_ACTIVE_CHANNEL:
       return [];
@@ -34,10 +42,10 @@ function allIds(state: string[] = [], { type, payload }: Action): string[] {
   }
 }
 
-function pageToken(state: string = '', { type, payload }: Action): string {
-  switch (type) {
+function pageToken(state: string = '', action: Action): string {
+  switch (action.type) {
     case actionTypes.FETCH_VIDEOS_SUCCESS:
-      return payload.nextPageToken;
+      return action.payload.nextPageToken;
     case actionTypes.UPDATE_ACTIVE_CHANNEL:
       return '';
     default:
@@ -53,7 +61,7 @@ const videos = combineReducers({
   error: createError('VIDEOS')
 });
 
-export function getVideos(state: VideosState): VideoType[] {
+export function getVideos(state: State): VideoType[] {
   return state.allIds.map(id => state.byId[id]);
 }
 

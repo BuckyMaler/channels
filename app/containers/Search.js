@@ -1,8 +1,8 @@
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Search from '../components/Search';
-import * as searchActions from '../actions/search';
+import { bindActionCreators } from 'redux';
 import * as activeVideoActions from '../actions/activeVideo';
+import * as searchActions from '../actions/search';
+import Search from '../components/Search';
 import { getActiveChannel } from '../reducers/index';
 
 function mapStateToProps(state) {
@@ -10,15 +10,15 @@ function mapStateToProps(state) {
     activeChannel: getActiveChannel(state),
     query: state.search.query,
     results: state.search.results,
+    pageToken: state.search.pageToken,
     isFetching: state.search.isFetching,
-    error: state.search.error,
-    pageToken: state.search.pageToken
+    error: state.search.error
   };
 }
 
 const actions = {
-  ...searchActions,
-  ...activeVideoActions
+  ...activeVideoActions,
+  ...searchActions
 };
 
 function mapDispatchToProps(dispatch) {

@@ -1,23 +1,23 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action } from '../constants/typeAliases';
+import type { Action } from '../constants/types';
 
-function activeVideo(state: any = {}, { type, payload }: Action): any {
-  switch (type) {
+function activeVideo(state: any = {}, action: Action): any {
+  switch (action.type) {
     case actionTypes.UPDATE_ACTIVE_VIDEO:
-      return payload;
+      return action.payload;
     case actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS:
       return {
         ...state,
-        ...updateCounts(state, payload)
+        ...updateCounts(state, action)
       };
     default:
       return state;
   }
 }
 
-function updateCounts(state: any, payload: any): any {
-  const { prevRating, rating } = payload;
+function updateCounts(state: any, action: any): any {
+  const { prevRating, rating } = action.payload;
   let likeCount = Number(state.likeCount);
   let dislikeCount = Number(state.dislikeCount);
   switch (rating) {

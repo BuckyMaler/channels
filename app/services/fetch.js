@@ -1,17 +1,17 @@
 // @flow
-export const Methods = {
+export const methods = {
   GET: 'GET',
   POST: 'POST'
 };
 
-export const Status = {
+export const status = {
   NO_CONTENT: 204
 };
 
 export function authRequest(uri: string): Promise<any> {
   const [url, body] = uri.split('?');
   const init = {
-    method: Methods.POST,
+    method: methods.POST,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body
   };
@@ -26,7 +26,7 @@ export function authRequest(uri: string): Promise<any> {
 
 export function getRequest(uri: string): Promise<any> {
   const init = {
-    method: Methods.GET,
+    method: methods.GET,
     headers: { 'Content-Type': 'application/json' }
   };
   return fetch(uri, init)
@@ -38,9 +38,9 @@ export function getRequest(uri: string): Promise<any> {
     });
 }
 
-export function postRequest(uri: string, body?: {}): Promise<any> {
+export function postRequest(uri: string, body?: any): Promise<any> {
   const init = {
-    method: Methods.POST,
+    method: methods.POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   };
@@ -49,6 +49,6 @@ export function postRequest(uri: string, body?: {}): Promise<any> {
       if (!res.ok) {
         return Promise.reject();
       }
-      return res.status === Status.NO_CONTENT ? res : res.json();
+      return res.status === status.NO_CONTENT ? res : res.json();
     });
 }

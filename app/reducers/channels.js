@@ -1,15 +1,23 @@
 // @flow
 import { combineReducers } from 'redux';
-import actionTypes from '../constants/actionTypes';
-import type { Action, ChannelsState } from '../constants/typeAliases';
-import ChannelType from '../dataTypes/channelType';
 import { createIsFetching, createError } from './common';
+import actionTypes from '../constants/actionTypes';
+import type { Action } from '../constants/types';
+import ChannelType from '../dataTypes/channelType';
 
-function byId(state: { [string]: ChannelType } = {}, { type, payload }: Action): { [string]: ChannelType } {
-  switch (type) {
+export type State = {
+  +byId: { [string]: ChannelType },
+  +allIds: string[],
+  +activeId: string,
+  +isFetching: boolean,
+  +error: boolean
+};
+
+function byId(state: { [string]: ChannelType } = {}, action: Action): { [string]: ChannelType } {
+  switch (action.type) {
     case actionTypes.FETCH_CHANNELS_SUCCESS:
       const nextState = { ...state };
-      payload.forEach(item => {
+      action.payload.forEach(item => {
         nextState[item.id] = ChannelType.from(item);
       });
       return nextState;
@@ -18,19 +26,19 @@ function byId(state: { [string]: ChannelType } = {}, { type, payload }: Action):
   }
 }
 
-function allIds(state: string[] = [], { type, payload }: Action): string[] {
-  switch (type) {
+function allIds(state: string[] = [], action: Action): string[] {
+  switch (action.type) {
     case actionTypes.FETCH_CHANNELS_SUCCESS:
-      return payload.map(item => item.id);
+      return action.payload.map(item => item.id);
     default:
       return state;
   }
 }
 
-function activeId(state: string = '', { type, payload }: Action): string {
-  switch (type) {
+function activeId(state: string = '', action: Action): string {
+  switch (action.type) {
     case actionTypes.UPDATE_ACTIVE_CHANNEL:
-      return payload;
+      return action.payload;
     default:
       return state;
   }
@@ -44,11 +52,11 @@ const channels = combineReducers({
   error: createError('CHANNELS')
 });
 
-export function getChannels(state: ChannelsState): ChannelType[] {
+export function getChannels(state: State): ChannelType[] {
   return state.allIds.map(id => state.byId[id]);
 }
 
-export function getActiveChannel(state: ChannelsState): ?ChannelType {
+export function getActiveChannel(state: State): ?ChannelType {
   return state.byId[state.activeId];
 }
 

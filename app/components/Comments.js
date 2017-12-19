@@ -2,48 +2,39 @@
 import React, { Component } from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
-import Loader from './core/Loader';
 import ErrorState from './core/ErrorState';
 import InfiniteScroll from './core/InfiniteScroll';
+import Loader from './core/Loader';
+import type { PromiseAction } from '../constants/types';
 import CommentType from '../dataTypes/commentType';
 import styles from './Comments.scss';
 
-export default class Comments extends Component {
-  props: {
-    activeVideo: any,
-    comments: CommentType[],
-    isFetching: boolean,
-    error: boolean,
-    pageToken: string,
-    fetchComments: () => Promise<any>,
-    postComment: (description: string) => Promise<any>
+type Props = {
+  activeVideo: any,
+  comments: CommentType[],
+  pageToken: string,
+  isFetching: boolean,
+  error: boolean,
+  fetchComments: () => PromiseAction,
+  postComment: (description: string) => PromiseAction
+};
+
+type State = {
+  description: string,
+  isPosting: boolean
+};
+
+export default class Comments extends Component<Props, State> {
+  state = {
+    description: '',
+    isPosting: false
   };
-
-  state: {
-    description: string,
-    isPosting: boolean
-  };
-
-  handleChange: (event: any) => void;
-  handleSubmit: () => void;
-  handleReset: () => void;
-
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      description: '',
-      isPosting: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-  }
 
   componentDidMount() {
     this.props.fetchComments();
   }
 
-  componentWillReceiveProps(nextProps: any) {
+  componentWillReceiveProps(nextProps: Props) {
     const { id } = this.props.activeVideo;
     const { id: nextId } = nextProps.activeVideo;
     if (id !== nextId) {
@@ -51,12 +42,11 @@ export default class Comments extends Component {
     }
   }
 
-  handleChange(event: any) {
-    const { value } = event.target;
-    this.setState({ description: value });
+  handleChange = (event: SyntheticInputEvent<HTMLTextAreaElement>): void => {
+    this.setState({ description: event.currentTarget.value });
   }
 
-  handleSubmit(event: any) {
+  handleSubmit = (event: SyntheticInputEvent<HTMLFormElement>): void => {
     event.preventDefault();
     this.setState({ isPosting: true });
     this.props.postComment(this.state.description)
@@ -67,55 +57,51 @@ export default class Comments extends Component {
       .then(() => this.setState({ isPosting: false }));
   }
 
-  handleReset() {
+  handleReset = (): void => {
     this.setState({ description: '' });
   }
 
   render() {
     const {
       comments,
+      pageToken,
       isFetching,
       error,
-      pageToken,
       fetchComments
     } = this.props;
     const {
       description,
       isPosting
     } = this.state;
-    if ((isFetching && !pageToken) || error) {
-      return (
-        <div className={styles.comments}>
-          {isFetching ? (
+    return (
+      <div className={styles.comments}>
+        {(isFetching && !pageToken) || error ? (
+          isFetching ? (
             <Loader />
           ) : (
             <ErrorState
-              message={'Error requesting comments.'}
-              color={'white'}
+              color="white"
+              message="Error requesting comments."
             />
-          )}
-        </div>
-      );
-    }
-
-    return (
-      <div className={styles.comments}>
-        <InfiniteScroll
-          isFetching={isFetching}
-          pageToken={pageToken}
-          loadMore={fetchComments}
-        >
-          <CommentForm
-            description={description}
-            isPosting={isPosting}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            handleReset={this.handleReset}
-          />
-          <CommentList
-            comments={comments}
-          />
-        </InfiniteScroll>
+          )
+        ) : (
+          <InfiniteScroll
+            pageToken={pageToken}
+            isFetching={isFetching}
+            loadMore={fetchComments}
+          >
+            <CommentForm
+              description={description}
+              isPosting={isPosting}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleReset={this.handleReset}
+            />
+            <CommentList
+              comments={comments}
+            />
+          </InfiniteScroll>
+        )}
       </div>
     );
   }

@@ -1,25 +1,33 @@
 // @flow
 import { combineReducers } from 'redux';
-import actionTypes from '../constants/actionTypes';
-import type { Action } from '../constants/typeAliases';
-import VideoType from '../dataTypes/videoType';
 import { createIsFetching, createError } from './common';
+import actionTypes from '../constants/actionTypes';
+import type { Action } from '../constants/types';
+import VideoType from '../dataTypes/videoType';
 
-function query(state: string = '', { type, payload }: Action): string {
-  switch (type) {
+export type State = {
+  +query: string,
+  +results: VideoType[],
+  +pageToken: string,
+  +isFetching: boolean,
+  +error: boolean
+};
+
+function query(state: string = '', action: Action): string {
+  switch (action.type) {
     case actionTypes.UPDATE_SEARCH_QUERY:
-      return payload;
+      return action.payload;
     default:
       return state;
   }
 }
 
-function results(state: VideoType[] = [], { type, payload }: Action): VideoType[] {
-  switch (type) {
+function results(state: VideoType[] = [], action: Action): VideoType[] {
+  switch (action.type) {
     case actionTypes.FETCH_SEARCH_SUCCESS:
       return [
         ...state,
-        ...payload.items.map(item => VideoType.from(item))
+        ...action.payload.items.map(item => VideoType.from(item))
       ];
     case actionTypes.CLEAR_SEARCH_RESULTS:
       return [];
@@ -28,10 +36,10 @@ function results(state: VideoType[] = [], { type, payload }: Action): VideoType[
   }
 }
 
-function pageToken(state: string = '', { type, payload }: Action): string {
-  switch (type) {
+function pageToken(state: string = '', action: Action): string {
+  switch (action.type) {
     case actionTypes.FETCH_SEARCH_SUCCESS:
-      return payload.nextPageToken;
+      return action.payload.nextPageToken;
     case actionTypes.CLEAR_SEARCH_RESULTS:
       return '';
     default:

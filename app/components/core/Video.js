@@ -9,26 +9,33 @@ const Video = ({
   description,
   publishedAt,
   viewCount,
+  isSearchResult,
   handleClick
 }: {
   title: string,
   thumbnail: string,
   description?: string,
-  publishedAt: string,
+  publishedAt: Date,
   viewCount: string,
+  isSearchResult?: boolean,
   handleClick: (video: VideoType) => void
 }) => (
-  <li className={description != null ? [styles.video, styles.withDescription].join(' ') : styles.video} onClick={handleClick}>
+  <li className={isSearchResult ? [styles.video, styles.isSearchResult].join(' ') : styles.video} onClick={handleClick}>
     <img className={styles.thumbnail} src={thumbnail} alt={title} />
     <div className={styles.information}>
       <h3 className={[styles.title, styles['css-truncate'], styles['css-truncate-target']].join(' ')}>{title}</h3>
       <span className={styles.date}>{publishedAt}</span>
       <span className={styles.views}>{viewCount} views</span>
-      {description &&
+      {!isSearchResult &&
         <p className={styles.description}>{description}</p>
       }
     </div>
   </li>
 );
+
+Video.defaultProps = {
+  description: '',
+  isSearchResult: false
+};
 
 export default Video;

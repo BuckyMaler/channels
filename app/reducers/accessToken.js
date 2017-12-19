@@ -1,14 +1,20 @@
 // @flow
 import { combineReducers } from 'redux';
-import actionTypes from '../constants/actionTypes';
-import type { Action } from '../constants/typeAliases';
 import { createIsFetching, createError } from './common';
+import actionTypes from '../constants/actionTypes';
+import type { Action } from '../constants/types';
 
-function token(state: string = '', { type, payload }: Action): string {
-  switch (type) {
+export type State = {
+  +token: string,
+  +isFetching: boolean,
+  +error: boolean
+};
+
+function token(state: string = '', action: Action): string {
+  switch (action.type) {
     case actionTypes.FETCH_ACCESS_TOKEN_SUCCESS:
-      localStorage.setItem('accessToken', payload);
-      return payload;
+      localStorage.setItem('accessToken', action.payload);
+      return action.payload;
     default:
       return state;
   }

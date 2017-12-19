@@ -1,9 +1,10 @@
 // @flow
 import React from 'react';
-import Channel from './core/Channel';
-import Loader from './core/Loader';
 import BlankState from './core/BlankState';
+import Channel from './core/Channel';
 import ErrorState from './core/ErrorState';
+import Loader from './core/Loader';
+import type { PromiseAction } from '../constants/types';
 import ChannelType from '../dataTypes/channelType';
 import styles from './ChannelList.scss';
 
@@ -22,34 +23,25 @@ const ChannelList = ({
   isFetching: boolean,
   error: boolean,
   channelListIsOpen: boolean,
-  fetchChannels: () => Promise<any>,
+  fetchChannels: () => PromiseAction,
   updateActiveChannel: (channelId: string) => void,
   toggleChannelList: () => void
-}) => {
-  if (isFetching || error) {
-    return (
-      <div className={channelListIsOpen ? [styles.channelList, styles.isOpen].join(' ') : styles.channelList}>
-        <div className={styles.closeTarget} onClick={toggleChannelList} />
-        <div className={styles.modal}>
-          {isFetching ? (
-            <Loader />
-          ) : (
-            <ErrorState
-              message={'Error requesting channels.'}
-              color={'black'}
-              retry={fetchChannels}
-            />
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className={channelListIsOpen ? [styles.channelList, styles.isOpen].join(' ') : styles.channelList}>
-      <div className={styles.closeTarget} onClick={toggleChannelList} />
-      <div className={styles.modal}>
-        {channels.length ? (
+}) => (
+  <div className={channelListIsOpen ? [styles.channelList, styles.isOpen].join(' ') : styles.channelList}>
+    <div className={styles.closeTarget} onClick={toggleChannelList} />
+    <div className={styles.modal}>
+      {isFetching || error ? (
+        isFetching ? (
+          <Loader />
+        ) : (
+          <ErrorState
+            color="black"
+            message="Error requesting channels."
+            retry={fetchChannels}
+          />
+        )
+      ) : (
+        channels.length ? (
           <ul className={styles.channels} onClick={toggleChannelList}>
             {channels.map(channel => (
               <Channel
@@ -59,19 +51,19 @@ const ChannelList = ({
                 videoCount={channel.videoCount}
                 subscriberCount={channel.subscriberCount}
                 isActive={channel.id === activeChannelId}
-                updateActiveChannel={() => updateActiveChannel(channel.id)}
+                handleClick={() => updateActiveChannel(channel.id)}
               />
             ))}
           </ul>
         ) : (
           <BlankState
-            message={'No channels found.'}
-            color={'black'}
+            color="black"
+            message="No channels found."
           />
-        )}
-      </div>
+        )
+      )}
     </div>
-  );
-};
+  </div>
+);
 
 export default ChannelList;

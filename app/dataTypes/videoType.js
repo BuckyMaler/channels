@@ -1,13 +1,32 @@
 // @flow
-import { commaSeparateNumber } from '../utils/utils';
 import { fromNow } from '../services/moment';
+import { commaSeparateNumber } from '../utils/utils';
+
+export interface IVideo {
+  id: string,
+  snippet: {
+    publishedAt: Date,
+    title: string,
+    description: string,
+    thumbnails: {
+      default: { url: string, width: number, height: number },
+      medium: { url: string, width: number, height: number },
+      high: { url: string, width: number, height: number }
+    }
+  },
+  statistics: {
+    viewCount: string,
+    likeCount: string,
+    dislikeCount: string
+  }
+}
 
 export default class VideoType {
   id: string;
   title: string;
   thumbnail: string;
   description: string;
-  publishedAt: string;
+  publishedAt: Date;
   viewCount: string;
   likeCount: string;
   dislikeCount: string;
@@ -17,7 +36,7 @@ export default class VideoType {
     title: string,
     thumbnail: string,
     description: string,
-    publishedAt: string,
+    publishedAt: Date,
     viewCount: string,
     likeCount: string,
     dislikeCount: string
@@ -32,8 +51,8 @@ export default class VideoType {
     this.dislikeCount = dislikeCount;
   }
 
-  static from(json: any): VideoType {
-    const { id, snippet, statistics } = json;
+  static from(item: IVideo): VideoType {
+    const { id, snippet, statistics } = item;
     const title = snippet.title;
     const thumbnail = snippet.thumbnails.high.url;
     const description = snippet.description;

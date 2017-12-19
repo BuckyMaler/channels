@@ -1,7 +1,7 @@
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import LeftColumn from '../components/LeftColumn';
+import { bindActionCreators } from 'redux';
 import * as channelsActions from '../actions/channels';
+import LeftColumn from '../components/LeftColumn';
 import { getActiveChannel, getChannels } from '../reducers/index';
 
 function mapStateToProps(state) {

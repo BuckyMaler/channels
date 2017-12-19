@@ -1,35 +1,35 @@
 // @flow
 import React, { Component } from 'react';
 import Navigation from './Navigation';
-import VideoList from '../containers/VideoList';
 import SelectChannel from './SelectChannel';
+import type { PromiseAction } from '../constants/types';
+import VideoList from '../containers/VideoList';
 import ChannelType from '../dataTypes/channelType';
 import styles from './LeftColumn.scss';
 
-export default class LeftColumn extends Component {
-  props: {
-    activeChannel: ?ChannelType,
-    channels: ChannelType[],
-    isFetching: boolean,
-    error: boolean,
-    fetchChannels: () => Promise<any>,
-    updateActiveChannel: (channelId: string) => void
-  };
+type Props = {
+  activeChannel: ?ChannelType,
+  channels: ChannelType[],
+  isFetching: boolean,
+  error: boolean,
+  fetchChannels: () => PromiseAction,
+  updateActiveChannel: (channelId: string) => void
+};
 
-  state: {
-    channelListIsOpen: boolean
-  };
+type State = {
+  channelListIsOpen: boolean
+};
 
-  constructor(props: any) {
-    super(props);
-    this.state = { channelListIsOpen: false };
-  }
+export default class LeftColumn extends Component<Props, State> {
+  state = {
+    channelListIsOpen: false
+  };
 
   componentDidMount() {
     this.props.fetchChannels();
   }
 
-  toggleChannelList(): void {
+  toggleChannelList = (): void => {
     this.setState(prevState => ({
       channelListIsOpen: !prevState.channelListIsOpen
     }));
@@ -57,13 +57,13 @@ export default class LeftColumn extends Component {
           channelListIsOpen={channelListIsOpen}
           fetchChannels={fetchChannels}
           updateActiveChannel={updateActiveChannel}
-          toggleChannelList={() => this.toggleChannelList()}
+          toggleChannelList={this.toggleChannelList}
         />
         {activeChannel ? (
           <VideoList />
         ) : (
           <SelectChannel
-            toggleChannelList={() => this.toggleChannelList()}
+            toggleChannelList={this.toggleChannelList}
           />
         )}
       </div>

@@ -3,40 +3,40 @@
 .video {
   display: flex;
 	align-items: center;
-	padding: 1rem;
+  padding: 2rem 0;
 	border-bottom: 1px solid $light-gray;
 
 	&:last-child {
 		border-bottom: none;
 	}
 
-	&.withDescription {
-		padding: 2rem 0;
+	&.isSearchResult {
+		padding: 1rem;
 
 		.thumbnail {
-			width: 250px;
-			min-width: 250px;
-			height: 140px;
+			max-width: 125px;
+      height: 70px;
 		}
 
 		.information {
-			height: 140px;
+			height: auto;
 		}
 
 		.title {
-			@include font-size(16);
+			@include font-size(14);
 		}
 	}
 }
 
 .thumbnail {
-	width: 125px;
-	min-width: 125px;
-	height: 70px;
+  width: 100%;
+  max-width: 250px;
+  height: 140px;
 	object-fit: cover;
 }
 
 .information {
+  height: 140px;
   margin: 0 1rem;
   overflow: hidden;
 }
@@ -44,7 +44,7 @@
 .title {
   margin: 0;
 
-  @include font-size(14);
+  @include font-size(16);
 }
 
 .css-truncate-target {

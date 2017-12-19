@@ -6,47 +6,42 @@ import BlankState from './core/BlankState';
 import ErrorState from './core/ErrorState';
 import InfiniteScroll from './core/InfiniteScroll';
 import VideoType from '../dataTypes/videoType';
+import type { PromiseAction } from '../constants/types';
 import styles from './SearchResults.scss';
 
 const SearchResults = ({
   results,
+  pageToken,
   isFetching,
   error,
-  pageToken,
-  fetchSearch,
   searchResultsIsOpen,
-  handleSelect
+  fetchSearch,
+  selectResult
 }: {
   results: VideoType[],
+  pageToken: string,
   isFetching: boolean,
   error: boolean,
-  pageToken: string,
-  fetchSearch: () => Promise<any>,
   searchResultsIsOpen: boolean,
-  handleSelect: (video: VideoType) => void
-}) => {
-  if ((isFetching && !pageToken) || error) {
-    return (
-      <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
-        {isFetching ? (
-          <Loader />
-        ) : (
-          <ErrorState
-            message={'Error requesting videos.'}
-            color={'black'}
-          />
-        )}
-      </div>
-    );
-  }
-
-  return (
-    <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
-      {results.length ? (
+  fetchSearch: () => PromiseAction,
+  selectResult: (result: VideoType) => void
+}) => (
+  <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
+    {(isFetching && !pageToken) || error ? (
+      isFetching ? (
+        <Loader />
+      ) : (
+        <ErrorState
+          color="black"
+          message="Error requesting videos."
+        />
+      )
+    ) : (
+      results.length ? (
         <InfiniteScroll
-          isFetching={isFetching}
           pageToken={pageToken}
-          maxHeight={'350px'}
+          maxHeight="350px"
+          isFetching={isFetching}
           loadMore={fetchSearch}
         >
           <ul className={styles.results}>
@@ -57,19 +52,20 @@ const SearchResults = ({
                 thumbnail={result.thumbnail}
                 publishedAt={result.publishedAt}
                 viewCount={result.viewCount}
-                handleClick={() => handleSelect(result)}
+                isSearchResult={true}
+                handleClick={() => selectResult(result)}
               />
             ))}
           </ul>
         </InfiniteScroll>
       ) : (
         <BlankState
-          message={'No videos found.'}
-          color={'black'}
+          color="black"
+          message="No videos found."
         />
-      )}
-    </div>
-  );
-};
+      )
+    )}
+  </div>
+);
 
 export default SearchResults;

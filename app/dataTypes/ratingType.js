@@ -1,10 +1,15 @@
 // @flow
-const likeRatingMap = {
+export interface IRating {
+  videoId: string,
+  rating: string
+}
+
+const likeMap = {
   like: true,
   dislike: false
 };
 
-const dislikeRatingMap = {
+const dislikeMap = {
   like: false,
   dislike: true
 };
@@ -24,10 +29,10 @@ export default class RatingType {
     this.dislike = dislike;
   }
 
-  static from(item: any): RatingType {
+  static from(item: IRating): RatingType {
     const { videoId, rating } = item;
-    const like = likeRatingMap[rating] || false;
-    const dislike = dislikeRatingMap[rating] || false;
+    const like = likeMap[rating] || false;
+    const dislike = dislikeMap[rating] || false;
     return new RatingType(videoId, like, dislike);
   }
 }
