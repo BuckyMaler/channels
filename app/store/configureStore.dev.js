@@ -1,16 +1,16 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import rootReducer from '../reducers';
 import * as accessTokenActions from '../actions/accessToken';
-import * as channelsActions from '../actions/channels';
-import * as videosActions from '../actions/videos';
-import * as searchActions from '../actions/search';
 import * as activeVideoActions from '../actions/activeVideo';
-import * as ratingsActions from '../actions/ratings';
+import * as channelsActions from '../actions/channels';
 import * as commentsActions from '../actions/comments';
+import * as ratingsActions from '../actions/ratings';
+import * as searchActions from '../actions/search';
+import * as videosActions from '../actions/videos';
+import rootReducer from '../reducers';
 
 const history = createHashHistory();
 
@@ -35,14 +35,14 @@ const configureStore = () => {
 
   // Redux DevTools Configuration
   const actionCreators = {
-    ...routerActions,
     ...accessTokenActions,
-    ...channelsActions,
-    ...videosActions,
-    ...searchActions,
     ...activeVideoActions,
+    ...channelsActions,
+    ...commentsActions,
     ...ratingsActions,
-    ...commentsActions
+    ...routerActions,
+    ...searchActions,
+    ...videosActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

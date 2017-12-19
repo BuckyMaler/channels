@@ -1,22 +1,30 @@
 // @flow
 import { combineReducers } from 'redux';
-import actionTypes from '../constants/actionTypes';
-import type { Action, CommentsState } from '../constants/typeAliases';
-import CommentType from '../dataTypes/commentType';
 import { createIsFetching, createError } from './common';
+import actionTypes from '../constants/actionTypes';
+import type { Action } from '../constants/types';
+import CommentType from '../dataTypes/commentType';
 
-function byId(state: { [string]: CommentType } = {}, { type, payload }: Action): { [string]: CommentType } {
-  switch (type) {
+export type State = {
+  +byId: { [string]: CommentType },
+  +allIds: string[],
+  +pageToken: string,
+  +isFetching: boolean,
+  +error: boolean
+};
+
+function byId(state: { [string]: CommentType } = {}, action: Action): { [string]: CommentType } {
+  switch (action.type) {
     case actionTypes.FETCH_COMMENTS_SUCCESS:
       const nextState = { ...state };
-      payload.items.forEach(item => {
+      action.payload.items.forEach(item => {
         nextState[item.id] = CommentType.from(item);
       });
       return nextState;
     case actionTypes.POST_COMMENT_SUCCESS:
       return {
         ...state,
-        [payload.id]: CommentType.from(payload)
+        [action.payload.id]: CommentType.from(action.payload)
       };
     case actionTypes.UPDATE_ACTIVE_VIDEO:
       return {};
@@ -25,16 +33,16 @@ function byId(state: { [string]: CommentType } = {}, { type, payload }: Action):
   }
 }
 
-function allIds(state: string[] = [], { type, payload }: Action): string[] {
-  switch (type) {
+function allIds(state: string[] = [], action: Action): string[] {
+  switch (action.type) {
     case actionTypes.FETCH_COMMENTS_SUCCESS:
       return [
         ...state,
-        ...payload.items.map(item => item.id)
+        ...action.payload.items.map(item => item.id)
       ];
     case actionTypes.POST_COMMENT_SUCCESS:
       return [
-        payload.id,
+        action.payload.id,
         ...state
       ];
     case actionTypes.UPDATE_ACTIVE_VIDEO:
@@ -44,10 +52,10 @@ function allIds(state: string[] = [], { type, payload }: Action): string[] {
   }
 }
 
-function pageToken(state: string = '', { type, payload }: Action): string {
-  switch (type) {
+function pageToken(state: string = '', action: Action): string {
+  switch (action.type) {
     case actionTypes.FETCH_COMMENTS_SUCCESS:
-      return payload.nextPageToken;
+      return action.payload.nextPageToken;
     case actionTypes.UPDATE_ACTIVE_VIDEO:
       return '';
     default:
@@ -63,7 +71,7 @@ const comments = combineReducers({
   error: createError('COMMENTS')
 });
 
-export function getComments(state: CommentsState): CommentType[] {
+export function getComments(state: State): CommentType[] {
   return state.allIds.map(id => state.byId[id]);
 }
 

@@ -4,11 +4,11 @@ import { IconInfo } from './Icons';
 import styles from './BlankState.scss';
 
 const BlankState = ({
-  message,
-  color
+  color,
+  message
 }: {
-  message: string,
-  color: string
+  color: string,
+  message: string
 }) => (
   <div className={[styles.blankState, styles[color]].join(' ')}>
     <IconInfo className={styles.iconInfo} />

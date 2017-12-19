@@ -1,6 +1,7 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, ThunkAction, Dispatch, GetState } from '../constants/typeAliases';
+import type { Action, ThunkAction, Dispatch, GetState } from '../constants/types';
+import { IChannel } from '../dataTypes/channelType';
 import { getRequest } from '../services/fetch';
 import { getChannelsUri, getSubscriptionsUri } from '../services/uriGenerator';
 
@@ -22,7 +23,7 @@ export function fetchChannels(): ThunkAction {
   };
 }
 
-export function fetchSubscriptions(): Promise<any> {
+export function fetchSubscriptions(): Promise<string> {
   const uri = getSubscriptionsUri();
   return getRequest(uri)
     .then(
@@ -39,7 +40,7 @@ export function fetchChannelsRequest(): Action {
   };
 }
 
-export function fetchChannelsSuccess(items: any): Action {
+export function fetchChannelsSuccess(items: IChannel[]): Action {
   return {
     type: actionTypes.FETCH_CHANNELS_SUCCESS,
     payload: items

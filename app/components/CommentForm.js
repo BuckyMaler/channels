@@ -11,8 +11,8 @@ const CommentForm = ({
 }: {
   description: string,
   isPosting: boolean,
-  handleChange: (event: any) => void,
-  handleSubmit: () => void,
+  handleChange: (event: SyntheticInputEvent<HTMLTextAreaElement>) => void,
+  handleSubmit: (event: SyntheticInputEvent<HTMLFormElement>) => void,
   handleReset: () => void
 }) => (
   <form className={styles.commentForm} onSubmit={handleSubmit}>

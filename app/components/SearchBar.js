@@ -13,7 +13,7 @@ const SearchBar = ({
   disabled: boolean,
   placeholder: string,
   value: string,
-  handleChange: () => void,
+  handleChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
   handleReset: () => void
 }) => (
   <div className={styles.searchBar}>

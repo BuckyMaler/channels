@@ -13,9 +13,9 @@ export function googleAuth(): void {
     }
   });
 
-  const authUri = getAuthRequestUri();
+  const uri = getAuthRequestUri();
 
-  authWindow.loadURL(authUri);
+  authWindow.loadURL(uri);
 
   authWindow.on('page-title-updated', (event, title) => {
     if (title.includes('code') || title.includes('error')) {

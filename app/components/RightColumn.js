@@ -1,35 +1,32 @@
 // @flow
 import React, { Component } from 'react';
-import { IconChannels } from './core/Icons';
-import TitleBar from './TitleBar';
 import Player from './Player';
 import RatingBar from './RatingBar';
+import TitleBar from './TitleBar';
+import { IconChannels } from './core/Icons';
+import type { PromiseAction } from '../constants/types';
 import Comments from '../containers/Comments';
 import RatingType from '../dataTypes/ratingType';
 import styles from './RightColumn.scss';
 
-export default class RightColumn extends Component {
-  props: {
-    activeVideo: any,
-    rating: ?RatingType,
-    fetchRatings: () => Promise<any>,
-    postRating: (type: string) => Promise<any>,
-    updateActiveVideoCounts: (prevState: RatingType, rating: string) => void
+type Props = {
+  activeVideo: any,
+  rating: ?RatingType,
+  fetchRatings: () => PromiseAction,
+  postRating: (type: string) => Promise<RatingType>,
+  updateActiveVideoCounts: (prevState: RatingType, rating: string) => void
+};
+
+type State = {
+  isPosting: boolean
+};
+
+export default class RightColumn extends Component<Props, State> {
+  state = {
+    isPosting: false
   };
 
-  state: {
-    isPosting: boolean
-  };
-
-  postRating: (rating: string) => void
-
-  constructor(props: any) {
-    super(props);
-    this.state = { isPosting: false };
-    this.postRating = this.postRating.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps: any) {
+  componentWillReceiveProps(nextProps: Props) {
     const { id } = this.props.activeVideo;
     const { id: nextId } = nextProps.activeVideo;
     if (id !== nextId) {
@@ -37,7 +34,7 @@ export default class RightColumn extends Component {
     }
   }
 
-  postRating(rating: string): void {
+  postRating = (rating: string): void => {
     this.setState({ isPosting: true });
     this.props.postRating(rating)
       .then(

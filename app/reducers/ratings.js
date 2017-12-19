@@ -1,34 +1,41 @@
 // @flow
 import { combineReducers } from 'redux';
-import actionTypes from '../constants/actionTypes';
-import type { Action, RatingsState } from '../constants/typeAliases';
-import RatingType from '../dataTypes/ratingType';
 import { createIsFetching, createError } from './common';
+import actionTypes from '../constants/actionTypes';
+import type { Action } from '../constants/types';
+import RatingType from '../dataTypes/ratingType';
 
-function byId(state: { [string]: RatingType } = {}, { type, payload }: Action): { [string]: RatingType } {
-  switch (type) {
+export type State = {
+  +byId: { [string]: RatingType },
+  +allIds: string[],
+  +isFetching: boolean,
+  +error: boolean
+};
+
+function byId(state: { [string]: RatingType } = {}, action: Action): { [string]: RatingType } {
+  switch (action.type) {
     case actionTypes.FETCH_RATINGS_SUCCESS:
       const nextState = { ...state };
-      payload.forEach(item => {
+      action.payload.forEach(item => {
         nextState[item.videoId] = RatingType.from(item);
       });
       return nextState;
     case actionTypes.POST_RATING_SUCCESS:
       return {
         ...state,
-        [payload.videoId]: RatingType.from(payload)
+        [action.payload.videoId]: RatingType.from(action.payload)
       };
     default:
       return state;
   }
 }
 
-function allIds(state: string[] = [], { type, payload }: Action): string[] {
-  switch (type) {
+function allIds(state: string[] = [], action: Action): string[] {
+  switch (action.type) {
     case actionTypes.FETCH_RATINGS_SUCCESS:
       return [
         ...state,
-        ...payload
+        ...action.payload
           .filter(item => !state.includes(item.videoId))
           .map(item => item.videoId)
       ];
@@ -44,7 +51,7 @@ const ratings = combineReducers({
   error: createError('RATINGS')
 });
 
-export function getActiveVideoRating(state: RatingsState, videoId: string): ?RatingType {
+export function getActiveVideoRating(state: State, videoId: string): ?RatingType {
   return state.byId[videoId];
 }
 

@@ -1,36 +1,34 @@
 // @flow
 import React, { Component } from 'react';
+import ErrorState from './core/ErrorState';
+import Loader from './core/Loader';
+import type { PromiseAction } from '../constants/types';
 import LeftColumn from '../containers/LeftColumn';
 import RightColumn from '../containers/RightColumn';
-import Loader from './core/Loader';
-import ErrorState from './core/ErrorState';
 import styles from './Home.scss';
 
-export default class Home extends Component {
-  props: {
-    token: string,
-    isFetching: boolean,
-    error: boolean,
-    fetchAccessToken: () => Promise<any>
-  };
+type Props = {
+  token: string,
+  isFetching: boolean,
+  error: boolean,
+  fetchAccessToken: () => PromiseAction
+};
 
+export default class Home extends Component<Props> {
   intervalId: number;
-  fiftyMinutes: number;
-  interval: () => number;
-
-  constructor(props: any) {
-    super(props);
-    this.fiftyMinutes = 3000000;
-    this.interval = () => setInterval(this.props.fetchAccessToken, this.fiftyMinutes);
-  }
 
   componentDidMount() {
     this.props.fetchAccessToken();
-    this.intervalId = this.interval();
+    this.intervalId = this.refreshAccessToken();
   }
 
   componentWillUnmount() {
     clearInterval(this.intervalId);
+  }
+
+  refreshAccessToken = (): number => {
+    const fiftyMinutes = 3000000;
+    return setInterval(this.props.fetchAccessToken, fiftyMinutes);
   }
 
   render() {
@@ -47,8 +45,8 @@ export default class Home extends Component {
             <Loader />
           ) : (
             <ErrorState
-              message={'Error accessing your account.'}
-              color={'black'}
+              color="black"
+              message="Error accessing your account."
               retry={fetchAccessToken}
             />
           )}

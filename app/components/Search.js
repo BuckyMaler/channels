@@ -2,39 +2,27 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import type { PromiseAction } from '../constants/types';
 import ChannelType from '../dataTypes/channelType';
 import VideoType from '../dataTypes/videoType';
 import styles from './Search.scss';
 
-export default class Search extends Component {
-  props: {
-    activeChannel: ?ChannelType,
-    query: string,
-    results: VideoType[],
-    isFetching: boolean,
-    error: boolean,
-    pageToken: string,
-    fetchSearch: () => Promise<any>,
-    updateSearch: (query: string) => void,
-    clearSearch: () => void,
-    updateActiveVideo: (video: VideoType) => void
-  };
+type Props = {
+  activeChannel: ?ChannelType,
+  query: string,
+  results: VideoType[],
+  pageToken: string,
+  isFetching: boolean,
+  error: boolean,
+  fetchSearch: () => PromiseAction,
+  updateSearch: (query: string) => void,
+  clearSearch: () => void,
+  updateActiveVideo: (video: VideoType) => void
+};
 
-  handleChange: () => void
-  handleSubmit: () => void
-  handleReset: () => void
-  handleSelect: (result: VideoType) => void
-
-  constructor(props: any) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  handleChange(event: any): void {
-    const { value } = event.target;
+export default class Search extends Component<Props> {
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
+    const { value } = event.currentTarget;
     if (!value) {
       this.handleReset();
     } else {
@@ -43,16 +31,16 @@ export default class Search extends Component {
     this.props.fetchSearch();
   }
 
-  handleSubmit(event: Event): void {
+  handleSubmit = (event: SyntheticInputEvent<HTMLFormElement>): void => {
     event.preventDefault();
   }
 
-  handleReset(): void {
+  handleReset = (): void => {
     this.props.clearSearch();
   }
 
-  handleSelect(video: VideoType): void {
-    this.props.updateActiveVideo(video);
+  selectResult = (result: VideoType): void => {
+    this.props.updateActiveVideo(result);
     this.handleReset();
   }
 
@@ -61,9 +49,9 @@ export default class Search extends Component {
       activeChannel,
       query,
       results,
+      pageToken,
       isFetching,
       error,
-      pageToken,
       fetchSearch
     } = this.props;
     return (
@@ -78,12 +66,12 @@ export default class Search extends Component {
         />
         <SearchResults
           results={results}
+          pageToken={pageToken}
           isFetching={isFetching}
           error={error}
-          pageToken={pageToken}
-          fetchSearch={fetchSearch}
           searchResultsIsOpen={!!query}
-          handleSelect={this.handleSelect}
+          fetchSearch={fetchSearch}
+          selectResult={this.selectResult}
         />
       </form>
     );

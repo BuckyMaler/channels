@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
-import Status from './Status';
-import Search from '../containers/Search';
 import ChannelList from './ChannelList';
+import Status from './Status';
+import type { PromiseAction } from '../constants/types';
+import Search from '../containers/Search';
 import ChannelType from '../dataTypes/channelType';
 import placeholder from '../images/placeholder.jpg';
 import styles from './Navigation.scss';
@@ -22,7 +23,7 @@ const Navigation = ({
   isFetching: boolean,
   error: boolean,
   channelListIsOpen: boolean,
-  fetchChannels: () => Promise<any>,
+  fetchChannels: () => PromiseAction,
   updateActiveChannel: (channelId: string) => void,
   toggleChannelList: () => void
 }) => (

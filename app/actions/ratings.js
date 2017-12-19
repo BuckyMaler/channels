@@ -1,6 +1,7 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, ThunkAction, Dispatch, GetState } from '../constants/typeAliases';
+import type { Action, ThunkAction, Dispatch, GetState } from '../constants/types';
+import { IRating } from '../dataTypes/ratingType';
 import { getRequest, postRequest } from '../services/fetch';
 import { getRatingsUri, postRatingUri } from '../services/uriGenerator';
 
@@ -42,7 +43,7 @@ export function fetchRatingsRequest(): Action {
   };
 }
 
-export function fetchRatingsSuccess(items: any): Action {
+export function fetchRatingsSuccess(items: IRating[]): Action {
   return {
     type: actionTypes.FETCH_RATINGS_SUCCESS,
     payload: items
@@ -55,7 +56,7 @@ export function fetchRatingsFailure(): Action {
   };
 }
 
-export function postRatingSuccess(item: any): Action {
+export function postRatingSuccess(item: IRating): Action {
   return {
     type: actionTypes.POST_RATING_SUCCESS,
     payload: item

@@ -1,8 +1,8 @@
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import RightColumn from '../components/RightColumn';
-import * as ratingsActions from '../actions/ratings';
+import { bindActionCreators } from 'redux';
 import * as activeVideoActions from '../actions/activeVideo';
+import * as ratingsActions from '../actions/ratings';
+import RightColumn from '../components/RightColumn';
 import { getActiveVideoRating } from '../reducers/index';
 
 function mapStateToProps(state) {
@@ -13,8 +13,8 @@ function mapStateToProps(state) {
 }
 
 const actions = {
-  ...ratingsActions,
-  ...activeVideoActions
+  ...activeVideoActions,
+  ...ratingsActions
 };
 
 function mapDispatchToProps(dispatch) {

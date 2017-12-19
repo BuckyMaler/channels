@@ -1,6 +1,6 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
-import type { Action, ThunkAction, Dispatch } from '../constants/typeAliases';
+import type { Action, ThunkAction, Dispatch } from '../constants/types';
 import { authRequest } from '../services/fetch';
 import { getAccessTokenUri } from '../services/uriGenerator';
 
@@ -22,10 +22,10 @@ export function fetchAccessTokenRequest(): Action {
   };
 }
 
-export function fetchAccessTokenSuccess(token: string): Action {
+export function fetchAccessTokenSuccess(accessToken: string): Action {
   return {
     type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
-    payload: token
+    payload: accessToken
   };
 }
 

@@ -1,19 +1,33 @@
 // @flow
 import { fromNow } from '../services/moment';
 
+export interface IComment {
+  id: string,
+  snippet: {
+    topLevelComment: {
+      snippet: {
+        authorDisplayName: string,
+        authorProfileImageUrl: string,
+        textDisplay: string,
+        publishedAt: Date
+      }
+    }
+  }
+}
+
 export default class CommentType {
   id: string;
   author: string;
   avatar: string;
   description: string;
-  publishedAt: string;
+  publishedAt: Date;
 
   constructor(
     id: string,
     author: string,
     avatar: string,
     description: string,
-    publishedAt: string
+    publishedAt: Date
   ) {
     this.id = id;
     this.author = author;
@@ -22,9 +36,9 @@ export default class CommentType {
     this.publishedAt = publishedAt;
   }
 
-  static from(json: any): CommentType {
-    const { id, snippet: snip } = json;
-    const { snippet } = snip.topLevelComment;
+  static from(item: IComment): CommentType {
+    const { id, snippet: s } = item;
+    const { snippet } = s.topLevelComment;
     const author = snippet.authorDisplayName;
     const avatar = snippet.authorProfileImageUrl;
     const description = snippet.textDisplay;
