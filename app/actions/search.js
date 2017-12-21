@@ -1,7 +1,7 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
 import type { Action, ThunkAction, Dispatch, GetState } from '../constants/types';
-import { IVideo } from '../dataTypes/videoType';
+import type { VideoItem } from '../dataTypes/videoType';
 import { getRequest } from '../services/fetch';
 import { getVideosUri, getVideoIdsUri } from '../services/uriGenerator';
 
@@ -48,7 +48,7 @@ export function fetchSearchRequest(): Action {
   };
 }
 
-export function fetchSearchSuccess(items: IVideo[], nextPageToken: string): Action {
+export function fetchSearchSuccess(items: VideoItem[], nextPageToken: string): Action {
   return {
     type: actionTypes.FETCH_SEARCH_SUCCESS,
     payload: {

@@ -1,8 +1,10 @@
 // @flow
-import { IChannel } from '../dataTypes/channelType';
-import { IComment } from '../dataTypes/commentType';
-import RatingType, { IRating } from '../dataTypes/ratingType';
-import VideoType, { IVideo } from '../dataTypes/videoType';
+import type { ChannelItem } from '../dataTypes/channelType';
+import type { CommentItem } from '../dataTypes/commentType';
+import RatingType from '../dataTypes/ratingType';
+import type { RatingItem } from '../dataTypes/ratingType';
+import VideoType from '../dataTypes/videoType';
+import type { VideoItem } from '../dataTypes/videoType';
 import type { State } from '../reducers/index';
 
 export type Action =
@@ -26,7 +28,7 @@ export type Action =
   | { type: 'FETCH_CHANNELS_REQUEST' }
   | {
       type: 'FETCH_CHANNELS_SUCCESS',
-      payload: IChannel[]
+      payload: ChannelItem[]
     }
   | { type: 'FETCH_CHANNELS_FAILURE' }
   | {
@@ -37,30 +39,30 @@ export type Action =
   | {
       type: 'FETCH_COMMENTS_SUCCESS',
       payload: {
-        items: IComment[],
+        items: CommentItem[],
         nextPageToken: string
       }
     }
   | { type: 'FETCH_COMMENTS_FAILURE' }
   | {
       type: 'POST_COMMENT_SUCCESS',
-      payload: IComment
+      payload: CommentItem
     }
   | { type: 'FETCH_RATINGS_REQUEST' }
   | {
       type: 'FETCH_RATINGS_SUCCESS',
-      payload: IRating[]
+      payload: RatingItem[]
     }
   | { type: 'FETCH_RATINGS_FAILURE' }
   | {
       type: 'POST_RATING_SUCCESS',
-      payload: IRating
+      payload: RatingItem
     }
   | { type: 'FETCH_SEARCH_REQUEST' }
   | {
       type: 'FETCH_SEARCH_SUCCESS',
       payload: {
-        items: IVideo[],
+        items: VideoItem[],
         nextPageToken: string
       }
     }
@@ -74,7 +76,7 @@ export type Action =
   | {
       type: 'FETCH_VIDEOS_SUCCESS',
       payload: {
-        items: IVideo[],
+        items: VideoItem[],
         nextPageToken: string
       }
     }

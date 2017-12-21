@@ -47,7 +47,7 @@ describe('channels reducer', () => {
         'UCyIe-61Y8C4_o-zZCtO4ETQ': {
           id: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
         },
-        'UCO1cgjhGzsSYb1rsB4bFe4Q': {
+        UCO1cgjhGzsSYb1rsB4bFe4Q: {
           id: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
         }
       },
@@ -85,7 +85,7 @@ describe('channels reducer', () => {
         'UCyIe-61Y8C4_o-zZCtO4ETQ': {
           id: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
         },
-        'UCO1cgjhGzsSYb1rsB4bFe4Q': {
+        UCO1cgjhGzsSYb1rsB4bFe4Q: {
           id: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
         }
       },
@@ -106,7 +106,7 @@ describe('channels reducer', () => {
         'UCyIe-61Y8C4_o-zZCtO4ETQ': {
           id: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
         },
-        'UCO1cgjhGzsSYb1rsB4bFe4Q': {
+        UCO1cgjhGzsSYb1rsB4bFe4Q: {
           id: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
         }
       },

@@ -2,10 +2,10 @@
 import { fromNow } from '../services/moment';
 import { commaSeparateNumber } from '../utils/utils';
 
-export interface IVideo {
+export type VideoItem = {
   id: string,
   snippet: {
-    publishedAt: Date,
+    publishedAt: string,
     title: string,
     description: string,
     thumbnails: {
@@ -19,14 +19,14 @@ export interface IVideo {
     likeCount: string,
     dislikeCount: string
   }
-}
+};
 
 export default class VideoType {
   id: string;
   title: string;
   thumbnail: string;
   description: string;
-  publishedAt: Date;
+  publishedAt: string;
   viewCount: string;
   likeCount: string;
   dislikeCount: string;
@@ -36,7 +36,7 @@ export default class VideoType {
     title: string,
     thumbnail: string,
     description: string,
-    publishedAt: Date,
+    publishedAt: string,
     viewCount: string,
     likeCount: string,
     dislikeCount: string
@@ -51,15 +51,22 @@ export default class VideoType {
     this.dislikeCount = dislikeCount;
   }
 
-  static from(item: IVideo): VideoType {
+  static from(item: VideoItem): VideoType {
     const { id, snippet, statistics } = item;
-    const title = snippet.title;
-    const thumbnail = snippet.thumbnails.high.url;
-    const description = snippet.description;
+    const { title, description, thumbnails } = snippet;
+    const { likeCount, dislikeCount } = statistics;
+    const thumbnail = thumbnails.high.url;
     const publishedAt = fromNow(snippet.publishedAt, 'YYYYMMDD');
     const viewCount = commaSeparateNumber(statistics.viewCount);
-    const likeCount = statistics.likeCount;
-    const dislikeCount = statistics.dislikeCount;
-    return new VideoType(id, title, thumbnail, description, publishedAt, viewCount, likeCount, dislikeCount);
+    return new VideoType(
+      id,
+      title,
+      thumbnail,
+      description,
+      publishedAt,
+      viewCount,
+      likeCount,
+      dislikeCount
+    );
   }
 }

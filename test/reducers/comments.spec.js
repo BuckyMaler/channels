@@ -27,7 +27,7 @@ describe('comments reducer', () => {
   it('should handle FETCH_COMMENTS_SUCCESS', () => {
     CommentType.from = jest.fn(item => item);
 
-    expect(
+    expect((
       comments(
         {
           byId: {},
@@ -47,12 +47,12 @@ describe('comments reducer', () => {
           }
         }
       )
-    ).toEqual({
+    )).toEqual({
       byId: {
-        'z12sgfaakziic3eei23sjz3yxpfbhbybw04': {
+        z12sgfaakziic3eei23sjz3yxpfbhbybw04: {
           id: 'z12sgfaakziic3eei23sjz3yxpfbhbybw04'
         },
-        'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k': {
+        z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k: {
           id: 'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k'
         }
       },
@@ -65,14 +65,14 @@ describe('comments reducer', () => {
       error: false
     });
 
-    expect(
+    expect((
       comments(
         {
           byId: {
-            'z12sgfaakziic3eei23sjz3yxpfbhbybw04': {
+            z12sgfaakziic3eei23sjz3yxpfbhbybw04: {
               id: 'z12sgfaakziic3eei23sjz3yxpfbhbybw04'
             },
-            'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k': {
+            z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k: {
               id: 'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k'
             }
           },
@@ -95,18 +95,18 @@ describe('comments reducer', () => {
           }
         }
       )
-    ).toEqual({
+    )).toEqual({
       byId: {
-        'z12sgfaakziic3eei23sjz3yxpfbhbybw04': {
+        z12sgfaakziic3eei23sjz3yxpfbhbybw04: {
           id: 'z12sgfaakziic3eei23sjz3yxpfbhbybw04'
         },
-        'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k': {
+        z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k: {
           id: 'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k'
         },
-        'z121ulvbpt2vt3qrl04chhbj4z32spyw120': {
+        z121ulvbpt2vt3qrl04chhbj4z32spyw120: {
           id: 'z121ulvbpt2vt3qrl04chhbj4z32spyw120'
         },
-        'z13pj1gx5ovotnyng23jhxcbwtmbwnbvy': {
+        z13pj1gx5ovotnyng23jhxcbwtmbwnbvy: {
           id: 'z13pj1gx5ovotnyng23jhxcbwtmbwnbvy'
         }
       },
@@ -143,10 +143,10 @@ describe('comments reducer', () => {
   it('should handle UPDATE_ACTIVE_VIDEO', () => {
     const state = {
       byId: {
-        'M8l2aGMjKHI': {
+        M8l2aGMjKHI: {
           id: 'M8l2aGMjKHI'
         },
-        'GcSACxUbqtg': {
+        GcSACxUbqtg: {
           id: 'GcSACxUbqtg'
         }
       },

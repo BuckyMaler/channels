@@ -1,5 +1,20 @@
 @import '../app.global.scss';
 
+.modal {
+  position: fixed;
+  top: 74px;
+  left: 14px;
+  width: 350px;
+  height: 450px;
+  border-radius: 3px;
+  box-shadow: 0 2px 15px rgba(46, 46, 46, 0.6);
+  background-color: $white;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+
 .channelList {
   &.isOpen {
     .closeTarget {
@@ -17,21 +32,6 @@
       transition: visibility 0s, opacity 0.3s ease;
     }
   }
-}
-
-.modal {
-  position: fixed;
-  top: 74px;
-  left: 14px;
-  width: 350px;
-  height: 450px;
-  border-radius: 3px;
-  box-shadow: 0 2px 15px rgba(46, 46, 46, 0.6);
-  background-color: $white;
-  overflow-y: auto;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1;
 }
 
 .channels {

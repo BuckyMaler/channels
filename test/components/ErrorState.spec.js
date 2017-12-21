@@ -29,7 +29,6 @@ describe('ErrorState', () => {
   });
 
   describe('with retry', () => {
-
     const optionalProps = {
       retry: jest.fn()
     };

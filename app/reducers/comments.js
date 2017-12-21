@@ -15,12 +15,13 @@ export type State = {
 
 function byId(state: { [string]: CommentType } = {}, action: Action): { [string]: CommentType } {
   switch (action.type) {
-    case actionTypes.FETCH_COMMENTS_SUCCESS:
+    case actionTypes.FETCH_COMMENTS_SUCCESS: {
       const nextState = { ...state };
       action.payload.items.forEach(item => {
         nextState[item.id] = CommentType.from(item);
       });
       return nextState;
+    }
     case actionTypes.POST_COMMENT_SUCCESS:
       return {
         ...state,

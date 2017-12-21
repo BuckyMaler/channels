@@ -1,7 +1,7 @@
 // @flow
 import { commaSeparateNumber } from '../utils/utils';
 
-export interface IChannel {
+export type ChannelItem = {
   id: string,
   snippet: {
     title: string,
@@ -15,7 +15,7 @@ export interface IChannel {
     subscriberCount: string,
     videoCount: string
   }
-}
+};
 
 export default class ChannelType {
   id: string;
@@ -38,9 +38,9 @@ export default class ChannelType {
     this.subscriberCount = subscriberCount;
   }
 
-  static from(item: IChannel): ChannelType {
+  static from(item: ChannelItem): ChannelType {
     const { id, snippet, statistics } = item;
-    const title = snippet.title;
+    const { title } = snippet;
     const thumbnail = snippet.thumbnails.default.url;
     const videoCount = commaSeparateNumber(statistics.videoCount);
     const subscriberCount = commaSeparateNumber(statistics.subscriberCount);

@@ -17,7 +17,9 @@ const SearchBar = ({
   handleReset: () => void
 }) => (
   <div className={styles.searchBar}>
-    {!disabled && <IconSearch className={styles.iconSearch} />}
+    {!disabled &&
+      <IconSearch className={styles.iconSearch} />
+    }
     <input
       className={styles.searchInput}
       disabled={disabled}

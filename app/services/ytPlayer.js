@@ -1,3 +1,5 @@
+/* eslint-disable no-undef, import/prefer-default-export */
+
 // @flow
 let player;
 

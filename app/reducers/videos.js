@@ -15,12 +15,13 @@ export type State = {
 
 function byId(state: { [string]: VideoType } = {}, action: Action): { [string]: VideoType } {
   switch (action.type) {
-    case actionTypes.FETCH_VIDEOS_SUCCESS:
+    case actionTypes.FETCH_VIDEOS_SUCCESS: {
       const nextState = { ...state };
       action.payload.items.forEach(item => {
         nextState[item.id] = VideoType.from(item);
       });
       return nextState;
+    }
     case actionTypes.UPDATE_ACTIVE_CHANNEL:
       return {};
     default:

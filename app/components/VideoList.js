@@ -10,11 +10,11 @@ import VideoType from '../dataTypes/videoType';
 import styles from './VideoList.scss';
 
 type Props = {
-  channelId: string,
   videos: VideoType[],
   pageToken: string,
   isFetching: boolean,
   error: boolean,
+  activeChannelId: string,
   fetchVideos: () => PromiseAction,
   updateActiveVideo: (video: VideoType) => void
 };
@@ -25,8 +25,8 @@ export default class VideoList extends Component<Props> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    const id = this.props.channelId;
-    const nextId = nextProps.channelId;
+    const { activeChannelId: id } = this.props;
+    const { activeChannelId: nextId } = nextProps;
     if (id !== nextId) {
       this.props.fetchVideos();
     }
@@ -41,10 +41,10 @@ export default class VideoList extends Component<Props> {
       fetchVideos,
       updateActiveVideo
     } = this.props;
-    return (
-      <div className={styles.videoList}>
-        {(isFetching && !pageToken) || error ? (
-          isFetching ? (
+    if ((isFetching && !pageToken) || error) {
+      return (
+        <div className={styles.videoList}>
+          {isFetching ? (
             <Loader />
           ) : (
             <ErrorState
@@ -52,34 +52,38 @@ export default class VideoList extends Component<Props> {
               message="Error requesting videos."
               retry={fetchVideos}
             />
-          )
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.videoList}>
+        {videos.length ? (
+          <InfiniteScroll
+            pageToken={pageToken}
+            isFetching={isFetching}
+            loadMore={fetchVideos}
+          >
+            <ul className={styles.videos}>
+              {videos.map(video => (
+                <Video
+                  key={video.id}
+                  title={video.title}
+                  thumbnail={video.thumbnail}
+                  description={video.description}
+                  publishedAt={video.publishedAt}
+                  viewCount={video.viewCount}
+                  handleClick={() => updateActiveVideo(video)}
+                />
+              ))}
+            </ul>
+          </InfiniteScroll>
         ) : (
-          videos.length ? (
-            <InfiniteScroll
-              pageToken={pageToken}
-              isFetching={isFetching}
-              loadMore={fetchVideos}
-            >
-              <ul className={styles.videos}>
-                {videos.map(video => (
-                  <Video
-                    key={video.id}
-                    title={video.title}
-                    thumbnail={video.thumbnail}
-                    description={video.description}
-                    publishedAt={video.publishedAt}
-                    viewCount={video.viewCount}
-                    handleClick={() => updateActiveVideo(video)}
-                  />
-                ))}
-              </ul>
-            </InfiniteScroll>
-          ) : (
-            <BlankState
-              color="black"
-              message="No videos found."
-            />
-          )
+          <BlankState
+            color="black"
+            message="No videos found."
+          />
         )}
       </div>
     );

@@ -1,4 +1,3 @@
-/* eslint promise/always-return: 0 */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as searchActions from '../../app/actions/search';
@@ -11,7 +10,6 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('search actions', () => {
-
   let store;
   beforeEach(() => {
     store = mockStore({

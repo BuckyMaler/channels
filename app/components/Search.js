@@ -8,12 +8,12 @@ import VideoType from '../dataTypes/videoType';
 import styles from './Search.scss';
 
 type Props = {
-  activeChannel: ?ChannelType,
   query: string,
   results: VideoType[],
   pageToken: string,
   isFetching: boolean,
   error: boolean,
+  activeChannel: ?ChannelType,
   fetchSearch: () => PromiseAction,
   updateSearch: (query: string) => void,
   clearSearch: () => void,
@@ -46,12 +46,12 @@ export default class Search extends Component<Props> {
 
   render() {
     const {
-      activeChannel,
       query,
       results,
       pageToken,
       isFetching,
       error,
+      activeChannel,
       fetchSearch
     } = this.props;
     return (

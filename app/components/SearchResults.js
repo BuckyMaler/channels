@@ -1,12 +1,12 @@
 // @flow
 import React from 'react';
-import Video from './core/Video';
-import Loader from './core/Loader';
 import BlankState from './core/BlankState';
 import ErrorState from './core/ErrorState';
 import InfiniteScroll from './core/InfiniteScroll';
-import VideoType from '../dataTypes/videoType';
+import Loader from './core/Loader';
+import Video from './core/Video';
 import type { PromiseAction } from '../constants/types';
+import VideoType from '../dataTypes/videoType';
 import styles from './SearchResults.scss';
 
 const SearchResults = ({
@@ -25,23 +25,29 @@ const SearchResults = ({
   searchResultsIsOpen: boolean,
   fetchSearch: () => PromiseAction,
   selectResult: (result: VideoType) => void
-}) => (
-  <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
-    {(isFetching && !pageToken) || error ? (
-      isFetching ? (
-        <Loader />
-      ) : (
-        <ErrorState
-          color="black"
-          message="Error requesting videos."
-        />
-      )
-    ) : (
-      results.length ? (
+}) => {
+  if ((isFetching && !pageToken) || error) {
+    return (
+      <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
+        {isFetching ? (
+          <Loader />
+        ) : (
+          <ErrorState
+            color="black"
+            message="Error requesting videos."
+          />
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={searchResultsIsOpen ? [styles.searchResults, styles.isOpen].join(' ') : styles.searchResults}>
+      {results.length ? (
         <InfiniteScroll
           pageToken={pageToken}
-          maxHeight="350px"
           isFetching={isFetching}
+          maxHeight="350px"
           loadMore={fetchSearch}
         >
           <ul className={styles.results}>
@@ -52,7 +58,7 @@ const SearchResults = ({
                 thumbnail={result.thumbnail}
                 publishedAt={result.publishedAt}
                 viewCount={result.viewCount}
-                isSearchResult={true}
+                isSearchResult
                 handleClick={() => selectResult(result)}
               />
             ))}
@@ -63,9 +69,9 @@ const SearchResults = ({
           color="black"
           message="No videos found."
         />
-      )
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
+};
 
 export default SearchResults;

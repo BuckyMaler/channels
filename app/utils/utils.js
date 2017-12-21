@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 // @flow
 export function commaSeparateNumber(value: string | number): string {
   if (typeof value !== 'string' && typeof value !== 'number') {

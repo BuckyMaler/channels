@@ -1,16 +1,16 @@
-/* eslint flowtype-errors/show-errors: 0 */
+/* eslint-disable flowtype-errors/show-errors */
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import App from './containers/App';
 import Home from './containers/Home';
 import Login from './components/Login';
-import { requireAuthorization } from './services/authorization';
+import { requireAuth } from './services/authorization';
 
 export default () => (
   <App>
     <Switch>
-      <Route exact path="/" component={Login} onEnter={requireAuthorization()} />
-      <Route path="/home" component={Home} />
+      <Route exact path="/" component={Home} onEnter={requireAuth()} />
+      <Route path="/login" component={Login} />
     </Switch>
   </App>
 );

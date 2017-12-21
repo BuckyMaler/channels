@@ -1,4 +1,3 @@
-/* eslint promise/always-return: 0 */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as videosActions from '../../app/actions/videos';
@@ -11,7 +10,6 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('videos actions', () => {
-
   let store;
   beforeEach(() => {
     store = mockStore({

@@ -22,10 +22,6 @@
 .rating {
   height: 21px;
 
-  label:first-child {
-    margin-right: 1rem;
-  }
-
   > label {
     display: inline-block;
     height: 100%;
@@ -33,6 +29,10 @@
     input {
       display: none;
     }
+  }
+
+  label:first-child {
+    margin-right: 1rem;
   }
 }
 

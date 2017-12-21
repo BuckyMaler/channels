@@ -1,8 +1,8 @@
 import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
 import * as accessTokenActions from '../actions/accessToken';
 import * as activeVideoActions from '../actions/activeVideo';
 import * as channelsActions from '../actions/channels';

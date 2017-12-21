@@ -5,12 +5,12 @@ import BlankState from '../../app/components/core/BlankState';
 
 describe('BlankState', () => {
   it('should render self', () => {
-    const enzymeWrapper = shallow(
+    const enzymeWrapper = shallow((
       <BlankState
-        message={'No channels found.'}
-        color={'black'}
+        message="No channels found."
+        color="black"
       />
-    );
+    ));
     const tree = toJson(enzymeWrapper);
 
     expect(tree).toMatchSnapshot();

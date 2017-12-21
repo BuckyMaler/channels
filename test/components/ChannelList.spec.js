@@ -34,7 +34,6 @@ describe('ChannelList', () => {
   });
 
   describe('when opened', () => {
-
     const { props, enzymeWrapper } = setup();
     beforeEach(() => {
       enzymeWrapper.setProps({
