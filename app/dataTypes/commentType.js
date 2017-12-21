@@ -1,7 +1,7 @@
 // @flow
 import { fromNow } from '../services/moment';
 
-export interface IComment {
+export type CommentItem = {
   id: string,
   snippet: {
     topLevelComment: {
@@ -9,25 +9,25 @@ export interface IComment {
         authorDisplayName: string,
         authorProfileImageUrl: string,
         textDisplay: string,
-        publishedAt: Date
+        publishedAt: string
       }
     }
   }
-}
+};
 
 export default class CommentType {
   id: string;
   author: string;
   avatar: string;
   description: string;
-  publishedAt: Date;
+  publishedAt: string;
 
   constructor(
     id: string,
     author: string,
     avatar: string,
     description: string,
-    publishedAt: Date
+    publishedAt: string
   ) {
     this.id = id;
     this.author = author;
@@ -36,7 +36,7 @@ export default class CommentType {
     this.publishedAt = publishedAt;
   }
 
-  static from(item: IComment): CommentType {
+  static from(item: CommentItem): CommentType {
     const { id, snippet: s } = item;
     const { snippet } = s.topLevelComment;
     const author = snippet.authorDisplayName;

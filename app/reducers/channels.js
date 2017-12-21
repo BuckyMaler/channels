@@ -15,12 +15,13 @@ export type State = {
 
 function byId(state: { [string]: ChannelType } = {}, action: Action): { [string]: ChannelType } {
   switch (action.type) {
-    case actionTypes.FETCH_CHANNELS_SUCCESS:
+    case actionTypes.FETCH_CHANNELS_SUCCESS: {
       const nextState = { ...state };
       action.payload.forEach(item => {
         nextState[item.id] = ChannelType.from(item);
       });
       return nextState;
+    }
     default:
       return state;
   }

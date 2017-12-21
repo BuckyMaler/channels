@@ -2,15 +2,18 @@
 import React, { Component } from 'react';
 import ErrorState from './core/ErrorState';
 import Loader from './core/Loader';
+import LeftColumn from '../components/LeftColumn';
+import RightColumn from '../components/RightColumn';
 import type { PromiseAction } from '../constants/types';
-import LeftColumn from '../containers/LeftColumn';
-import RightColumn from '../containers/RightColumn';
+import ChannelType from '../dataTypes/channelType';
 import styles from './Home.scss';
 
 type Props = {
   token: string,
   isFetching: boolean,
   error: boolean,
+  activeChannel: ?ChannelType,
+  activeVideo: any,
   fetchAccessToken: () => PromiseAction
 };
 
@@ -36,6 +39,8 @@ export default class Home extends Component<Props> {
       token,
       isFetching,
       error,
+      activeChannel,
+      activeVideo,
       fetchAccessToken
     } = this.props;
     if (!token || error) {
@@ -56,8 +61,12 @@ export default class Home extends Component<Props> {
 
     return (
       <div className={styles.home}>
-        <LeftColumn />
-        <RightColumn />
+        <LeftColumn
+          activeChannel={activeChannel}
+        />
+        <RightColumn
+          activeVideo={activeVideo}
+        />
       </div>
     );
   }

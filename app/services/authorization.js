@@ -32,26 +32,19 @@ function getCodeFromTitle(title: string): void {
 }
 
 function exchangeCode(code: ?string): void {
-  if (!code) {
-    return;
+  if (code) {
+    const uri = getRefreshTokenUri(code);
+    authRequest(uri) // eslint-disable-line promise/catch-or-return
+      .then(json => { // eslint-disable-line promise/always-return
+        localStorage.setItem('refreshToken', json.refresh_token);
+        location.hash = '/'; // eslint-disable-line no-restricted-globals
+      });
+  } else {
+    alert('An error ocurred logging in with Google. Please try again.');
   }
-  requestTokens(code)
-    .then(json => {
-      storeRefreshToken(json);
-      location.hash = '/home';
-    });
 }
 
-function requestTokens(code: string): Promise<any> {
-  const uri = getRefreshTokenUri(code);
-  return authRequest(uri);
-}
-
-function storeRefreshToken(json: any): void {
-  localStorage.setItem('refreshToken', json.refresh_token);
-}
-
-export function requireAuthorization(): void {
+export function requireAuth(): void {
   const isAuthorized = localStorage.getItem('refreshToken');
-  location.hash = isAuthorized ? '/home' : '/';
+  location.hash = isAuthorized ? '/' : '/login'; // eslint-disable-line no-restricted-globals
 }

@@ -2,18 +2,12 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
 import SelectChannel from './SelectChannel';
-import type { PromiseAction } from '../constants/types';
 import VideoList from '../containers/VideoList';
 import ChannelType from '../dataTypes/channelType';
 import styles from './LeftColumn.scss';
 
 type Props = {
-  activeChannel: ?ChannelType,
-  channels: ChannelType[],
-  isFetching: boolean,
-  error: boolean,
-  fetchChannels: () => PromiseAction,
-  updateActiveChannel: (channelId: string) => void
+  activeChannel: ?ChannelType
 };
 
 type State = {
@@ -25,10 +19,6 @@ export default class LeftColumn extends Component<Props, State> {
     channelListIsOpen: false
   };
 
-  componentDidMount() {
-    this.props.fetchChannels();
-  }
-
   toggleChannelList = (): void => {
     this.setState(prevState => ({
       channelListIsOpen: !prevState.channelListIsOpen
@@ -37,12 +27,7 @@ export default class LeftColumn extends Component<Props, State> {
 
   render() {
     const {
-      activeChannel,
-      channels,
-      isFetching,
-      error,
-      fetchChannels,
-      updateActiveChannel
+      activeChannel
     } = this.props;
     const {
       channelListIsOpen
@@ -51,16 +36,13 @@ export default class LeftColumn extends Component<Props, State> {
       <div className={styles.leftColumn}>
         <Navigation
           activeChannel={activeChannel}
-          channels={channels}
-          isFetching={isFetching}
-          error={error}
           channelListIsOpen={channelListIsOpen}
-          fetchChannels={fetchChannels}
-          updateActiveChannel={updateActiveChannel}
           toggleChannelList={this.toggleChannelList}
         />
         {activeChannel ? (
-          <VideoList />
+          <VideoList
+            activeChannelId={activeChannel.id}
+          />
         ) : (
           <SelectChannel
             toggleChannelList={this.toggleChannelList}

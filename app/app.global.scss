@@ -1,3 +1,5 @@
+  /* stylelint-disable */
+
 /*
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
@@ -225,7 +227,7 @@ th {
   padding: 0;
 }
 
-// Colors
+/* Colors */
 $white: #fff;
 $black: #2e2e2e;
 $gray: #a8a2a0;
@@ -234,18 +236,18 @@ $dark-black: darken($black, 10%);
 $light-gray: lighten($gray, 10%);
 $dark-gray: darken($gray, 10%);
 
-// Typography
+/* Typography */
 $base-font-size: 14px;
 $base-line-height: 1.5rem;
 $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
-// REMs with pixel fallback for font sizing
+/* REMs with pixel fallback for font sizing */
 @mixin font-size($font-size) {
   font-size: $font-size + px;
   font-size: ($font-size / 14) + rem;
 }
 
-// Defaults
+/* Defaults */
 body {
   background-color: $white;
   font-size: $base-font-size;

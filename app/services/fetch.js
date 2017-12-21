@@ -1,10 +1,10 @@
 // @flow
-export const methods = {
+const methods = {
   GET: 'GET',
   POST: 'POST'
 };
 
-export const status = {
+const status = {
   NO_CONTENT: 204
 };
 
@@ -38,7 +38,7 @@ export function getRequest(uri: string): Promise<any> {
     });
 }
 
-export function postRequest(uri: string, body?: any): Promise<any> {
+export function postRequest(uri: string, body?: {}): Promise<any> {
   const init = {
     method: methods.POST,
     headers: { 'Content-Type': 'application/json' },

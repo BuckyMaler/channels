@@ -27,7 +27,7 @@ describe('videos reducer', () => {
   it('should handle FETCH_VIDEOS_SUCCESS', () => {
     VideoType.from = jest.fn(item => item);
 
-    expect(
+    expect((
       videos(
         {
           byId: {},
@@ -47,12 +47,12 @@ describe('videos reducer', () => {
           }
         }
       )
-    ).toEqual({
+    )).toEqual({
       byId: {
-        'M8l2aGMjKHI': {
+        M8l2aGMjKHI: {
           id: 'M8l2aGMjKHI'
         },
-        'GcSACxUbqtg': {
+        GcSACxUbqtg: {
           id: 'GcSACxUbqtg'
         }
       },
@@ -65,14 +65,14 @@ describe('videos reducer', () => {
       error: false
     });
 
-    expect(
+    expect((
       videos(
         {
           byId: {
-            'M8l2aGMjKHI': {
+            M8l2aGMjKHI: {
               id: 'M8l2aGMjKHI'
             },
-            'GcSACxUbqtg': {
+            GcSACxUbqtg: {
               id: 'GcSACxUbqtg'
             }
           },
@@ -95,12 +95,12 @@ describe('videos reducer', () => {
           }
         }
       )
-    ).toEqual({
+    )).toEqual({
       byId: {
-        'M8l2aGMjKHI': {
+        M8l2aGMjKHI: {
           id: 'M8l2aGMjKHI'
         },
-        'GcSACxUbqtg': {
+        GcSACxUbqtg: {
           id: 'GcSACxUbqtg'
         },
         'Flze-rwT7lM': {
@@ -143,10 +143,10 @@ describe('videos reducer', () => {
   it('should handle UPDATE_ACTIVE_CHANNEL', () => {
     const state = {
       byId: {
-        'M8l2aGMjKHI': {
+        M8l2aGMjKHI: {
           id: 'M8l2aGMjKHI'
         },
-        'GcSACxUbqtg': {
+        GcSACxUbqtg: {
           id: 'GcSACxUbqtg'
         }
       },

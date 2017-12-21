@@ -1,4 +1,4 @@
-/* eslint global-require: 0, flowtype-errors/show-errors: 0 */
+/* eslint-disable global-require, flowtype-errors/show-errors */
 
 /**
  * This module executes inside of electron's main process. You can start
@@ -61,9 +61,13 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 999,
-    height: 562
+    width: 1038,
+    height: 584,
+    minWidth: 1038,
+    minHeight: 584
   });
+
+  mainWindow.setAspectRatio(16 / 9);
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 

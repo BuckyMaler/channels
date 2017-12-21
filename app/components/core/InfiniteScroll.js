@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import { Component } from 'react';
 import type { PromiseAction } from '../../constants/types';
 import styles from './InfiniteScroll.scss';
 
@@ -16,7 +15,9 @@ type State = {
   isComplete: boolean
 };
 
-export default class InfiniteScroll extends Component<Props, State> {
+export default class InfiniteScroll extends React.Component<Props, State> {
+  container: ?HTMLDivElement;
+
   static defaultProps = {
     maxHeight: ''
   };
@@ -24,8 +25,6 @@ export default class InfiniteScroll extends Component<Props, State> {
   state = {
     isComplete: false
   };
-
-  container: ?HTMLDivElement;
 
   handleScroll = (): void => {
     const { pageToken, isFetching, loadMore } = this.props;
@@ -37,7 +36,9 @@ export default class InfiniteScroll extends Component<Props, State> {
     }
     const { scrollTop, scrollHeight, offsetHeight } = this.container;
     if (scrollTop > scrollHeight - (offsetHeight * 2)) {
+      // eslint-disable-next-line promise/catch-or-return
       loadMore().then(action => {
+        // eslint-disable-next-line promise/always-return
         if (action.payload && action.payload.nextPageToken === pageToken) {
           this.setState({ isComplete: true });
         }
@@ -54,7 +55,7 @@ export default class InfiniteScroll extends Component<Props, State> {
       <div
         className={styles.infiniteScroll}
         style={maxHeight ? { maxHeight } : {}}
-        ref={node => (this.container = node)}
+        ref={node => { this.container = node; }}
         onScroll={this.handleScroll}
       >
         {children}

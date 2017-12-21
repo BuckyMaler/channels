@@ -4,13 +4,13 @@ import * as commentsActions from '../actions/comments';
 import Comments from '../components/Comments';
 import { getComments } from '../reducers/index';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    activeVideo: state.activeVideo,
     comments: getComments(state),
     pageToken: state.comments.pageToken,
     isFetching: state.comments.isFetching,
-    error: state.comments.error
+    error: state.comments.error,
+    activeVideoId: ownProps.activeVideoId
   };
 }
 

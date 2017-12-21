@@ -15,7 +15,7 @@ const Video = ({
   title: string,
   thumbnail: string,
   description?: string,
-  publishedAt: Date,
+  publishedAt: string,
   viewCount: string,
   isSearchResult?: boolean,
   handleClick: (video: VideoType) => void

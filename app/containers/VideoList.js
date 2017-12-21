@@ -5,13 +5,13 @@ import * as videosActions from '../actions/videos';
 import VideoList from '../components/VideoList';
 import { getVideos } from '../reducers/index';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    channelId: state.channels.activeId,
     videos: getVideos(state),
     pageToken: state.videos.pageToken,
     isFetching: state.videos.isFetching,
-    error: state.videos.error
+    error: state.videos.error,
+    activeChannelId: ownProps.activeChannelId
   };
 }
 

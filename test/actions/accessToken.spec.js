@@ -1,4 +1,3 @@
-/* eslint promise/always-return: 0 */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as accessTokenActions from '../../app/actions/accessToken';
@@ -11,7 +10,6 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('accessToken actions', () => {
-
   const token = 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg';
 
   it('creates FETCH_ACCESS_TOKEN_SUCCESS when fetching access token has been resolved', () => {

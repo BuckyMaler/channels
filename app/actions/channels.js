@@ -1,7 +1,8 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
 import type { Action, ThunkAction, Dispatch, GetState } from '../constants/types';
-import { IChannel } from '../dataTypes/channelType';
+import ChannelType from '../dataTypes/channelType';
+import type { ChannelItem } from '../dataTypes/channelType';
 import { getRequest } from '../services/fetch';
 import { getChannelsUri, getSubscriptionsUri } from '../services/uriGenerator';
 
@@ -27,9 +28,9 @@ export function fetchSubscriptions(): Promise<string> {
   const uri = getSubscriptionsUri();
   return getRequest(uri)
     .then(
-      json => Promise.resolve(
+      json => Promise.resolve((
         json.items.map(item => item.snippet.resourceId.channelId).join()
-      ),
+      )),
       () => Promise.reject()
     );
 }
@@ -40,7 +41,7 @@ export function fetchChannelsRequest(): Action {
   };
 }
 
-export function fetchChannelsSuccess(items: IChannel[]): Action {
+export function fetchChannelsSuccess(items: ChannelItem[]): Action {
   return {
     type: actionTypes.FETCH_CHANNELS_SUCCESS,
     payload: items
@@ -53,13 +54,13 @@ export function fetchChannelsFailure(): Action {
   };
 }
 
-export function updateActiveChannel(channelId: string): ThunkAction {
+export function updateActiveChannel(channel: ChannelType): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
     const { activeId } = getState().channels;
-    if (activeId !== channelId) {
+    if (activeId !== channel.id) {
       dispatch({
         type: actionTypes.UPDATE_ACTIVE_CHANNEL,
-        payload: channelId
+        payload: channel.id
       });
     }
   };

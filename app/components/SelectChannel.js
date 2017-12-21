@@ -11,7 +11,7 @@ const SelectChannel = ({
     <div className={styles.prompt}>
       <p className={styles.message}>
         No Active Channel
-        <span>{"Well don't just sit there..."}</span>
+        <span>Well don&apos;t just sit there...</span>
       </p>
       <button className={styles.select} onClick={toggleChannelList}>
         Select a Channel

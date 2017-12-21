@@ -27,6 +27,10 @@
   justify-content: flex-end;
 }
 
+.cancelBtn {
+  margin-right: 1rem;
+}
+
 .cancelBtn,
 .submitBtn {
   width: 98px;
@@ -50,8 +54,4 @@
   &:focus {
     outline: 0;
   }
-}
-
-.cancelBtn {
-  margin-right: 1rem;
 }

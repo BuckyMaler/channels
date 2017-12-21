@@ -1,7 +1,7 @@
 // @flow
 import actionTypes from '../constants/actionTypes';
 import type { Action, ThunkAction, Dispatch, GetState } from '../constants/types';
-import { IComment } from '../dataTypes/commentType';
+import type { CommentItem } from '../dataTypes/commentType';
 import { getRequest, postRequest } from '../services/fetch';
 import { getTopLevelCommentsUri, postTopLevelCommentUri } from '../services/uriGenerator';
 
@@ -52,7 +52,7 @@ export function fetchCommentsRequest(): Action {
   };
 }
 
-export function fetchCommentsSuccess(items: IComment[], nextPageToken: string): Action {
+export function fetchCommentsSuccess(items: CommentItem[], nextPageToken: string): Action {
   return {
     type: actionTypes.FETCH_COMMENTS_SUCCESS,
     payload: {
@@ -68,7 +68,7 @@ export function fetchCommentsFailure(): Action {
   };
 }
 
-export function postCommentSuccess(json: IComment): Action {
+export function postCommentSuccess(json: CommentItem): Action {
   return {
     type: actionTypes.POST_COMMENT_SUCCESS,
     payload: json

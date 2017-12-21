@@ -11,7 +11,7 @@ const Comment = ({
   author: string,
   avatar: string,
   description: string,
-  publishedAt: Date
+  publishedAt: string
 }) => (
   <li className={styles.comment}>
     <img className={styles.avatar} src={avatar} alt={author} />

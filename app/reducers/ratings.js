@@ -14,12 +14,13 @@ export type State = {
 
 function byId(state: { [string]: RatingType } = {}, action: Action): { [string]: RatingType } {
   switch (action.type) {
-    case actionTypes.FETCH_RATINGS_SUCCESS:
+    case actionTypes.FETCH_RATINGS_SUCCESS: {
       const nextState = { ...state };
       action.payload.forEach(item => {
         nextState[item.videoId] = RatingType.from(item);
       });
       return nextState;
+    }
     case actionTypes.POST_RATING_SUCCESS:
       return {
         ...state,

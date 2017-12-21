@@ -38,7 +38,7 @@ describe('ratings reducer', () => {
 
     expect(ratings(state, action)).toEqual({
       byId: {
-        'XsFQEUP1MxI': {
+        XsFQEUP1MxI: {
           videoId: 'XsFQEUP1MxI'
         }
       },
