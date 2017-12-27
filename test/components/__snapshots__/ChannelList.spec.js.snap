@@ -1,25 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChannelList when closed should render self 1`] = `
-<div
-  className="channelList"
->
-  <div
-    className="closeTarget"
-    onClick={[Function]}
-  />
-  <div
-    className="modal"
-  >
-    <BlankState
-      color="black"
-      message="No channels found."
-    />
-  </div>
-</div>
-`;
-
-exports[`ChannelList when opened should render self with channels 1`] = `
+exports[`ChannelList should render self with channels 1`] = `
 <div
   className="channelList isOpen"
 >
@@ -35,27 +16,29 @@ exports[`ChannelList when opened should render self with channels 1`] = `
       onClick={[Function]}
     >
       <Channel
+        handleClick={[Function]}
         isActive={false}
-        subscriberCount="243,643"
-        thumbnail="https://yt3.ggpht.com/photo.jpg"
-        title="DevTips"
-        updateActiveChannel={[Function]}
-        videoCount="292"
+        key="1"
+        subscriberCount="1"
+        thumbnail="thumbnail.jpg"
+        title="title"
+        videoCount="1"
       />
       <Channel
+        handleClick={[Function]}
         isActive={false}
-        subscriberCount="18,655"
-        thumbnail="https://yt3.ggpht.com/photo.jpg"
-        title="Ihatetomatoes"
-        updateActiveChannel={[Function]}
-        videoCount="140"
+        key="2"
+        subscriberCount="1"
+        thumbnail="thumbnail.jpg"
+        title="title"
+        videoCount="1"
       />
     </ul>
   </div>
 </div>
 `;
 
-exports[`ChannelList when opened should render self with error message 1`] = `
+exports[`ChannelList should render self with error 1`] = `
 <div
   className="channelList isOpen"
 >
@@ -75,7 +58,7 @@ exports[`ChannelList when opened should render self with error message 1`] = `
 </div>
 `;
 
-exports[`ChannelList when opened should render self with loader 1`] = `
+exports[`ChannelList should render self with loader 1`] = `
 <div
   className="channelList isOpen"
 >
@@ -91,7 +74,7 @@ exports[`ChannelList when opened should render self with loader 1`] = `
 </div>
 `;
 
-exports[`ChannelList when opened should render self with no channels 1`] = `
+exports[`ChannelList should render self with no channels 1`] = `
 <div
   className="channelList isOpen"
 >

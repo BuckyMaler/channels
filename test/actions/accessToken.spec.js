@@ -10,14 +10,15 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('accessToken actions', () => {
-  const token = 'ya29.GlyrBCJQJoIYFzocIunVN-CfjQZMG4oyVuAB6v_x_Z3FRnViyPy_deqRdwSAipQtKc9Nb2RudM9UISwI8SGNXxsJ1t3QHddeCdnoCjsM_vhLa9FlFVqMN_seI7oljg';
-
-  it('creates FETCH_ACCESS_TOKEN_SUCCESS when fetching access token has been resolved', () => {
-    fetch.authRequest = jest.fn(() => Promise.resolve({ access_token: token }));
+  it('creates FETCH_ACCESS_TOKEN_SUCCESS when fetching an access token has been resolved', () => {
+    fetch.authRequest = jest.fn().mockReturnValue(Promise.resolve({ access_token: 'token' }));
 
     const expectedActions = [
       { type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST },
-      { type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS, payload: token }
+      {
+        type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
+        payload: 'token'
+      }
     ];
     const store = mockStore({});
 
@@ -26,8 +27,8 @@ describe('accessToken actions', () => {
     });
   });
 
-  it('creates FETCH_ACCESS_TOKEN_FAILURE when fetching access token has been rejected', () => {
-    fetch.authRequest = jest.fn(() => Promise.reject());
+  it('creates FETCH_ACCESS_TOKEN_FAILURE when fetching an access token has been rejected', () => {
+    fetch.authRequest = jest.fn().mockReturnValue(Promise.reject());
 
     const expectedActions = [
       { type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST },
@@ -38,30 +39,5 @@ describe('accessToken actions', () => {
     return store.dispatch(accessTokenActions.fetchAccessToken()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
-  });
-
-  it('should create an action to request an access token', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_ACCESS_TOKEN_REQUEST
-    };
-
-    expect(accessTokenActions.fetchAccessTokenRequest()).toEqual(expectedAction);
-  });
-
-  it('should create an action to receive an access token', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_ACCESS_TOKEN_SUCCESS,
-      payload: token
-    };
-
-    expect(accessTokenActions.fetchAccessTokenSuccess(token)).toEqual(expectedAction);
-  });
-
-  it('should create an action to handle an error', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_ACCESS_TOKEN_FAILURE
-    };
-
-    expect(accessTokenActions.fetchAccessTokenFailure()).toEqual(expectedAction);
   });
 });

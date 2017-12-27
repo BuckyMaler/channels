@@ -10,70 +10,80 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('ratings actions', () => {
-  let store;
-  beforeEach(() => {
-    store = mockStore({
-      activeVideo: {
-        id: 'XsFQEUP1MxI'
-      }
-    });
-  });
-
-  it('creates FETCH_RATINGS_FAILURE when fetching ratings has been rejected', () => {
-    fetch.getRequest = jest.fn(() => Promise.reject());
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_RATINGS_REQUEST },
-      { type: actionTypes.FETCH_RATINGS_FAILURE }
-    ];
-
-    return store.dispatch(ratingsActions.fetchRatings()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_RATINGS_SUCCESS when fetching ratings has been resolved', () => {
     fetch.getRequest = jest.fn()
-      .mockReturnValueOnce(Promise.resolve({
-        items: ['XsFQEUP1MxI']
+      .mockReturnValue(Promise.resolve({
+        items: [{
+          videoId: '1',
+          rating: 'none'
+        }]
       }));
 
     const expectedActions = [
       { type: actionTypes.FETCH_RATINGS_REQUEST },
       {
         type: actionTypes.FETCH_RATINGS_SUCCESS,
-        payload: ['XsFQEUP1MxI']
+        payload: [{
+          videoId: '1',
+          rating: 'none'
+        }]
       }
     ];
+    const store = mockStore({
+      activeVideo: {
+        id: '1'
+      }
+    });
 
     return store.dispatch(ratingsActions.fetchRatings()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  it('should create an action to request ratings', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_RATINGS_REQUEST
-    };
+  it('creates FETCH_RATINGS_FAILURE when fetching ratings has been rejected', () => {
+    fetch.getRequest = jest.fn().mockReturnValue(Promise.reject());
 
-    expect(ratingsActions.fetchRatingsRequest()).toEqual(expectedAction);
+    const expectedActions = [
+      { type: actionTypes.FETCH_RATINGS_REQUEST },
+      { type: actionTypes.FETCH_RATINGS_FAILURE }
+    ];
+    const store = mockStore({
+      activeVideo: {
+        id: '1'
+      }
+    });
+
+    return store.dispatch(ratingsActions.fetchRatings()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 
-  it('should create an action to receive ratings', () => {
-    const items = ['XsFQEUP1MxI'];
-    const expectedAction = {
-      type: actionTypes.FETCH_RATINGS_SUCCESS,
-      payload: items
-    };
+  it('creates POST_RATING_SUCCESS when a posted rating has been resolved', () => {
+    fetch.postRequest = jest.fn().mockReturnValue(Promise.resolve());
 
-    expect(ratingsActions.fetchRatingsSuccess(items)).toEqual(expectedAction);
-  });
+    const expectedAction = [{
+      type: actionTypes.POST_RATING_SUCCESS,
+      payload: {
+        videoId: '1',
+        rating: 'like'
+      }
+    }];
+    const store = mockStore({
+      activeVideo: {
+        id: '1'
+      },
+      ratings: {
+        byId: {
+          1: {
+            videoId: '1',
+            rating: 'none'
+          }
+        }
+      }
+    });
 
-  it('should create an action to handle an error', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_RATINGS_FAILURE
-    };
-
-    expect(ratingsActions.fetchRatingsFailure()).toEqual(expectedAction);
+    return store.dispatch(ratingsActions.postRating('like')).then(() => {
+      expect(store.getActions()).toEqual(expectedAction);
+    });
   });
 });

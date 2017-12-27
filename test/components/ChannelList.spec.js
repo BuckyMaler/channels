@@ -1,18 +1,18 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import React from 'react';
 import ChannelList from '../../app/components/ChannelList';
 
 function setup() {
   const props = {
     channels: [],
-    activeChannelId: '',
     isFetching: false,
     error: false,
-    channelListIsOpen: false,
+    activeChannelId: '',
+    channelListIsOpen: true,
+    toggleChannelList: jest.fn(),
     fetchChannels: jest.fn(),
-    updateActiveChannel: jest.fn(),
-    toggleChannelList: jest.fn()
+    updateActiveChannel: jest.fn()
   };
 
   const enzymeWrapper = shallow(<ChannelList {...props} />);
@@ -24,98 +24,51 @@ function setup() {
 }
 
 describe('ChannelList', () => {
-  describe('when closed', () => {
-    it('should render self', () => {
-      const { enzymeWrapper } = setup();
-      const tree = toJson(enzymeWrapper);
+  it('should render self with loader', () => {
+    const { enzymeWrapper } = setup();
+    enzymeWrapper.setProps({ isFetching: true });
+    const tree = toJson(enzymeWrapper);
 
-      expect(tree).toMatchSnapshot();
-    });
+    expect(tree).toMatchSnapshot();
   });
 
-  describe('when opened', () => {
-    const { props, enzymeWrapper } = setup();
-    beforeEach(() => {
-      enzymeWrapper.setProps({
-        channelListIsOpen: true
-      });
-    });
+  it('should render self with error', () => {
+    const { enzymeWrapper } = setup();
+    enzymeWrapper.setProps({ error: true });
+    const tree = toJson(enzymeWrapper);
 
-    afterEach(() => {
-      enzymeWrapper.setProps({
-        ...props
-      });
-    });
-
-    it('should render self with loader', () => {
-      enzymeWrapper.setProps({
-        isFetching: true
-      });
-      const tree = toJson(enzymeWrapper);
-
-      expect(tree).toMatchSnapshot();
-    });
-
-    it('should render self with error message', () => {
-      enzymeWrapper.setProps({
-        error: true
-      });
-      const tree = toJson(enzymeWrapper);
-
-      expect(tree).toMatchSnapshot();
-    });
-
-    it('should render self with channels', () => {
-      enzymeWrapper.setProps({
-        channels: [
-          {
-            id: 'UCyIe-61Y8C4_o-zZCtO4ETQ',
-            subscriberCount: '243,643',
-            thumbnail: 'https://yt3.ggpht.com/photo.jpg',
-            title: 'DevTips',
-            videoCount: '292'
-          },
-          {
-            id: 'UC7O6CntQoAI-wYyJxYiqNUg',
-            subscriberCount: '18,655',
-            thumbnail: 'https://yt3.ggpht.com/photo.jpg',
-            title: 'Ihatetomatoes',
-            videoCount: '140'
-          }
-        ]
-      });
-      const tree = toJson(enzymeWrapper);
-
-      expect(tree).toMatchSnapshot();
-    });
-
-    it('should render self with no channels', () => {
-      const tree = toJson(enzymeWrapper);
-
-      expect(tree).toMatchSnapshot();
-    });
+    expect(tree).toMatchSnapshot();
   });
 
-  it('should call toggleChannelList', () => {
-    const { props, enzymeWrapper } = setup();
+  it('should render self with no channels', () => {
+    const { enzymeWrapper } = setup();
+    const tree = toJson(enzymeWrapper);
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render self with channels', () => {
+    const { enzymeWrapper } = setup();
     enzymeWrapper.setProps({
-      channels: [{
-        id: 'UCyIe-61Y8C4_o-zZCtO4ETQ',
-        subscriberCount: '243,643',
-        thumbnail: 'https://yt3.ggpht.com/photo.jpg',
-        title: 'DevTips',
-        videoCount: '292'
-      }]
+      channels: [
+        {
+          id: '1',
+          title: 'title',
+          thumbnail: 'thumbnail.jpg',
+          videoCount: '1',
+          subscriberCount: '1'
+        },
+        {
+          id: '2',
+          title: 'title',
+          thumbnail: 'thumbnail.jpg',
+          videoCount: '1',
+          subscriberCount: '1'
+        }
+      ]
     });
-    const closeTarget = enzymeWrapper.find('.closeTarget');
-    const channels = enzymeWrapper.find('.channels');
+    const tree = toJson(enzymeWrapper);
 
-    closeTarget.simulate('click');
-
-    expect(props.toggleChannelList).toHaveBeenCalledTimes(1);
-
-    channels.simulate('click');
-
-    expect(props.toggleChannelList).toHaveBeenCalledTimes(2);
+    expect(tree).toMatchSnapshot();
   });
 });

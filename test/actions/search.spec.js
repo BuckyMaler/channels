@@ -10,150 +10,123 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('search actions', () => {
-  let store;
-  beforeEach(() => {
-    store = mockStore({
-      channels: {
-        activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
-      },
-      search: {
-        pageToken: ''
-      }
-    });
-  });
-
-  it('creates FETCH_SEARCH_FAILURE when fetching video ids has been rejected', () => {
-    fetch.getRequest = jest.fn(() => Promise.reject());
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_SEARCH_REQUEST },
-      { type: actionTypes.FETCH_SEARCH_FAILURE }
-    ];
-
-    return store.dispatch(searchActions.fetchSearch()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  it('creates FETCH_SEARCH_SUCCESS when fetching videos has been resolved', () => {
+  it('creates FETCH_SEARCH_SUCCESS when fetching a search has been resolved', () => {
     fetch.getRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
-        items: [
-          {
-            id: {
-              videoId: 'M8l2aGMjKHI'
-            }
-          },
-          {
-            id: {
-              videoId: 'GcSACxUbqtg'
-            }
+        nextPageToken: 'token',
+        items: [{
+          id: {
+            videoId: '1'
           }
-        ],
-        nextPageToken: 'CBQQAA'
+        }]
       }))
-      .mockReturnValueOnce(Promise.resolve({ items: ['M8l2aGMjKHI', 'GcSACxUbqtg'] }));
+      .mockReturnValue(Promise.resolve({
+        items: [{ id: '1' }]
+      }));
 
     const expectedActions = [
       { type: actionTypes.FETCH_SEARCH_REQUEST },
       {
         type: actionTypes.FETCH_SEARCH_SUCCESS,
         payload: {
-          items: ['M8l2aGMjKHI', 'GcSACxUbqtg'],
-          nextPageToken: 'CBQQAA'
+          items: [{ id: '1' }],
+          nextPageToken: 'token'
         }
       }
     ];
+    const store = mockStore({
+      channels: {
+        activeId: '1'
+      },
+      search: {
+        query: 'react',
+        pageToken: ''
+      }
+    });
 
     return store.dispatch(searchActions.fetchSearch()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  it('creates FETCH_SEARCH_FAILURE when fetching videos has been rejected', () => {
-    fetch.getRequest = jest.fn()
-      .mockReturnValueOnce(Promise.resolve({
-        items: [
-          {
-            id: {
-              videoId: 'M8l2aGMjKHI'
-            }
-          },
-          {
-            id: {
-              videoId: 'GcSACxUbqtg'
-            }
-          }
-        ],
-        nextPageToken: 'CBQQAA'
-      }))
-      .mockReturnValueOnce(Promise.reject());
+  it('creates FETCH_SEARCH_FAILURE when fetching video ids has been rejected', () => {
+    fetch.getRequest = jest.fn().mockReturnValue(Promise.reject());
 
     const expectedActions = [
       { type: actionTypes.FETCH_SEARCH_REQUEST },
       { type: actionTypes.FETCH_SEARCH_FAILURE }
     ];
+    const store = mockStore({
+      channels: {
+        activeId: '1'
+      },
+      search: {
+        query: 'react',
+        pageToken: ''
+      }
+    });
 
     return store.dispatch(searchActions.fetchSearch()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  it('should create an action to request search', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_SEARCH_REQUEST
-    };
+  it('creates FETCH_SEARCH_FAILURE when fetching a search has been rejected', () => {
+    fetch.getRequest = jest.fn()
+      .mockReturnValueOnce(Promise.resolve({
+        nextPageToken: 'token',
+        items: [{
+          id: {
+            videoId: '1'
+          }
+        }]
+      }))
+      .mockReturnValue(Promise.reject());
 
-    expect(searchActions.fetchSearchRequest()).toEqual(expectedAction);
-  });
-
-  it('should create an action to receive search', () => {
-    const items = ['M8l2aGMjKHI', 'GcSACxUbqtg'];
-    const nextPageToken = 'CBQQAA';
-    const expectedAction = {
-      type: actionTypes.FETCH_SEARCH_SUCCESS,
-      payload: {
-        items,
-        nextPageToken
+    const expectedActions = [
+      { type: actionTypes.FETCH_SEARCH_REQUEST },
+      { type: actionTypes.FETCH_SEARCH_FAILURE }
+    ];
+    const store = mockStore({
+      channels: {
+        activeId: '1'
+      },
+      search: {
+        query: 'react',
+        pageToken: ''
       }
-    };
+    });
 
-    expect(searchActions.fetchSearchSuccess(items, nextPageToken)).toEqual(expectedAction);
+    return store.dispatch(searchActions.fetchSearch()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 
-  it('should create an action to handle an error', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_SEARCH_FAILURE
-    };
-
-    expect(searchActions.fetchSearchFailure()).toEqual(expectedAction);
-  });
-
-  it('should create actions to update search', () => {
-    const query = 'react';
+  it('creates CLEAR_SEARCH_RESULTS and UPDATE_SEARCH_QUERY when updating search', () => {
     const expectedActions = [
       { type: actionTypes.CLEAR_SEARCH_RESULTS },
       {
         type: actionTypes.UPDATE_SEARCH_QUERY,
-        payload: query
+        payload: 'react'
       }
     ];
+    const store = mockStore({});
 
-    store.dispatch(searchActions.updateSearch(query));
+    store.dispatch(searchActions.updateSearch('react'));
     expect(store.getActions()).toEqual(expectedActions);
   });
 
-  it('should create actions to clear search', () => {
-    const query = '';
+  it('creates UPDATE_SEARCH_QUERY and CLEAR_SEARCH_RESULTS when clearing search', () => {
     const expectedActions = [
       {
         type: actionTypes.UPDATE_SEARCH_QUERY,
-        payload: query
+        payload: ''
       },
       { type: actionTypes.CLEAR_SEARCH_RESULTS }
     ];
+    const store = mockStore({});
 
-    store.dispatch(searchActions.clearSearch(query));
+    store.dispatch(searchActions.clearSearch());
     expect(store.getActions()).toEqual(expectedActions);
   });
 });

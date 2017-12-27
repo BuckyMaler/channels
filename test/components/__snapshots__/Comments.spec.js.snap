@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comments should render self and child components 1`] = `
+<div
+  className="comments"
+>
+  <InfiniteScroll
+    isFetching={false}
+    loadMore={[Function]}
+    maxHeight=""
+    pageToken=""
+  >
+    <CommentForm
+      description=""
+      handleChange={[Function]}
+      handleReset={[Function]}
+      handleSubmit={[Function]}
+      isPosting={false}
+    />
+    <CommentList
+      comments={Array []}
+    />
+  </InfiniteScroll>
+</div>
+`;
+
+exports[`Comments should render self and child components 2`] = `
+<div
+  className="comments"
+>
+  <InfiniteScroll
+    isFetching={true}
+    loadMore={[Function]}
+    maxHeight=""
+    pageToken="token"
+  >
+    <CommentForm
+      description=""
+      handleChange={[Function]}
+      handleReset={[Function]}
+      handleSubmit={[Function]}
+      isPosting={false}
+    />
+    <CommentList
+      comments={Array []}
+    />
+  </InfiniteScroll>
+</div>
+`;
+
+exports[`Comments should render self with error 1`] = `
+<div
+  className="comments"
+>
+  <ErrorState
+    color="white"
+    message="Error requesting comments."
+  />
+</div>
+`;
+
+exports[`Comments should render self with loader 1`] = `
+<div
+  className="comments"
+>
+  <Loader />
+</div>
+`;
