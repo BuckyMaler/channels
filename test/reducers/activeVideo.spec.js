@@ -1,46 +1,94 @@
-import activeVideo from '../../app/reducers/activeVideo';
 import actionTypes from '../../app/constants/actionTypes';
+import activeVideo from '../../app/reducers/activeVideo';
 
 describe('activeVideo reducer', () => {
-  it('should return the initial state', () => {
+  it('should return initial state', () => {
     expect(activeVideo(undefined, {})).toEqual({});
   });
 
-  it('should handle UPDATE_ACTIVE_VIDEO_COUNTS', () => {
-    const state = {
-      id: 'XsFQEUP1MxI',
-      title: 'Unit testing in JavaScript Part 2 - Your first tests',
-      thumbnail: 'https://i.ytimg.com/hqdefault.jpg',
-      description: 'Today, we are continuing our journey on unit testing in JavaScript.',
-      publishedAt: '6 days ago',
-      viewCount: '10,276',
-      likeCount: '624',
-      dislikeCount: '3'
-    };
+  it('should handle UPDATE_ACTIVE_VIDEO', () => {
     const action = {
-      type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
-      payload: {
-        prevRating: {
-          like: false,
-          dislike: true
-        },
-        rating: 'like'
-      }
+      type: actionTypes.UPDATE_ACTIVE_VIDEO,
+      payload: { id: '1' }
     };
-    expect(activeVideo(state, action)).toEqual({
-      id: 'XsFQEUP1MxI',
-      title: 'Unit testing in JavaScript Part 2 - Your first tests',
-      thumbnail: 'https://i.ytimg.com/hqdefault.jpg',
-      description: 'Today, we are continuing our journey on unit testing in JavaScript.',
-      publishedAt: '6 days ago',
-      viewCount: '10,276',
-      likeCount: '625',
-      dislikeCount: '2'
+
+    expect(activeVideo(undefined, action)).toEqual({ id: '1' });
+  });
+
+  it('should handle UPDATE_ACTIVE_VIDEO_COUNTS', () => {
+    expect(activeVideo(
+      {
+        id: '1',
+        likeCount: '0',
+        dislikeCount: '0'
+      },
+      {
+        type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
+        payload: {
+          prevRating: {
+            id: 1,
+            like: false,
+            dislike: false
+          },
+          rating: 'like'
+        }
+      }
+    )).toEqual({
+      id: '1',
+      likeCount: '1',
+      dislikeCount: '0'
+    });
+
+    expect(activeVideo(
+      {
+        id: '1',
+        likeCount: '1',
+        dislikeCount: '0'
+      },
+      {
+        type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
+        payload: {
+          prevRating: {
+            id: 1,
+            like: true,
+            dislike: false
+          },
+          rating: 'none'
+        }
+      }
+    )).toEqual({
+      id: '1',
+      likeCount: '0',
+      dislikeCount: '0'
+    });
+
+    expect(activeVideo(
+      {
+        id: '1',
+        likeCount: '0',
+        dislikeCount: '1'
+      },
+      {
+        type: actionTypes.UPDATE_ACTIVE_VIDEO_COUNTS,
+        payload: {
+          prevRating: {
+            id: 1,
+            like: false,
+            dislike: true
+          },
+          rating: 'like'
+        }
+      }
+    )).toEqual({
+      id: '1',
+      likeCount: '1',
+      dislikeCount: '0'
     });
   });
 
-  it('should handle unknown action type', () => {
-    const action = { type: 'unknown' };
+  it('should handle an unknown action type', () => {
+    const action = { type: 'UNKNOWN' };
+
     expect(activeVideo(undefined, action)).toEqual({});
   });
 });

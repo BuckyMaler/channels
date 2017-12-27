@@ -10,60 +10,59 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('videos actions', () => {
-  let store;
-  beforeEach(() => {
-    store = mockStore({
-      channels: {
-        activeId: 'UCyIe-61Y8C4_o-zZCtO4ETQ'
-      },
-      videos: {
-        pageToken: ''
-      }
-    });
-  });
-
-  it('creates FETCH_VIDEOS_FAILURE when fetching video ids has been rejected', () => {
-    fetch.getRequest = jest.fn(() => Promise.reject());
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_VIDEOS_REQUEST },
-      { type: actionTypes.FETCH_VIDEOS_FAILURE }
-    ];
-
-    return store.dispatch(videosActions.fetchVideos()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_VIDEOS_SUCCESS when fetching videos has been resolved', () => {
     fetch.getRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
-        items: [
-          {
-            id: {
-              videoId: 'M8l2aGMjKHI'
-            }
-          },
-          {
-            id: {
-              videoId: 'GcSACxUbqtg'
-            }
+        nextPageToken: 'token',
+        items: [{
+          id: {
+            videoId: '1'
           }
-        ],
-        nextPageToken: 'CBQQAA'
+        }]
       }))
-      .mockReturnValueOnce(Promise.resolve({ items: ['M8l2aGMjKHI', 'GcSACxUbqtg'] }));
+      .mockReturnValue(Promise.resolve({
+        items: [{ id: '1' }]
+      }));
 
     const expectedActions = [
       { type: actionTypes.FETCH_VIDEOS_REQUEST },
       {
         type: actionTypes.FETCH_VIDEOS_SUCCESS,
         payload: {
-          items: ['M8l2aGMjKHI', 'GcSACxUbqtg'],
-          nextPageToken: 'CBQQAA'
+          items: [{ id: '1' }],
+          nextPageToken: 'token'
         }
       }
     ];
+    const store = mockStore({
+      channels: {
+        activeId: '1'
+      },
+      videos: {
+        pageToken: ''
+      }
+    });
+
+    return store.dispatch(videosActions.fetchVideos()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  it('creates FETCH_VIDEOS_FAILURE when fetching video ids has been rejected', () => {
+    fetch.getRequest = jest.fn().mockReturnValue(Promise.reject());
+
+    const expectedActions = [
+      { type: actionTypes.FETCH_VIDEOS_REQUEST },
+      { type: actionTypes.FETCH_VIDEOS_FAILURE }
+    ];
+    const store = mockStore({
+      channels: {
+        activeId: '1'
+      },
+      videos: {
+        pageToken: ''
+      }
+    });
 
     return store.dispatch(videosActions.fetchVideos()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
@@ -73,59 +72,30 @@ describe('videos actions', () => {
   it('creates FETCH_VIDEOS_FAILURE when fetching videos has been rejected', () => {
     fetch.getRequest = jest.fn()
       .mockReturnValueOnce(Promise.resolve({
-        items: [
-          {
-            id: {
-              videoId: 'M8l2aGMjKHI'
-            }
-          },
-          {
-            id: {
-              videoId: 'GcSACxUbqtg'
-            }
+        nextPageToken: 'token',
+        items: [{
+          id: {
+            videoId: '1'
           }
-        ],
-        nextPageToken: 'CBQQAA'
+        }]
       }))
-      .mockReturnValueOnce(Promise.reject());
+      .mockReturnValue(Promise.reject());
 
     const expectedActions = [
       { type: actionTypes.FETCH_VIDEOS_REQUEST },
       { type: actionTypes.FETCH_VIDEOS_FAILURE }
     ];
+    const store = mockStore({
+      channels: {
+        activeId: '1'
+      },
+      videos: {
+        pageToken: ''
+      }
+    });
 
     return store.dispatch(videosActions.fetchVideos()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
-  });
-
-  it('should create an action to request videos', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_VIDEOS_REQUEST
-    };
-
-    expect(videosActions.fetchVideosRequest()).toEqual(expectedAction);
-  });
-
-  it('should create an action to receive videos', () => {
-    const items = ['M8l2aGMjKHI', 'GcSACxUbqtg'];
-    const nextPageToken = 'CBQQAA';
-    const expectedAction = {
-      type: actionTypes.FETCH_VIDEOS_SUCCESS,
-      payload: {
-        items,
-        nextPageToken
-      }
-    };
-
-    expect(videosActions.fetchVideosSuccess(items, nextPageToken)).toEqual(expectedAction);
-  });
-
-  it('should create an action to handle an error', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_VIDEOS_FAILURE
-    };
-
-    expect(videosActions.fetchVideosFailure()).toEqual(expectedAction);
   });
 });

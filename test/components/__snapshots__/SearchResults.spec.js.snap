@@ -1,17 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchResults when closed should render self 1`] = `
-<div
-  className="searchResults"
->
-  <BlankState
-    color="black"
-    message="No videos found."
-  />
-</div>
-`;
-
-exports[`SearchResults when opened should render self with error message 1`] = `
+exports[`SearchResults should render self with error 1`] = `
 <div
   className="searchResults isOpen"
 >
@@ -22,7 +11,7 @@ exports[`SearchResults when opened should render self with error message 1`] = `
 </div>
 `;
 
-exports[`SearchResults when opened should render self with loader 1`] = `
+exports[`SearchResults should render self with loader 1`] = `
 <div
   className="searchResults isOpen"
 >
@@ -30,7 +19,7 @@ exports[`SearchResults when opened should render self with loader 1`] = `
 </div>
 `;
 
-exports[`SearchResults when opened should render self with no results 1`] = `
+exports[`SearchResults should render self with no results 1`] = `
 <div
   className="searchResults isOpen"
 >
@@ -41,7 +30,7 @@ exports[`SearchResults when opened should render self with no results 1`] = `
 </div>
 `;
 
-exports[`SearchResults when opened should render self with results 1`] = `
+exports[`SearchResults should render self with results 1`] = `
 <div
   className="searchResults isOpen"
 >
@@ -49,24 +38,68 @@ exports[`SearchResults when opened should render self with results 1`] = `
     isFetching={false}
     loadMore={[Function]}
     maxHeight="350px"
-    pageToken=""
+    pageToken="token"
   >
     <ul
       className="results"
     >
       <Video
+        description=""
         handleClick={[Function]}
-        publishedAt="a year ago"
-        thumbnail="https://i.ytimg.com/hqdefault.jpg"
-        title="Professional Advice from Adobe MAX Conference"
-        viewCount="5,463"
+        isSearchResult={true}
+        key="1"
+        publishedAt="publishedAt"
+        thumbnail="thumbnail.jpg"
+        title="title"
+        viewCount="1"
       />
       <Video
+        description=""
         handleClick={[Function]}
-        publishedAt="7 months ago"
-        thumbnail="https://i.ytimg.com/vi/Flze-rwT7lM/hqdefault.jpg"
-        title="If You Want to Survive in Design, You Better Learn to Code"
-        viewCount="39,430"
+        isSearchResult={true}
+        key="2"
+        publishedAt="publishedAt"
+        thumbnail="thumbnail.jpg"
+        title="title"
+        viewCount="1"
+      />
+    </ul>
+  </InfiniteScroll>
+</div>
+`;
+
+exports[`SearchResults should render self with results 2`] = `
+<div
+  className="searchResults isOpen"
+>
+  <InfiniteScroll
+    isFetching={true}
+    loadMore={[Function]}
+    maxHeight="350px"
+    pageToken="token"
+  >
+    <ul
+      className="results"
+    >
+      <Video
+        description=""
+        handleClick={[Function]}
+        isSearchResult={true}
+        key="1"
+        publishedAt="publishedAt"
+        thumbnail="thumbnail.jpg"
+        title="title"
+        viewCount="1"
+      />
+      <Video
+        description=""
+        handleClick={[Function]}
+        isSearchResult={true}
+        key="2"
+        publishedAt="publishedAt"
+        thumbnail="thumbnail.jpg"
+        title="title"
+        viewCount="1"
       />
     </ul>
   </InfiniteScroll>

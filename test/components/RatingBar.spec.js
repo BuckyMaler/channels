@@ -1,15 +1,16 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import React from 'react';
 import RatingBar from '../../app/components/RatingBar';
 
 function setup() {
   const props = {
+    rating: undefined,
+    activeVideoId: '',
     likeCount: '',
     dislikeCount: '',
-    rating: {},
-    isPosting: false,
-    postRating: jest.fn()
+    fetchRatings: jest.fn(),
+    postRating: jest.fn(),
+    updateActiveVideoCounts: jest.fn()
   };
 
   const enzymeWrapper = shallow(<RatingBar {...props} />);
@@ -21,40 +22,53 @@ function setup() {
 }
 
 describe('RatingBar', () => {
-  it('should render self', () => {
-    const { enzymeWrapper } = setup();
-    const tree = toJson(enzymeWrapper);
+  it('should call fetchRatings twice', () => {
+    const { props, enzymeWrapper } = setup();
+    enzymeWrapper.setProps({
+      activeVideoId: '1'
+    });
 
-    expect(tree).toMatchSnapshot();
+    enzymeWrapper.setProps({
+      activeVideoId: '1'
+    });
+
+    expect(props.fetchRatings).toHaveBeenCalledTimes(2);
   });
 
-  it('like input should be checked', () => {
-    const { enzymeWrapper } = setup();
+  it('should call postRating', () => {
+    const { props, enzymeWrapper } = setup();
+
+    props.postRating.mockReturnValue(Promise.resolve());
     enzymeWrapper.setProps({
       rating: {
+        videoId: '1',
         like: true,
         dislike: false
       }
     });
-    const inputLike = enzymeWrapper.find('input[name="like"]');
-    const inputDislike = enzymeWrapper.find('input[name="dislike"]');
 
-    expect(inputLike.props().checked).toBe(true);
-    expect(inputDislike.props().checked).toBe(false);
-  });
+    enzymeWrapper.find('[name="like"]').simulate('change');
 
-  it('dislike input should be checked', () => {
-    const { enzymeWrapper } = setup();
+    expect(props.postRating).toHaveBeenLastCalledWith('none');
+
+    enzymeWrapper.find('[name="dislike"]').simulate('change');
+
+    expect(props.postRating).toHaveBeenLastCalledWith('dislike');
+
     enzymeWrapper.setProps({
       rating: {
+        videoId: '1',
         like: false,
         dislike: true
       }
     });
-    const inputLike = enzymeWrapper.find('input[name="like"]');
-    const inputDislike = enzymeWrapper.find('input[name="dislike"]');
 
-    expect(inputLike.props().checked).toBe(false);
-    expect(inputDislike.props().checked).toBe(true);
+    enzymeWrapper.find('[name="like"]').simulate('change');
+
+    expect(props.postRating).toHaveBeenLastCalledWith('like');
+
+    enzymeWrapper.find('[name="dislike"]').simulate('change');
+
+    expect(props.postRating).toHaveBeenLastCalledWith('none');
   });
 });

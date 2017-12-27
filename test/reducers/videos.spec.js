@@ -1,5 +1,5 @@
-import videos from '../../app/reducers/videos';
 import actionTypes from '../../app/constants/actionTypes';
+import videos from '../../app/reducers/videos';
 import VideoType from '../../app/dataTypes/videoType';
 
 describe('videos reducer', () => {
@@ -13,155 +13,90 @@ describe('videos reducer', () => {
     });
   });
 
-  it('should handle FETCH_VIDEOS_REQUEST', () => {
-    const action = { type: actionTypes.FETCH_VIDEOS_REQUEST };
-    expect(videos(undefined, action)).toEqual({
-      byId: {},
-      allIds: [],
-      pageToken: '',
-      isFetching: true,
-      error: false
-    });
-  });
-
   it('should handle FETCH_VIDEOS_SUCCESS', () => {
     VideoType.from = jest.fn(item => item);
 
-    expect((
-      videos(
-        {
-          byId: {},
-          allIds: [],
-          pageToken: '',
-          isFetching: true,
-          error: false
-        },
-        {
-          type: actionTypes.FETCH_VIDEOS_SUCCESS,
-          payload: {
-            items: [
-              { id: 'M8l2aGMjKHI' },
-              { id: 'GcSACxUbqtg' }
-            ],
-            nextPageToken: 'CBQQAA'
-          }
-        }
-      )
-    )).toEqual({
-      byId: {
-        M8l2aGMjKHI: {
-          id: 'M8l2aGMjKHI'
-        },
-        GcSACxUbqtg: {
-          id: 'GcSACxUbqtg'
-        }
-      },
-      allIds: [
-        'M8l2aGMjKHI',
-        'GcSACxUbqtg'
-      ],
-      pageToken: 'CBQQAA',
-      isFetching: false,
-      error: false
-    });
-
-    expect((
-      videos(
-        {
-          byId: {
-            M8l2aGMjKHI: {
-              id: 'M8l2aGMjKHI'
-            },
-            GcSACxUbqtg: {
-              id: 'GcSACxUbqtg'
-            }
-          },
-          allIds: [
-            'M8l2aGMjKHI',
-            'GcSACxUbqtg'
+    expect(videos(
+      undefined,
+      {
+        type: actionTypes.FETCH_VIDEOS_SUCCESS,
+        payload: {
+          items: [
+            { id: '1' },
+            { id: '2' }
           ],
-          pageToken: 'CBQQAA',
-          isFetching: true,
-          error: false
-        },
-        {
-          type: actionTypes.FETCH_VIDEOS_SUCCESS,
-          payload: {
-            items: [
-              { id: 'Flze-rwT7lM' },
-              { id: 'L4TIM6W7u-M' }
-            ],
-            nextPageToken: 'CCgQAA'
-          }
+          nextPageToken: 'token'
         }
-      )
+      }
     )).toEqual({
       byId: {
-        M8l2aGMjKHI: {
-          id: 'M8l2aGMjKHI'
+        1: {
+          id: '1'
         },
-        GcSACxUbqtg: {
-          id: 'GcSACxUbqtg'
-        },
-        'Flze-rwT7lM': {
-          id: 'Flze-rwT7lM'
-        },
-        'L4TIM6W7u-M': {
-          id: 'L4TIM6W7u-M'
+        2: {
+          id: '2'
         }
       },
-      allIds: [
-        'M8l2aGMjKHI',
-        'GcSACxUbqtg',
-        'Flze-rwT7lM',
-        'L4TIM6W7u-M'
-      ],
-      pageToken: 'CCgQAA',
+      allIds: ['1', '2'],
+      pageToken: 'token',
       isFetching: false,
       error: false
     });
-  });
 
-  it('should handle FETCH_VIDEOS_FAILURE', () => {
-    const state = {
-      byId: {},
-      allIds: [],
-      pageToken: '',
-      isFetching: true,
-      error: false
-    };
-    const action = { type: actionTypes.FETCH_VIDEOS_FAILURE };
-    expect(videos(state, action)).toEqual({
-      byId: {},
-      allIds: [],
-      pageToken: '',
+    expect(videos(
+      {
+        byId: {
+          1: {
+            id: '1'
+          }
+        },
+        allIds: ['1'],
+        pageToken: 'token',
+        isFetching: false,
+        error: false
+      },
+      {
+        type: actionTypes.FETCH_VIDEOS_SUCCESS,
+        payload: {
+          items: [{ id: '2' }],
+          nextPageToken: 'next token'
+        }
+      }
+    )).toEqual({
+      byId: {
+        1: {
+          id: '1'
+        },
+        2: {
+          id: '2'
+        }
+      },
+      allIds: ['1', '2'],
+      pageToken: 'next token',
       isFetching: false,
-      error: true
+      error: false
     });
   });
 
   it('should handle UPDATE_ACTIVE_CHANNEL', () => {
     const state = {
       byId: {
-        M8l2aGMjKHI: {
-          id: 'M8l2aGMjKHI'
-        },
-        GcSACxUbqtg: {
-          id: 'GcSACxUbqtg'
+        1: {
+          id: '1'
         }
       },
-      allIds: [
-        'M8l2aGMjKHI',
-        'GcSACxUbqtg'
-      ],
-      pageToken: 'CBQQAA',
+      allIds: ['1'],
+      pageToken: 'token',
       isFetching: false,
       error: false
     };
     const action = {
       type: actionTypes.UPDATE_ACTIVE_CHANNEL,
-      payload: 'UCO1cgjhGzsSYb1rsB4bFe4Q'
+      payload: {
+        id: '1'
+      }
     };
+
     expect(videos(state, action)).toEqual({
       byId: {},
       allIds: [],
@@ -171,8 +106,9 @@ describe('videos reducer', () => {
     });
   });
 
-  it('should handle unknown action type', () => {
-    const action = { type: 'unknown' };
+  it('should handle an unknown action type', () => {
+    const action = { type: 'UNKNOWN' };
+
     expect(videos(undefined, action)).toEqual({
       byId: {},
       allIds: [],

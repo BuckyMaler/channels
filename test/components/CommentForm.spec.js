@@ -1,6 +1,5 @@
+import { mount } from 'enzyme';
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import CommentForm from '../../app/components/CommentForm';
 
 function setup() {
@@ -12,7 +11,7 @@ function setup() {
     handleReset: jest.fn()
   };
 
-  const enzymeWrapper = shallow(<CommentForm {...props} />);
+  const enzymeWrapper = mount(<CommentForm {...props} />);
 
   return {
     props,
@@ -21,38 +20,43 @@ function setup() {
 }
 
 describe('CommentForm', () => {
-  it('should render self with no value', () => {
-    const { enzymeWrapper } = setup();
-    const tree = toJson(enzymeWrapper);
+  /* eslint-disable no-unused-expressions */
+  describe('buttons', () => {
+    it('should be disabled', () => {
+      const { props, enzymeWrapper } = setup();
+      const submitBtn = enzymeWrapper.find('.submitBtn');
+      const cancelBtn = enzymeWrapper.find('.cancelBtn');
 
-    expect(tree).toMatchSnapshot();
-  });
+      cancelBtn.simulate('click');
 
-  it('should render self with value', () => {
-    const { enzymeWrapper } = setup();
-    enzymeWrapper.setProps({
-      description: 'Great video!'
+      expect(submitBtn).toBeDisabled;
+      expect(cancelBtn).toBeDisabled;
+      expect(props.handleReset).not.toHaveBeenCalled();
+
+      enzymeWrapper.setProps({
+        description: 'description',
+        isPosting: true
+      });
+
+      cancelBtn.simulate('click');
+
+      expect(submitBtn).toBeDisabled;
+      expect(cancelBtn).toBeDisabled;
+      expect(props.handleReset).not.toHaveBeenCalled();
     });
-    const tree = toJson(enzymeWrapper);
 
-    expect(tree).toMatchSnapshot();
+    it('should not be disabled', () => {
+      const { props, enzymeWrapper } = setup();
+      const submitBtn = enzymeWrapper.find('.submitBtn');
+      const cancelBtn = enzymeWrapper.find('.cancelBtn');
+
+      enzymeWrapper.setProps({ description: 'description' });
+      cancelBtn.simulate('click');
+
+      expect(submitBtn).not.toBeDisabled;
+      expect(cancelBtn).not.toBeDisabled;
+      expect(props.handleReset).toHaveBeenCalled();
+    });
   });
-
-  it('should call handleChange', () => {
-    const { props, enzymeWrapper } = setup();
-    const textarea = enzymeWrapper.find('.textarea');
-
-    textarea.simulate('change');
-
-    expect(props.handleChange).toBeCalled();
-  });
-
-  it('should call handleReset', () => {
-    const { props, enzymeWrapper } = setup();
-    const cancelBtn = enzymeWrapper.find('.cancelBtn');
-
-    cancelBtn.simulate('click');
-
-    expect(props.handleReset).toBeCalled();
-  });
+  /* eslint-enable no-unused-expressions */
 });

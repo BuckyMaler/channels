@@ -10,39 +10,11 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('../../app/services/uriGenerator');
 
 describe('comments actions', () => {
-  let store;
-  beforeEach(() => {
-    store = mockStore({
-      activeVideo: {
-        id: 'XsFQEUP1MxI'
-      },
-      comments: {
-        pageToken: ''
-      }
-    });
-  });
-
-  it('creates FETCH_COMMENTS_FAILURE when fetching comments has been rejected', () => {
-    fetch.getRequest = jest.fn(() => Promise.reject());
-
-    const expectedActions = [
-      { type: actionTypes.FETCH_COMMENTS_REQUEST },
-      { type: actionTypes.FETCH_COMMENTS_FAILURE }
-    ];
-
-    return store.dispatch(commentsActions.fetchComments()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
   it('creates FETCH_COMMENTS_SUCCESS when fetching comments has been resolved', () => {
     fetch.getRequest = jest.fn()
-      .mockReturnValueOnce(Promise.resolve({
-        items: [
-          'z12sgfaakziic3eei23sjz3yxpfbhbybw04',
-          'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k'
-        ],
-        nextPageToken: 'QURTSl'
+      .mockReturnValue(Promise.resolve({
+        nextPageToken: 'token',
+        items: [{ id: '1' }]
       }));
 
     const expectedActions = [
@@ -50,50 +22,64 @@ describe('comments actions', () => {
       {
         type: actionTypes.FETCH_COMMENTS_SUCCESS,
         payload: {
-          items: [
-            'z12sgfaakziic3eei23sjz3yxpfbhbybw04',
-            'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k'
-          ],
-          nextPageToken: 'QURTSl'
+          items: [{ id: '1' }],
+          nextPageToken: 'token'
         }
       }
     ];
+    const store = mockStore({
+      activeVideo: {
+        id: '1'
+      },
+      comments: {
+        pageToken: ''
+      }
+    });
 
     return store.dispatch(commentsActions.fetchComments()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  it('should create an action to request comments', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_COMMENTS_REQUEST
-    };
+  it('creates FETCH_COMMENTS_FAILURE when fetching comments has been rejected', () => {
+    fetch.getRequest = jest.fn().mockReturnValue(Promise.reject());
 
-    expect(commentsActions.fetchCommentsRequest()).toEqual(expectedAction);
-  });
-
-  it('should create an action to receive comments', () => {
-    const items = [
-      'z12sgfaakziic3eei23sjz3yxpfbhbybw04',
-      'z12exdqh2tifxzexi04ch1kbaqm0sf25ao00k'
+    const expectedActions = [
+      { type: actionTypes.FETCH_COMMENTS_REQUEST },
+      { type: actionTypes.FETCH_COMMENTS_FAILURE }
     ];
-    const nextPageToken = 'QURTSl';
-    const expectedAction = {
-      type: actionTypes.FETCH_COMMENTS_SUCCESS,
-      payload: {
-        items,
-        nextPageToken
+    const store = mockStore({
+      activeVideo: {
+        id: '1'
+      },
+      comments: {
+        pageToken: ''
       }
-    };
+    });
 
-    expect(commentsActions.fetchCommentsSuccess(items, nextPageToken)).toEqual(expectedAction);
+    return store.dispatch(commentsActions.fetchComments()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 
-  it('should create an action to handle an error', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_COMMENTS_FAILURE
-    };
+  it('creates POST_COMMENT_SUCCESS when a posted comment has been resolved', () => {
+    fetch.postRequest = jest.fn().mockReturnValue(Promise.resolve({ id: '1' }));
 
-    expect(commentsActions.fetchCommentsFailure()).toEqual(expectedAction);
+    const expectedAction = [{
+      type: actionTypes.POST_COMMENT_SUCCESS,
+      payload: { id: '1' }
+    }];
+    const store = mockStore({
+      activeVideo: {
+        id: '1'
+      },
+      channels: {
+        activeId: '1'
+      }
+    });
+
+    return store.dispatch(commentsActions.postComment('Great video!')).then(() => {
+      expect(store.getActions()).toEqual(expectedAction);
+    });
   });
 });
