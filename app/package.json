@@ -1,13 +1,13 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "electron-react-boilerplate",
-  "version": "1.0.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "name": "channels",
+  "productName": "Channels",
+  "version": "0.1.0",
+  "description": "The Mac App For YouTube Channels",
   "main": "./main.prod.js",
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "Bucky Maler",
+    "email": "bucky@buckymaler.com",
+    "url": "https://github.com/BuckyMaler"
   },
   "scripts": {
     "electron-rebuild": "../node_modules/.bin/electron-rebuild --parallel --force --types prod,dev,optional --module-dir .",
