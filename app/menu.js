@@ -104,22 +104,18 @@ export default class MenuBuilder {
   Please make sure the following boxes are ✅ if they are correct.
   If not, please try and fulfill these first.
 -->
+
 <!-- 👉 Checked checkbox should look like this: [x] -->
-  - [ ] Your Channels version is **${app.getVersion()}**. Please verify you're using the [latest](https://github.com/BuckyMaler/channels/releases/latest) Channels version
-  - [ ] I have searched the [issues](https://github.com/BuckyMaler/channels/issues) of this repo and believe that this is not a duplicate
-  ---
+- [ ] Your Channels version is **${app.getVersion()}**. Please verify you're using the [latest](https://github.com/BuckyMaler/channels/releases/latest) Channels version.
+- [ ] I have searched the [issues](https://github.com/BuckyMaler/channels/issues) of this repo and believe that this is not a duplicate.
+
+- **${app.getName()} version**: ${app.getVersion()}
+- **OS ARCH VERSION**: ${process.platform} ${process.arch} ${release()}
+- **Electron**: ${process.versions.electron || ''}  **LANG**: ${process.env.LANG || ''}
+- **Relevant information from devtools** _(CMD+ALT+I)_: <!-- Replace with info if applicable, or N/A -->
+
 ## Issue
-<!-- 👉 Now feel free to write your issue, but please be descriptive! Thanks again 🙌 ❤️ -->
-
-
-
-
-
-
-<!-- ~/.channels.js config -->
-  - **${app.getName()} version**: ${app.getVersion()}
-  - **OS ARCH VERSION:** ${process.platform} ${process.arch} ${release()}
-  - **Electron:** ${process.versions.electron || ''}  **LANG:** ${process.env.LANG || ''}`;
+<!-- 👉 Now feel free to write your issue, but please be descriptive! Thanks again 🙌 ❤️ -->`;
             shell.openExternal(`https://github.com/BuckyMaler/channels/issues/new?body=${encodeURIComponent(body)}`);
           }
         },
