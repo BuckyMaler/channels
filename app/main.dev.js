@@ -96,12 +96,12 @@ app.on('ready', async () => {
     autoUpdater.setFeedURL(feed);
 
     autoUpdater.on('update-downloaded', () => {
-      const message = 'Update available.';
+      const message = 'Would you like to install it now? It will be automatically installed after restart.';
       dialog.showMessageBox({
         type: 'question',
         buttons: ['Install and Relaunch', 'Later'],
         defaultId: 0,
-        message: `A new version of ${app.getName()} has been downloaded.`,
+        message: `A new version of ${app.getName()} has been downloaded!`,
         detail: message
       }, response => {
         if (response === 0) {
