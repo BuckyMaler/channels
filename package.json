@@ -1,7 +1,7 @@
 {
   "name": "channels",
   "productName": "Channels",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "The Mac App For YouTube Channels",
   "scripts": {
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
