@@ -20,4 +20,4 @@
 - **Relevant information from devtools** _(CMD+ALT+I)_: <!-- Replace with info if applicable, or N/A -->
 
 ## Issue
-<!-- 👉 Now feel free to write your issue, but please be descriptive! Thanks again 🙌 ❤️ --
+<!-- 👉 Now feel free to write your issue, but please be descriptive! Thanks again 🙌 ❤️ -->
