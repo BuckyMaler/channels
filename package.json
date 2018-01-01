@@ -30,7 +30,7 @@
   "browserslist": "electron 1.6",
   "build": {
     "productName": "Channels",
-    "appId": "org.develar.ElectronReact",
+    "appId": "com.buckymaler.channels",
     "files": [
       "dist/",
       "node_modules/",
