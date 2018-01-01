@@ -6,14 +6,13 @@
 -->
 
 <!-- 👉 Checked checkbox should look like this: [x] -->
-  - [ ] I am on the [latest](https://github.com/BuckyMaler/channels/releases/latest) Channels version
-  - [ ] I have searched the [issues](https://github.com/BuckyMaler/channels/issues) of this repo and believe that this is not a duplicate
+- [ ] I am on the [latest](https://github.com/BuckyMaler/channels/releases/latest) Channels version.
+- [ ] I have searched the [issues](https://github.com/BuckyMaler/channels/issues) of this repo and believe that this is not a duplicate.
 
 <!--
   Once those are done, if you're able to fill in the following list with your information,
   it'd be very helpful to whoever handles the issue.
 -->
-
 - **Channels version**: <!-- Replace with version -->
 - **OS version and name**: <!-- Replace with version + name -->
 - **Electron version**: <!-- Replace with version -->
