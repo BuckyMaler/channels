@@ -30,16 +30,4 @@ describe('main window', function spec() {
     const title = await browserWindow.getTitle();
     expect(title).toBe('Channels');
   });
-
-  it('should not have any logs in the console', async () => {
-    const { client } = this.app;
-    const logs = await client.getRenderProcessLogs();
-    // Print renderer process logs
-    logs.forEach(log => {
-      console.log(log.message);
-      console.log(log.source);
-      console.log(log.level);
-    });
-    expect(logs).toHaveLength(0);
-  });
 });
