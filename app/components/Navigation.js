@@ -4,7 +4,7 @@ import Status from './Status';
 import ChannelList from '../containers/ChannelList';
 import Search from '../containers/Search';
 import ChannelType from '../dataTypes/channelType';
-import placeholder from '../images/placeholder.jpg';
+import placeholder from '../img/placeholder.jpg';
 import styles from './Navigation.scss';
 
 const Navigation = ({
