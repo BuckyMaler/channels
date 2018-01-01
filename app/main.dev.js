@@ -10,7 +10,8 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, autoUpdater, dialog } from 'electron';
+import isDev from 'electron-is-dev';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -87,4 +88,32 @@ app.on('ready', async () => {
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
+
+  if (!isDev) {
+    const server = 'https://hazel-server-inkdewafsz.now.sh';
+    const feed = `${server}/update/${process.platform}/${app.getVersion()}`;
+
+    autoUpdater.setFeedURL(feed);
+
+    autoUpdater.on('update-downloaded', () => {
+      const message = 'Update available.';
+      dialog.showMessageBox({
+        type: 'question',
+        buttons: ['Install and Relaunch', 'Later'],
+        defaultId: 0,
+        message: `A new version of ${app.getName()} has been downloaded.`,
+        detail: message
+      }, response => {
+        if (response === 0) {
+          setTimeout(() => autoUpdater.quitAndInstall(), 1);
+        }
+      });
+    });
+
+    const tenSeconds = 10000;
+    const thirtyMinutes = 1800000;
+
+    setTimeout(() => autoUpdater.checkForUpdates(), tenSeconds);
+    setInterval(() => autoUpdater.checkForUpdates(), thirtyMinutes);
+  }
 });
