@@ -62,13 +62,12 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1038,
-    height: 584,
-    minWidth: 1038,
-    minHeight: 584
+    useContentSize: true,
+    width: 999,
+    height: 562,
+    minWidth: 999,
+    minHeight: 562
   });
-
-  mainWindow.setAspectRatio(16 / 9);
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
