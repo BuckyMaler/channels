@@ -110,8 +110,8 @@ export default class MenuBuilder {
 - [ ] I have searched the [issues](https://github.com/BuckyMaler/channels/issues) of this repo and believe that this is not a duplicate.
 
 - **${app.getName()} version**: ${app.getVersion()}
-- **OS ARCH VERSION**: ${process.platform} ${process.arch} ${release()}
-- **Electron**: ${process.versions.electron || ''}  **LANG**: ${process.env.LANG || ''}
+- **OS version and name**: ${release()} ${process.platform}
+- **Electron version**: ${process.versions.electron || ''}
 - **Relevant information from devtools** _(CMD+ALT+I)_: <!-- Replace with info if applicable, or N/A -->
 
 ## Issue
