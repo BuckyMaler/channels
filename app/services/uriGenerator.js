@@ -29,6 +29,13 @@ export function getRefreshTokenUri(code: string): string {
   return buildUriWithQueryParams(urls.TOKEN, defaultParams);
 }
 
+export function getRevokeTokenUri(): string {
+  const defaultParams = {
+    token: localStorage.getItem('refreshToken')
+  };
+  return buildUriWithQueryParams(urls.REVOKE, defaultParams);
+}
+
 export function getAccessTokenUri(): string {
   const defaultParams = {
     client_id: authParams.CLIENT_ID,

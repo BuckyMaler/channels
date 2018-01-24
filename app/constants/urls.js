@@ -2,6 +2,7 @@
 const urls = {
   AUTH: 'https://accounts.google.com/o/oauth2/v2/auth?',
   TOKEN: 'https://accounts.google.com/o/oauth2/token?',
+  REVOKE: 'https://accounts.google.com/o/oauth2/revoke?',
   CHANNELS: 'https://www.googleapis.com/youtube/v3/channels?',
   SUBSCRIPTIONS: 'https://www.googleapis.com/youtube/v3/subscriptions?',
   VIDEOS: 'https://www.googleapis.com/youtube/v3/videos?',

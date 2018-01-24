@@ -82,6 +82,17 @@ export default class MenuBuilder {
         { role: 'togglefullscreen' },
       ]
     };
+    const subMenuAccount = {
+      label: 'Account',
+      submenu: [
+        {
+          label: `Deauthorize ${app.getName()}`,
+          click: () => {
+            this.mainWindow.webContents.send('deauthorize-channels');
+          }
+        }
+      ]
+    };
     const subMenuWindow = {
       role: 'window',
       submenu: [
@@ -132,6 +143,7 @@ export default class MenuBuilder {
       subMenuAbout,
       subMenuEdit,
       subMenuView,
+      subMenuAccount,
       subMenuWindow,
       subMenuHelp
     ];

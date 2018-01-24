@@ -1,6 +1,7 @@
 // @flow
+import { ipcRenderer } from 'electron';
 import { authRequest } from './fetch';
-import { getAuthRequestUri, getRefreshTokenUri } from './uriGenerator';
+import { getAuthRequestUri, getRefreshTokenUri, getRevokeTokenUri } from './uriGenerator';
 
 const { BrowserWindow } = require('electron').remote;
 
@@ -48,3 +49,14 @@ export function requireAuth(): void {
   const isAuthorized = localStorage.getItem('refreshToken');
   location.hash = isAuthorized ? '/' : '/login'; // eslint-disable-line no-restricted-globals
 }
+
+ipcRenderer.on('deauthorize-channels', () => {
+  const uri = getRevokeTokenUri();
+  authRequest(uri).then( // eslint-disable-line promise/catch-or-return
+    () => { // eslint-disable-line promise/always-return
+      localStorage.clear();
+      location.hash = '/login'; // eslint-disable-line no-restricted-globals
+    },
+    () => undefined
+  );
+});
