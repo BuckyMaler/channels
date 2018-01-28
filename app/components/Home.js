@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default class Home extends Component<Props> {
-  intervalId: number;
+  intervalId: IntervalID;
 
   componentDidMount() {
     this.props.fetchAccessToken();
@@ -29,7 +29,7 @@ export default class Home extends Component<Props> {
     clearInterval(this.intervalId);
   }
 
-  refreshAccessToken = (): number => {
+  refreshAccessToken = (): IntervalID => {
     const fiftyMinutes = 3000000;
     return setInterval(this.props.fetchAccessToken, fiftyMinutes);
   }

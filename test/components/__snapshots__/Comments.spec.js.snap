@@ -6,7 +6,13 @@ exports[`Comments should render self and child components 1`] = `
 >
   <InfiniteScroll
     isFetching={false}
-    loadMore={[Function]}
+    loadMore={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+      }
+    }
     maxHeight=""
     pageToken=""
   >
@@ -30,7 +36,13 @@ exports[`Comments should render self and child components 2`] = `
 >
   <InfiniteScroll
     isFetching={true}
-    loadMore={[Function]}
+    loadMore={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+      }
+    }
     maxHeight=""
     pageToken="token"
   >

@@ -7,7 +7,13 @@ exports[`VideoList should render self with error 1`] = `
   <ErrorState
     color="black"
     message="Error requesting videos."
-    retry={[Function]}
+    retry={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+      }
+    }
   />
 </div>
 `;
@@ -37,7 +43,13 @@ exports[`VideoList should render self with videos 1`] = `
 >
   <InfiniteScroll
     isFetching={false}
-    loadMore={[Function]}
+    loadMore={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+      }
+    }
     maxHeight=""
     pageToken="token"
   >
@@ -75,7 +87,13 @@ exports[`VideoList should render self with videos 2`] = `
 >
   <InfiniteScroll
     isFetching={true}
-    loadMore={[Function]}
+    loadMore={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+      }
+    }
     maxHeight=""
     pageToken="token"
   >
