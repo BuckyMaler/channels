@@ -36,7 +36,7 @@ exports[`SearchResults should render self with results 1`] = `
 >
   <InfiniteScroll
     isFetching={false}
-    loadMore={[Function]}
+    loadMore={[MockFunction]}
     maxHeight="350px"
     pageToken="token"
   >
@@ -74,7 +74,7 @@ exports[`SearchResults should render self with results 2`] = `
 >
   <InfiniteScroll
     isFetching={true}
-    loadMore={[Function]}
+    loadMore={[MockFunction]}
     maxHeight="350px"
     pageToken="token"
   >

@@ -6,14 +6,14 @@ exports[`ChannelList should render self with channels 1`] = `
 >
   <div
     className="closeTarget"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   />
   <div
     className="modal"
   >
     <ul
       className="channels"
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       <Channel
         handleClick={[Function]}
@@ -44,7 +44,7 @@ exports[`ChannelList should render self with error 1`] = `
 >
   <div
     className="closeTarget"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   />
   <div
     className="modal"
@@ -52,7 +52,13 @@ exports[`ChannelList should render self with error 1`] = `
     <ErrorState
       color="black"
       message="Error requesting channels."
-      retry={[Function]}
+      retry={
+        [MockFunction] {
+          "calls": Array [
+            Array [],
+          ],
+        }
+      }
     />
   </div>
 </div>
@@ -64,7 +70,7 @@ exports[`ChannelList should render self with loader 1`] = `
 >
   <div
     className="closeTarget"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   />
   <div
     className="modal"
@@ -80,7 +86,7 @@ exports[`ChannelList should render self with no channels 1`] = `
 >
   <div
     className="closeTarget"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   />
   <div
     className="modal"
