@@ -11,7 +11,7 @@
   },
   "scripts": {
     "electron-rebuild": "../node_modules/.bin/electron-rebuild --parallel --force --types prod,dev,optional --module-dir .",
-    "postinstall": "npm run electron-rebuild"
+    "postinstall": "yarn run electron-rebuild"
   },
   "license": "MIT",
   "dependencies": {}

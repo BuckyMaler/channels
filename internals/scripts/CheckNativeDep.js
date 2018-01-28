@@ -27,9 +27,9 @@ ${chalk.bold(filteredRootDependencies.join(', '))} ${plural ? 'are native depend
 
 
 ${chalk.bold('Instead of this:')}
-${chalk.whiteBright.bgRed.bold('npm install your-package --save')}
+${chalk.whiteBright.bgRed.bold('yarn add your-package')}
 ${chalk.bold('Do this:')}
-${chalk.whiteBright.bgGreen.bold('cd ./app && npm install your-package --save')}
+${chalk.whiteBright.bgGreen.bold('cd ./app && yarn add your-package')}
 
 
 Read more about native dependencies at https://github.com/chentsulin/electron-react-boilerplate/wiki/Module-Structure----Two-package.json-Structure`);
