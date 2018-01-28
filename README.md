@@ -1,5 +1,7 @@
 ![Channels](internals/img/repo-banner.png)
 
+[![Build Status](https://travis-ci.org/BuckyMaler/channels.svg?branch=master)](https://travis-ci.org/BuckyMaler/channels)
+
 ## About
 
 Channels, began as a 3 week, final project at a coding bootcamp. Since then, in an effort to gain a better understanding of React and Redux, I've completely rewritten the 3 week app. The rewrite includes some great new tooling and libraries such as: Flow, ESLint, and Jest.
