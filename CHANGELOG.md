@@ -1,8 +1,22 @@
+## 0.2.0 (January 28, 2018)
+
+#### New Feature
+
+- [#73](https://github.com/BuckyMaler/channels/pull/73) Users can now deauthorize access to their data directly from the app menu ([@BuckyMaler](https://github.com/BuckyMaler))
+
+#### Internal
+
+- [#74](https://github.com/BuckyMaler/channels/pull/74) Update npm commands to yarn equivalents ([@BuckyMaler](https://github.com/BuckyMaler))
+- [#75](https://github.com/BuckyMaler/channels/pull/75) Update deps, move test scripts to `internals/scripts`, and improve `CheckNativeDep.js` logging ([@BuckyMaler](https://github.com/BuckyMaler))
+- [#77](https://github.com/BuckyMaler/channels/pull/77) Add build status badge to `README.md` ([@BuckyMaler](https://github.com/BuckyMaler))
+
+#### Committers: 1
+
+- Bucky Maler ([@BuckyMaler](https://github.com/BuckyMaler))
+
 ## 0.1.1 (January 14, 2018)
 
-Various bug fixes and repo clean up. Thank you [@krishan507](https://github.com/krishan507) for removing the unused `appveyor.yml` [#57](https://github.com/BuckyMaler/channels/pull/57), and [@E-David](https://github.com/E-David) for removing the unused internal images [#67](https://github.com/BuckyMaler/channels/pull/67).
-
-#### Patches
+#### Bug Fix
 
 - [#62](https://github.com/BuckyMaler/channels/pull/62) Fix full screen being cutoff ([@BuckyMaler](https://github.com/BuckyMaler))
 - [#64](https://github.com/BuckyMaler/channels/pull/64) The main window and authorization window are now of equal height ([@BuckyMaler](https://github.com/BuckyMaler))
@@ -10,6 +24,11 @@ Various bug fixes and repo clean up. Thank you [@krishan507](https://github.com/
 - [#69](https://github.com/BuckyMaler/channels/pull/69) Fix Report Issue templates consistency ([@BuckyMaler](https://github.com/BuckyMaler))
 - [#70](https://github.com/BuckyMaler/channels/pull/70) Fix console errors shown when refreshing the app in the development environment ([@BuckyMaler](https://github.com/BuckyMaler))
 - [#71](https://github.com/BuckyMaler/channels/pull/71) Fix console errors shown when running End-to-End test ([@BuckyMaler](https://github.com/BuckyMaler))
+
+#### Internal
+
+- [#57](https://github.com/BuckyMaler/channels/pull/57) Remove unused `appveyor.yml` ([@krishan507](https://github.com/krishan507))
+- [#67](https://github.com/BuckyMaler/channels/pull/67) Remove unused images ([@E-David](https://github.com/E-David))
 
 #### Committers: 3
 
@@ -21,7 +40,7 @@ Various bug fixes and repo clean up. Thank you [@krishan507](https://github.com/
 
 ### Happy New Year! 🎉🎉🎉
 
-#### Features
+#### New Feature
 
 - **Channel List**: Ultimately, your TV guide, where you can change channels
 - **Video List**: Infinite scroll list of all the videos for the active channel
