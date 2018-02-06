@@ -1,6 +1,6 @@
-![Channels](internals/img/repo-banner.png)
+# Channels [![Build Status](https://travis-ci.org/BuckyMaler/channels.svg?branch=master)](https://travis-ci.org/BuckyMaler/channels)
 
-[![Build Status](https://travis-ci.org/BuckyMaler/channels.svg?branch=master)](https://travis-ci.org/BuckyMaler/channels)
+![Channels](internals/img/repo-banner-2.jpg)
 
 ## About
 
