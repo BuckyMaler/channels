@@ -1,5 +1,7 @@
 # Channels [![Build Status](https://travis-ci.org/BuckyMaler/channels.svg?branch=master)](https://travis-ci.org/BuckyMaler/channels)
 
+> The Mac App for YouTube Channels.
+
 ![Channels](internals/img/repo-banner-2.jpg)
 
 ## About
