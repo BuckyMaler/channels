@@ -8,7 +8,7 @@ const Login = () => (
   <div className={styles.login}>
     <div className={styles.background} />
     <IconChannels styles={styles} />
-    <p className={styles.kicker}>The Mac App For YouTube Channels.</p>
+    <p className={styles.kicker}>The Mac App for YouTube Channels.</p>
     <button className={styles.btn} onClick={googleAuth}>
       <IconGoogle className={styles.iconGoogle} />
       Sign in with Google

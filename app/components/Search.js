@@ -59,7 +59,7 @@ export default class Search extends Component<Props> {
         <div className={styles.closeTarget} onClick={this.handleReset} />
         <SearchBar
           disabled={!activeChannel}
-          placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App For YouTube Channels.'}
+          placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App for YouTube Channels.'}
           value={query}
           handleChange={this.handleChange}
           handleReset={this.handleReset}
