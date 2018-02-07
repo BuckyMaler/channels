@@ -2,7 +2,7 @@
   "name": "channels",
   "productName": "Channels",
   "version": "0.2.0",
-  "description": "The Mac App For YouTube Channels",
+  "description": "The Mac App for YouTube Channels",
   "scripts": {
     "build": "concurrently \"yarn run build-main\" \"yarn run build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
