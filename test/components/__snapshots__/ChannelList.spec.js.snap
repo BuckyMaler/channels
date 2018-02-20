@@ -1,100 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChannelList should render self with channels 1`] = `
-<div
-  className="channelList isOpen"
+<Modal
+  handleClick={[MockFunction]}
+  isOpen={true}
+  stylesProp={null}
 >
-  <div
-    className="closeTarget"
+  <ul
+    className="channelList"
     onClick={[MockFunction]}
-  />
-  <div
-    className="modal"
   >
-    <ul
-      className="channels"
-      onClick={[MockFunction]}
-    >
-      <Channel
-        handleClick={[Function]}
-        isActive={false}
-        key="1"
-        subscriberCount="1"
-        thumbnail="thumbnail.jpg"
-        title="title"
-        videoCount="1"
-      />
-      <Channel
-        handleClick={[Function]}
-        isActive={false}
-        key="2"
-        subscriberCount="1"
-        thumbnail="thumbnail.jpg"
-        title="title"
-        videoCount="1"
-      />
-    </ul>
-  </div>
-</div>
+    <Channel
+      handleClick={[Function]}
+      isActive={false}
+      key="1"
+      subscriberCount="1"
+      thumbnail="thumbnail.jpg"
+      title="title"
+      videoCount="1"
+    />
+    <Channel
+      handleClick={[Function]}
+      isActive={false}
+      key="2"
+      subscriberCount="1"
+      thumbnail="thumbnail.jpg"
+      title="title"
+      videoCount="1"
+    />
+  </ul>
+</Modal>
 `;
 
 exports[`ChannelList should render self with error 1`] = `
-<div
-  className="channelList isOpen"
+<Modal
+  handleClick={[MockFunction]}
+  isOpen={true}
+  stylesProp={null}
 >
-  <div
-    className="closeTarget"
-    onClick={[MockFunction]}
-  />
-  <div
-    className="modal"
-  >
-    <ErrorState
-      color="black"
-      message="Error requesting channels."
-      retry={
-        [MockFunction] {
-          "calls": Array [
-            Array [],
-          ],
-        }
+  <ErrorState
+    color="black"
+    message="Error requesting channels."
+    retry={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
       }
-    />
-  </div>
-</div>
+    }
+  />
+</Modal>
 `;
 
 exports[`ChannelList should render self with loader 1`] = `
-<div
-  className="channelList isOpen"
+<Modal
+  handleClick={[MockFunction]}
+  isOpen={true}
+  stylesProp={null}
 >
-  <div
-    className="closeTarget"
-    onClick={[MockFunction]}
-  />
-  <div
-    className="modal"
-  >
-    <Loader />
-  </div>
-</div>
+  <Loader />
+</Modal>
 `;
 
 exports[`ChannelList should render self with no channels 1`] = `
-<div
-  className="channelList isOpen"
+<Modal
+  handleClick={[MockFunction]}
+  isOpen={true}
+  stylesProp={null}
 >
-  <div
-    className="closeTarget"
-    onClick={[MockFunction]}
+  <BlankState
+    color="black"
+    message="No channels found."
   />
-  <div
-    className="modal"
-  >
-    <BlankState
-      color="black"
-      message="No channels found."
-    />
-  </div>
-</div>
+</Modal>
 `;

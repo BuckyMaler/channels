@@ -1,38 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SearchResults should render self with error 1`] = `
-<div
-  className="searchResults isOpen"
+<Modal
+  isOpen={true}
+  stylesProp={null}
 >
   <ErrorState
     color="black"
     message="Error requesting videos."
   />
-</div>
+</Modal>
 `;
 
 exports[`SearchResults should render self with loader 1`] = `
-<div
-  className="searchResults isOpen"
+<Modal
+  isOpen={true}
+  stylesProp={null}
 >
   <Loader />
-</div>
+</Modal>
 `;
 
 exports[`SearchResults should render self with no results 1`] = `
-<div
-  className="searchResults isOpen"
+<Modal
+  isOpen={true}
+  stylesProp={null}
 >
   <BlankState
     color="black"
     message="No videos found."
   />
-</div>
+</Modal>
 `;
 
 exports[`SearchResults should render self with results 1`] = `
-<div
-  className="searchResults isOpen"
+<Modal
+  isOpen={true}
+  stylesProp={null}
 >
   <InfiniteScroll
     isFetching={false}
@@ -41,7 +45,7 @@ exports[`SearchResults should render self with results 1`] = `
     pageToken="token"
   >
     <ul
-      className="results"
+      className="searchResults"
     >
       <Video
         description=""
@@ -65,12 +69,13 @@ exports[`SearchResults should render self with results 1`] = `
       />
     </ul>
   </InfiniteScroll>
-</div>
+</Modal>
 `;
 
 exports[`SearchResults should render self with results 2`] = `
-<div
-  className="searchResults isOpen"
+<Modal
+  isOpen={true}
+  stylesProp={null}
 >
   <InfiniteScroll
     isFetching={true}
@@ -79,7 +84,7 @@ exports[`SearchResults should render self with results 2`] = `
     pageToken="token"
   >
     <ul
-      className="results"
+      className="searchResults"
     >
       <Video
         description=""
@@ -103,5 +108,5 @@ exports[`SearchResults should render self with results 2`] = `
       />
     </ul>
   </InfiniteScroll>
-</div>
+</Modal>
 `;

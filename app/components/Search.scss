@@ -1,15 +1,3 @@
 .search {
   width: calc(100% - 208px);
-  z-index: 1;
-
-  &.isActive {
-    .closeTarget {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-  }
 }

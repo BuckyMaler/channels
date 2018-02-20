@@ -4,6 +4,7 @@ import BlankState from './core/BlankState';
 import Channel from './core/Channel';
 import ErrorState from './core/ErrorState';
 import Loader from './core/Loader';
+import Modal from './core/Modal';
 import type { PromiseAction } from '../constants/types';
 import ChannelType from '../dataTypes/channelType';
 import styles from './ChannelList.scss';
@@ -37,49 +38,51 @@ export default class ChannelList extends Component<Props> {
     } = this.props;
     if (isFetching || error) {
       return (
-        <div className={channelListIsOpen ? [styles.channelList, styles.isOpen].join(' ') : styles.channelList}>
-          <div className={styles.closeTarget} onClick={toggleChannelList} />
-          <div className={styles.modal}>
-            {isFetching ? (
-              <Loader />
-            ) : (
-              <ErrorState
-                color="black"
-                message="Error requesting channels."
-                retry={fetchChannels}
-              />
-            )}
-          </div>
-        </div>
+        <Modal
+          isOpen={channelListIsOpen}
+          stylesProp={styles}
+          handleClick={toggleChannelList}
+        >
+          {isFetching ? (
+            <Loader />
+          ) : (
+            <ErrorState
+              color="black"
+              message="Error requesting channels."
+              retry={fetchChannels}
+            />
+          )}
+        </Modal>
       );
     }
 
     return (
-      <div className={channelListIsOpen ? [styles.channelList, styles.isOpen].join(' ') : styles.channelList}>
-        <div className={styles.closeTarget} onClick={toggleChannelList} />
-        <div className={styles.modal}>
-          {channels.length ? (
-            <ul className={styles.channels} onClick={toggleChannelList}>
-              {channels.map(channel => (
-                <Channel
-                  key={channel.id}
-                  title={channel.title}
-                  thumbnail={channel.thumbnail}
-                  videoCount={channel.videoCount}
-                  subscriberCount={channel.subscriberCount}
-                  isActive={channel.id === activeChannelId}
-                  handleClick={() => updateActiveChannel(channel)}
-                />
-              ))}
-            </ul>
-          ) : (
-            <BlankState
-              color="black"
-              message="No channels found."
-            />
-          )}
-        </div>
-      </div>
+      <Modal
+        isOpen={channelListIsOpen}
+        stylesProp={styles}
+        handleClick={toggleChannelList}
+      >
+        {channels.length ? (
+          <ul className={styles.channelList} onClick={toggleChannelList}>
+            {channels.map(channel => (
+              <Channel
+                key={channel.id}
+                title={channel.title}
+                thumbnail={channel.thumbnail}
+                videoCount={channel.videoCount}
+                subscriberCount={channel.subscriberCount}
+                isActive={channel.id === activeChannelId}
+                handleClick={() => updateActiveChannel(channel)}
+              />
+            ))}
+          </ul>
+        ) : (
+          <BlankState
+            color="black"
+            message="No channels found."
+          />
+        )}
+      </Modal>
     );
   }
 }

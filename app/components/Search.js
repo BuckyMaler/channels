@@ -55,8 +55,11 @@ export default class Search extends Component<Props> {
       fetchSearch
     } = this.props;
     return (
-      <form className={query ? [styles.search, styles.isActive].join(' ') : styles.search} onSubmit={this.handleSubmit}>
-        <div className={styles.closeTarget} onClick={this.handleReset} />
+      <form
+        className={styles.search}
+        style={query ? { zIndex: '1' } : {}}
+        onSubmit={this.handleSubmit}
+      >
         <SearchBar
           disabled={!activeChannel}
           placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App for YouTube Channels.'}
@@ -71,6 +74,7 @@ export default class Search extends Component<Props> {
           error={error}
           searchResultsIsOpen={!!query}
           fetchSearch={fetchSearch}
+          handleReset={this.handleReset}
           selectResult={this.selectResult}
         />
       </form>
