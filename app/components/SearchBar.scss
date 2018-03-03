@@ -1,4 +1,4 @@
-@import '../../app.global.scss';
+@import '../app.global.scss';
 
 .searchBar {
   display: flex;
@@ -10,10 +10,6 @@
 
 .iconSearch {
   fill: $gray;
-}
-
-.isDisabled {
-  opacity: 0.6;
 }
 
 .searchInput {
