@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
+import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import SearchBar from './core/SearchBar';
 import type { PromiseAction } from '../constants/types';
 import ChannelType from '../dataTypes/channelType';
 import VideoType from '../dataTypes/videoType';
@@ -62,7 +62,7 @@ export default class Search extends Component<Props> {
       >
         <SearchBar
           disabled={!activeChannel}
-          placeholder={activeChannel ? `Search ${activeChannel.title}` : ''}
+          placeholder={activeChannel ? `Search ${activeChannel.title}` : 'The Mac App for YouTube Channels.'}
           value={query}
           handleChange={this.handleChange}
           handleReset={this.handleReset}

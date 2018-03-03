@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { IconSearch, IconCancel } from './Icons';
+import { IconSearch, IconCancel } from './core/Icons';
 import styles from './SearchBar.scss';
 
 const SearchBar = ({
@@ -17,7 +17,9 @@ const SearchBar = ({
   handleReset: () => void
 }) => (
   <div className={styles.searchBar}>
-    <IconSearch className={disabled ? [styles.iconSearch, styles.isDisabled].join(' ') : styles.iconSearch} />
+    {!disabled &&
+      <IconSearch className={styles.iconSearch} />
+    }
     <input
       className={styles.searchInput}
       disabled={disabled}
