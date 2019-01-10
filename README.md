@@ -53,4 +53,4 @@ If you have issues in the `codesign` step when running `yarn run package`, you c
 
 ## Acknowledgments
 
-- [ElectronReact](https://github.com/chentsulin/electron-react-boilerplate) a boilerplate for scalable cross-platform desktop apps
+- [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate), a boilerplate for scalable cross-platform desktop apps
